@@ -103,6 +103,18 @@ test("resolveInstallContext supports native Windows paths and Git Bash cwd input
   );
 });
 
+test("integration harness keeps the host runtime platform for node-backed dependencies", async () => {
+  const harness = await createInstallIntegrationHarness();
+
+  try {
+    const dependencies = harness.createDependencies();
+
+    assert.equal(dependencies.runtime.platform, process.platform);
+  } finally {
+    await harness.cleanup();
+  }
+});
+
 test(
   "resolveInstallContext assembles project, platform, version, and managed path context without using real machine paths",
   { skip: process.platform === "win32" },
