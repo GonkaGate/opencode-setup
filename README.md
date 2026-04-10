@@ -5,6 +5,12 @@
 `opencode.json`, exporting secrets through shell profiles, or dealing with
 OpenCode provider internals.
 
+If you want the product context first, start with
+[GonkaGate](https://gonkagate.com/en),
+[How it works](https://gonkagate.com/en/about),
+[Pricing](https://gonkagate.com/en/pricing), or the public
+[Quickstart](https://gonkagate.com/en/docs/quickstart).
+
 If you only remember one command, make it this:
 
 ```bash
@@ -14,6 +20,16 @@ npx @gonkagate/opencode-setup
 The installer walks you through the setup, writes the minimum safe OpenCode
 config, verifies that OpenCode actually resolves GonkaGate the way it should,
 and then sends you back to plain `opencode`.
+
+## Useful Links
+
+- [GonkaGate website](https://gonkagate.com/en) for the main product overview.
+- [Get API key](https://gonkagate.com/en/register) if you still need access.
+- [Quickstart](https://gonkagate.com/en/docs/quickstart) if you want to see
+  the direct API flow first.
+- [Pricing](https://gonkagate.com/en/pricing) for current USD billing details.
+- [About GonkaGate](https://gonkagate.com/en/about) for the higher-level
+  product explanation.
 
 ## What This Does For You
 
@@ -74,6 +90,7 @@ You need:
 - Node `>=22.14.0`
 - local `opencode` installed and on your `PATH`
 - a GonkaGate API key in the usual `gp-...` format
+  from [GonkaGate](https://gonkagate.com/en/register)
 
 Current OpenCode baseline:
 
