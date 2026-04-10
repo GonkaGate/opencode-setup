@@ -1,0 +1,61 @@
+{
+  "skill_name": "coding-prompt-normalizer",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "Turn this into a prompt for an agent. Tighten `.claude/skills/coding-prompt-normalizer/SKILL.md` and `test/skills-contract.test.ts` so the skill is OpenCode-specific, preserves `~/.config/opencode/opencode.json`, and removes stale Codex repo wording. Keep the change small and keep `.agents` in sync.",
+      "expected_output": "An implementation prompt that preserves the exact literals, points toward the mirrored skill copies and scaffold test, and keeps the change small without inventing a nonexistent installer runtime.",
+      "files": [],
+      "expectations": [
+        "The output clearly frames the task as implementation work rather than review or high-level planning.",
+        "The output preserves `.claude/skills/coding-prompt-normalizer/SKILL.md`, `test/skills-contract.test.ts`, and `~/.config/opencode/opencode.json` verbatim.",
+        "The output points toward the mirrored `.agents` copy without inventing unrelated files.",
+        "The output does not include a generic summary of the whole repository."
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "Package this as a review prompt. Read-only. I think `README.md` and `docs/how-it-works.md` may overstate what the current placeholder CLI actually does around `npx @gonkagate/opencode-setup` and `chat_completions`. Need findings first, severity ordered, file anchors, focus on truthfulness and product contract.",
+      "expected_output": "A read-only review prompt that keeps the exact literals intact, asks for findings first with severity and file anchors, and points toward the docs plus placeholder CLI entrypoint.",
+      "files": [],
+      "expectations": [
+        "The output clearly frames the task as read-only review and explicitly says not to edit files.",
+        "The output asks for findings first, ordered by severity, with file or line anchors.",
+        "The output preserves `README.md`, `docs/how-it-works.md`, `npx @gonkagate/opencode-setup`, and `chat_completions` verbatim."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Please normalize this for an agent: project scope feels shaky around `opencode.json` and `provider.gonkagate`, but I am not sure whether the problem is docs, config design, or future installer logic. Investigate first, do not jump straight to a patch.",
+      "expected_output": "A bug-investigation prompt that keeps the exact literals, treats the issue as investigation first, and points toward the relevant docs and design surfaces without forcing an immediate implementation.",
+      "files": [],
+      "expectations": [
+        "The output frames the task as bug investigation or root-cause analysis rather than immediate implementation.",
+        "The output preserves `opencode.json` and `provider.gonkagate` verbatim.",
+        "The output points toward documentation and design surfaces without claiming a confirmed owner too early."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Rewrite this into a clean planning prompt: maybe use `auth.json` directly or lean on `@ai-sdk/openai` now, but do not pretend this is a small refactor if it changes product contract.",
+      "expected_output": "A planning or architecture prompt that treats the request as a product-contract change, preserves both literals, and avoids presenting it as a direct implementation task.",
+      "files": [],
+      "expectations": [
+        "The output treats the request as planning, spec, or architecture analysis rather than a direct coding prompt.",
+        "The output preserves `auth.json` and `@ai-sdk/openai` verbatim.",
+        "The output explicitly recognizes that this touches product invariants rather than a small local refactor."
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Make this into a docs prompt. If provider architecture changed, update `README.md`, `docs/how-it-works.md`, and `docs/security.md` so they stay truthful. Do not invent implemented runtime files if the repo is still scaffold-only.",
+      "expected_output": "A docs-and-messaging prompt that keeps the exact file literals, emphasizes truthfulness, and avoids inventing unimplemented runtime behavior.",
+      "files": [],
+      "expectations": [
+        "The output frames the task as documentation or messaging work.",
+        "The output preserves `README.md`, `docs/how-it-works.md`, and `docs/security.md` verbatim.",
+        "The output explicitly avoids inventing implemented runtime files or a finished installer flow."
+      ]
+    }
+  ]
+}
