@@ -1192,3 +1192,42 @@ test("the fake opencode harness also supports plain debug config invocations for
     await harness.cleanup();
   }
 });
+
+test("the fake opencode harness supports debug config --pure invocations through the real command runner", async () => {
+  const harness = await createInstallIntegrationHarness();
+
+  try {
+    await harness.installFakeOpenCodeOnPath({
+      debugConfigPureOutput: '{\n  "mode": "pure"\n}\n',
+      output: "opencode-ai 1.4.0",
+    });
+
+    const dependencies = harness.createDependencies();
+    const result = await dependencies.commands.run(
+      "opencode",
+      ["debug", "config", "--pure"],
+      {
+        cwd: dependencies.runtime.cwd,
+        env: dependencies.runtime.env,
+      },
+    );
+
+    assert.equal(result.exitCode, 0);
+    assert.match(result.stdout, /"mode": "pure"/);
+
+    const invocations = await harness.readFakeOpenCodeInvocations();
+
+    assert.equal(
+      invocations.some(
+        (args) =>
+          args.length === 3 &&
+          args[0] === "debug" &&
+          args[1] === "config" &&
+          args[2] === "--pure",
+      ),
+      true,
+    );
+  } finally {
+    await harness.cleanup();
+  }
+});

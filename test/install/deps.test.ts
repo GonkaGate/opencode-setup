@@ -64,7 +64,10 @@ test("prepareInstallCommand routes Windows .cmd shims through ComSpec", async ()
     "/d",
     "/s",
     "/c",
-    '"C:\\Program Files\\OpenCode\\opencode.CMD" debug config --pure',
+    "C:\\Program Files\\OpenCode\\opencode.CMD",
+    "debug",
+    "config",
+    "--pure",
   ]);
 });
 
