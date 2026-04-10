@@ -19,6 +19,7 @@ import { createInstallIntegrationHarness } from "./harness.js";
 const MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8" as const;
 const MODEL_REF = formatOpencodeModelRef(MODEL_KEY);
 const SECOND_RUN_BACKUP_TIMESTAMP = "20260409T110000Z";
+const SKIP_POSIX_HOST_INTEGRATION = process.platform === "win32";
 
 type InstallScope = "project" | "user";
 type InstallerFixture = Awaited<ReturnType<typeof createInstallerFixture>>;
@@ -281,44 +282,50 @@ test("no-op rerun in user scope keeps managed config stable and skips new backup
   }
 });
 
-test("no-op rerun in user scope repairs drifted POSIX secret permissions without creating a new backup", async () => {
-  const fixture = await createInstallerFixture();
+test(
+  "no-op rerun in user scope repairs drifted POSIX secret permissions without creating a new backup",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const fixture = await createInstallerFixture();
 
-  try {
-    const firstResult = await runScopedInstall(fixture, "user", {
-      clockIso: "2026-04-09T10:00:00.000Z",
-    });
+    try {
+      const firstResult = await runScopedInstall(fixture, "user", {
+        clockIso: "2026-04-09T10:00:00.000Z",
+      });
 
-    assert.equal(firstResult.status, "success");
+      assert.equal(firstResult.status, "success");
 
-    await chmod(fixture.managedPaths.secretPath, 0o644);
-    await chmod(dirname(fixture.managedPaths.secretPath), 0o755);
+      await chmod(fixture.managedPaths.secretPath, 0o644);
+      await chmod(dirname(fixture.managedPaths.secretPath), 0o755);
 
-    const beforeManagedState = await snapshotManagedState(fixture);
+      const beforeManagedState = await snapshotManagedState(fixture);
 
-    const secondResult = await runScopedInstall(fixture, "user", {
-      clockIso: "2026-04-09T11:00:00.000Z",
-    });
+      const secondResult = await runScopedInstall(fixture, "user", {
+        clockIso: "2026-04-09T11:00:00.000Z",
+      });
 
-    assert.equal(secondResult.status, "success");
-    await assertManagedStateUnchanged(fixture, beforeManagedState, ["secret"]);
-    await assertBackupMissing(
-      fixture,
-      fixture.managedPaths.secretPath,
-      SECOND_RUN_BACKUP_TIMESTAMP,
-    );
-    assert.equal(
-      (await stat(fixture.managedPaths.secretPath)).mode & 0o777,
-      0o600,
-    );
-    assert.equal(
-      (await stat(dirname(fixture.managedPaths.secretPath))).mode & 0o777,
-      0o700,
-    );
-  } finally {
-    await fixture.harness.cleanup();
-  }
-});
+      assert.equal(secondResult.status, "success");
+      await assertManagedStateUnchanged(fixture, beforeManagedState, [
+        "secret",
+      ]);
+      await assertBackupMissing(
+        fixture,
+        fixture.managedPaths.secretPath,
+        SECOND_RUN_BACKUP_TIMESTAMP,
+      );
+      assert.equal(
+        (await stat(fixture.managedPaths.secretPath)).mode & 0o777,
+        0o600,
+      );
+      assert.equal(
+        (await stat(dirname(fixture.managedPaths.secretPath))).mode & 0o777,
+        0o700,
+      );
+    } finally {
+      await fixture.harness.cleanup();
+    }
+  },
+);
 
 test("repeated project-scope reruns stay stable while refreshing install-state only", async () => {
   const fixture = await createInstallerFixture();
