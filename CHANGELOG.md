@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.2](https://github.com/GonkaGate/opencode-setup/compare/v0.2.1...v0.2.2) (2026-04-10)
+
+
+### Bug Fixes
+
+* route trusted publishing through release workflow ([82978b0](https://github.com/GonkaGate/opencode-setup/commit/82978b0f1a3149bacc7d2d1ca90ef4ecccbfcb33))
+
 ## [0.2.1](https://github.com/GonkaGate/opencode-setup/compare/v0.2.0...v0.2.1) (2026-04-10)
 
 ### Bug Fixes
