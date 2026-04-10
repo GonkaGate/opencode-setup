@@ -352,16 +352,6 @@ export async function resolveWindowsCommandPath(
   return undefined;
 }
 
-function quoteWindowsShellArgument(argument: string): string {
-  if (argument.length === 0) {
-    return '""';
-  }
-
-  return /[\s"&()<>^|]/u.test(argument)
-    ? `"${argument.replaceAll('"', '""')}"`
-    : argument;
-}
-
 function createCommandNotFoundError(command: string): NodeJS.ErrnoException {
   const error = new Error(`spawn ${command} ENOENT`) as NodeJS.ErrnoException;
 
@@ -408,12 +398,8 @@ export async function prepareInstallCommand(
     };
   }
 
-  const commandLine = [resolvedCommandPath, ...args]
-    .map(quoteWindowsShellArgument)
-    .join(" ");
-
   return {
-    args: ["/d", "/s", "/c", commandLine],
+    args: ["/d", "/s", "/c", resolvedCommandPath, ...args],
     command:
       getEnvironmentValue(normalizedEnv, "ComSpec", platform) ?? "cmd.exe",
     windowsHide: true,
