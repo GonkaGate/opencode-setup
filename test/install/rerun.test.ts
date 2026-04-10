@@ -193,8 +193,9 @@ function createExternalProjectBackupPath(
     .update(fixture.managedPaths.projectConfigPath)
     .digest("hex")
     .slice(0, 12);
+  const pathSeparator = backupDirectoryPath.includes("\\") ? "\\" : "/";
 
-  return `${backupDirectoryPath}/opencode.json.${pathHash}.bak-${clockTimestamp}`;
+  return `${backupDirectoryPath}${pathSeparator}opencode.json.${pathHash}.bak-${clockTimestamp}`;
 }
 
 async function runScopedInstall(

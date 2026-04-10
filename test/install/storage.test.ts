@@ -14,46 +14,52 @@ import {
   createTestInstallDependencies,
 } from "./test-deps.js";
 
+const SKIP_POSIX_HOST_INTEGRATION = process.platform === "win32";
+
 function expectInstallErrorCode(
   code: InstallErrorCode,
 ): (error: unknown) => boolean {
   return (error: unknown) => isInstallErrorCode(error, code);
 }
 
-test("writeManagedSecret writes the secret to the managed secret path on first write", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "writeManagedSecret writes the secret to the managed secret path on first write",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
-    const writeResult = await writeManagedSecret(
-      {
-        secret: "gp-secret-value",
-        source: "env",
-      },
-      harness.createDependencies({
-        clock: {
-          now: () => new Date("2026-04-08T10:11:12.000Z"),
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
+      const writeResult = await writeManagedSecret(
+        {
+          secret: "gp-secret-value",
+          source: "env",
         },
-        runtime: {
-          platform: "linux",
-        },
-      }),
-      managedPaths,
-    );
+        harness.createDependencies({
+          clock: {
+            now: () => new Date("2026-04-08T10:11:12.000Z"),
+          },
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    assert.equal(writeResult.path, managedPaths.secretPath);
-    assert.equal(writeResult.backupPath, undefined);
-    assert.equal(
-      await readFile(managedPaths.secretPath, "utf8"),
-      "gp-secret-value",
-    );
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.equal(writeResult.path, managedPaths.secretPath);
+      assert.equal(writeResult.backupPath, undefined);
+      assert.equal(
+        await readFile(managedPaths.secretPath, "utf8"),
+        "gp-secret-value",
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
 
 test("resolved managed secret paths stay inside the integration harness", async () => {
   const harness = await createInstallIntegrationHarness();
@@ -70,37 +76,41 @@ test("resolved managed secret paths stay inside the integration harness", async 
   }
 });
 
-test("writeManagedSecret stores owner-only file and directory permissions on POSIX platforms", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "writeManagedSecret stores owner-only file and directory permissions on POSIX platforms",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
 
-    await writeManagedSecret(
-      {
-        secret: "gp-secret-value",
-        source: "env",
-      },
-      harness.createDependencies({
-        runtime: {
-          platform: "linux",
+      await writeManagedSecret(
+        {
+          secret: "gp-secret-value",
+          source: "env",
         },
-      }),
-      managedPaths,
-    );
+        harness.createDependencies({
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    assert.equal((await stat(managedPaths.secretPath)).mode & 0o777, 0o600);
-    assert.equal(
-      (await stat(dirname(managedPaths.secretPath))).mode & 0o777,
-      0o700,
-    );
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.equal((await stat(managedPaths.secretPath)).mode & 0o777, 0o600);
+      assert.equal(
+        (await stat(dirname(managedPaths.secretPath))).mode & 0o777,
+        0o700,
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
 
 test("writeManagedSecret repairs drifted POSIX permissions on an unchanged secret without rewriting contents or creating backups", async () => {
   const managedPaths = resolveManagedPaths(
@@ -168,95 +178,106 @@ test("writeManagedSecret repairs drifted POSIX permissions on an unchanged secre
   assert.equal(stubFs.getEntry(dirname(managedPaths.secretPath))?.mode, 0o700);
 });
 
-test("writeManagedSecret creates a timestamped backup before overwriting the managed secret", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "writeManagedSecret creates a timestamped backup before overwriting the managed secret",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
 
-    await writeManagedSecret(
-      {
-        secret: "gp-old-secret",
-        source: "env",
-      },
-      harness.createDependencies({
-        clock: {
-          now: () => new Date("2026-04-08T10:11:12.000Z"),
+      await writeManagedSecret(
+        {
+          secret: "gp-old-secret",
+          source: "env",
         },
-        runtime: {
-          platform: "linux",
+        harness.createDependencies({
+          clock: {
+            now: () => new Date("2026-04-08T10:11:12.000Z"),
+          },
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
+
+      const overwriteResult = await writeManagedSecret(
+        {
+          secret: "gp-new-secret",
+          source: "hidden_prompt",
         },
-      }),
-      managedPaths,
-    );
+        harness.createDependencies({
+          clock: {
+            now: () => new Date("2026-04-08T11:12:13.000Z"),
+          },
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    const overwriteResult = await writeManagedSecret(
-      {
-        secret: "gp-new-secret",
-        source: "hidden_prompt",
-      },
-      harness.createDependencies({
-        clock: {
-          now: () => new Date("2026-04-08T11:12:13.000Z"),
+      assert.equal(
+        await readFile(managedPaths.secretPath, "utf8"),
+        "gp-new-secret",
+      );
+      assert.equal(
+        overwriteResult.backupPath,
+        `${managedPaths.secretPath}.bak-20260408T111213Z`,
+      );
+      assert.equal(
+        await readFile(overwriteResult.backupPath, "utf8"),
+        "gp-old-secret",
+      );
+      assert.equal(
+        (await stat(overwriteResult.backupPath)).mode & 0o777,
+        0o600,
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
+
+test(
+  "writeManagedSecret skips POSIX chmod enforcement on unsupported non-POSIX platforms without failing",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
+
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
+
+      await writeManagedSecret(
+        {
+          secret: "gp-secret-value",
+          source: "api_key_stdin",
         },
-        runtime: {
-          platform: "linux",
-        },
-      }),
-      managedPaths,
-    );
+        harness.createDependencies({
+          runtime: {
+            platform: "freebsd",
+          },
+        }),
+        managedPaths,
+      );
 
-    assert.equal(
-      await readFile(managedPaths.secretPath, "utf8"),
-      "gp-new-secret",
-    );
-    assert.equal(
-      overwriteResult.backupPath,
-      `${managedPaths.secretPath}.bak-20260408T111213Z`,
-    );
-    assert.equal(
-      await readFile(overwriteResult.backupPath, "utf8"),
-      "gp-old-secret",
-    );
-    assert.equal((await stat(overwriteResult.backupPath)).mode & 0o777, 0o600);
-  } finally {
-    await harness.cleanup();
-  }
-});
-
-test("writeManagedSecret skips POSIX chmod enforcement on unsupported non-POSIX platforms without failing", async () => {
-  const harness = await createInstallIntegrationHarness();
-
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
-
-    await writeManagedSecret(
-      {
-        secret: "gp-secret-value",
-        source: "api_key_stdin",
-      },
-      harness.createDependencies({
-        runtime: {
-          platform: "freebsd",
-        },
-      }),
-      managedPaths,
-    );
-
-    assert.equal(
-      await readFile(managedPaths.secretPath, "utf8"),
-      "gp-secret-value",
-    );
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.equal(
+        await readFile(managedPaths.secretPath, "utf8"),
+        "gp-secret-value",
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
 
 test("writeManagedSecret uses the native Windows profile-scoped protection strategy", async () => {
   const managedPaths = resolveManagedPaths(

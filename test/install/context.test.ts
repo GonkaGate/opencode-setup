@@ -118,6 +118,7 @@ test("resolveInstallContext assembles project, platform, version, and managed pa
           cwd: nestedWorkspace,
           env: { WSL_DISTRO_NAME: "Ubuntu" },
           osRelease: "6.6.0-microsoft-standard-WSL2",
+          platform: "linux",
         },
       }),
     );

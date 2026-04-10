@@ -18,6 +18,24 @@ const SYSTEM_MANAGED_CONFIG_FILE_NAMES = Object.freeze([
   "opencode.json",
   "opencode.jsonc",
 ] as const);
+const WINDOWS_DRIVE_PATH_PATTERN = /^[A-Za-z]:[\\/]/u;
+const WINDOWS_UNC_PATH_PATTERN = /^\\\\/u;
+const WINDOWS_POSIX_DRIVE_PATH_PATTERN = /^\/[A-Za-z](?=\/|$)/u;
+
+function inferPathPlatform(...pathValues: string[]): NodeJS.Platform {
+  for (const pathValue of pathValues) {
+    if (
+      WINDOWS_DRIVE_PATH_PATTERN.test(pathValue) ||
+      WINDOWS_UNC_PATH_PATTERN.test(pathValue) ||
+      WINDOWS_POSIX_DRIVE_PATH_PATTERN.test(pathValue) ||
+      pathValue.includes("\\")
+    ) {
+      return "win32";
+    }
+  }
+
+  return "linux";
+}
 
 function resolveInstallCwd(
   baseCwd: string,
@@ -85,7 +103,7 @@ export async function resolveProjectRoot(
 export function resolveManagedPaths(
   homeDirectory: string,
   projectRoot: string,
-  platform: NodeJS.Platform = process.platform,
+  platform: NodeJS.Platform = inferPathPlatform(homeDirectory, projectRoot),
 ): ManagedPaths {
   const pathApi = getInstallPathApi(platform);
   const normalizedHomeDirectory = normalizeInstallPath(homeDirectory, platform);
@@ -116,7 +134,7 @@ export function resolveManagedPaths(
 
 export function resolveProjectConfigBackupDirectory(
   managedPaths: ManagedPaths,
-  platform: NodeJS.Platform = process.platform,
+  platform: NodeJS.Platform = inferPathPlatform(managedPaths.installStatePath),
 ): string {
   const pathApi = getInstallPathApi(platform);
   const normalizedInstallStatePath = normalizeInstallPath(

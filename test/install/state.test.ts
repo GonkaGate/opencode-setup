@@ -37,6 +37,7 @@ const LEGACY_STATE = {
   selectedModelKey: "qwen3-235b-a22b-instruct-2507-fp8",
   selectedScope: "user",
 } as const;
+const SKIP_POSIX_HOST_INTEGRATION = process.platform === "win32";
 
 function expectInstallErrorCode(
   code: InstallErrorCode,
@@ -48,71 +49,82 @@ async function readJsonFile(path: string): Promise<unknown> {
   return JSON.parse(await readFile(path, "utf8")) as unknown;
 }
 
-test("writeManagedInstallState writes the managed install state JSON document on first write", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "writeManagedInstallState writes the managed install state JSON document on first write",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
-    const writeResult = await writeManagedInstallState(
-      INITIAL_STATE,
-      harness.createDependencies({
-        runtime: {
-          platform: "linux",
-        },
-      }),
-      managedPaths,
-    );
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
+      const writeResult = await writeManagedInstallState(
+        INITIAL_STATE,
+        harness.createDependencies({
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    assert.equal(writeResult.path, managedPaths.installStatePath);
-    assert.equal(writeResult.backupPath, undefined);
-    assert.deepEqual(
-      await readJsonFile(managedPaths.installStatePath),
-      INITIAL_STATE,
-    );
-    assert.equal(
-      (
-        (await readJsonFile(managedPaths.installStatePath)) as Record<
-          string,
-          unknown
-        >
-      ).lastSuccessfulSetupAt,
-      undefined,
-    );
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.equal(writeResult.path, managedPaths.installStatePath);
+      assert.equal(writeResult.backupPath, undefined);
+      assert.deepEqual(
+        await readJsonFile(managedPaths.installStatePath),
+        INITIAL_STATE,
+      );
+      assert.equal(
+        (
+          (await readJsonFile(managedPaths.installStatePath)) as Record<
+            string,
+            unknown
+          >
+        ).lastSuccessfulSetupAt,
+        undefined,
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
 
-test("readManagedInstallState returns a previously written managed install state record", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "readManagedInstallState returns a previously written managed install state record",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
 
-    await writeManagedInstallState(
-      INITIAL_STATE,
-      harness.createDependencies({
-        runtime: {
-          platform: "linux",
-        },
-      }),
-      managedPaths,
-    );
+      await writeManagedInstallState(
+        INITIAL_STATE,
+        harness.createDependencies({
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    assert.deepEqual(
-      await readManagedInstallState(harness.createDependencies(), managedPaths),
-      INITIAL_STATE,
-    );
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.deepEqual(
+        await readManagedInstallState(
+          harness.createDependencies(),
+          managedPaths,
+        ),
+        INITIAL_STATE,
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
 
 test("readManagedInstallState accepts the legacy lastSuccessfulSetupAt field and maps it to lastDurableSetupAt", async () => {
   const harness = await createInstallIntegrationHarness();
@@ -147,33 +159,37 @@ test("readManagedInstallState accepts the legacy lastSuccessfulSetupAt field and
   }
 });
 
-test("writeManagedInstallState stores owner-only file permissions on POSIX platforms", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "writeManagedInstallState stores owner-only file permissions on POSIX platforms",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
 
-    await writeManagedInstallState(
-      INITIAL_STATE,
-      harness.createDependencies({
-        runtime: {
-          platform: "linux",
-        },
-      }),
-      managedPaths,
-    );
+      await writeManagedInstallState(
+        INITIAL_STATE,
+        harness.createDependencies({
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    assert.equal(
-      (await stat(managedPaths.installStatePath)).mode & 0o777,
-      0o600,
-    );
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.equal(
+        (await stat(managedPaths.installStatePath)).mode & 0o777,
+        0o600,
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
 
 test("writeManagedInstallState persists on native Windows without POSIX chmod", async () => {
   const managedPaths = resolveManagedPaths(
@@ -210,57 +226,61 @@ test("writeManagedInstallState persists on native Windows without POSIX chmod", 
   assert.equal(chmodCalls, 0);
 });
 
-test("writeManagedInstallState creates a timestamped backup before overwriting managed state", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "writeManagedInstallState creates a timestamped backup before overwriting managed state",
+  { skip: SKIP_POSIX_HOST_INTEGRATION },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const managedPaths = resolveManagedPaths(
-      harness.homeDir,
-      harness.workspaceDir,
-    );
+    try {
+      const managedPaths = resolveManagedPaths(
+        harness.homeDir,
+        harness.workspaceDir,
+      );
 
-    await writeManagedInstallState(
-      INITIAL_STATE,
-      harness.createDependencies({
-        clock: {
-          now: () => new Date("2026-04-08T10:11:12.000Z"),
-        },
-        runtime: {
-          platform: "linux",
-        },
-      }),
-      managedPaths,
-    );
+      await writeManagedInstallState(
+        INITIAL_STATE,
+        harness.createDependencies({
+          clock: {
+            now: () => new Date("2026-04-08T10:11:12.000Z"),
+          },
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    const overwriteResult = await writeManagedInstallState(
-      UPDATED_STATE,
-      harness.createDependencies({
-        clock: {
-          now: () => new Date("2026-04-08T11:12:13.000Z"),
-        },
-        runtime: {
-          platform: "linux",
-        },
-      }),
-      managedPaths,
-    );
+      const overwriteResult = await writeManagedInstallState(
+        UPDATED_STATE,
+        harness.createDependencies({
+          clock: {
+            now: () => new Date("2026-04-08T11:12:13.000Z"),
+          },
+          runtime: {
+            platform: "linux",
+          },
+        }),
+        managedPaths,
+      );
 
-    assert.equal(
-      overwriteResult.backupPath,
-      `${managedPaths.installStatePath}.bak-20260408T111213Z`,
-    );
-    assert.deepEqual(
-      await readJsonFile(overwriteResult.backupPath),
-      INITIAL_STATE,
-    );
-    assert.deepEqual(
-      await readJsonFile(managedPaths.installStatePath),
-      UPDATED_STATE,
-    );
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.equal(
+        overwriteResult.backupPath,
+        `${managedPaths.installStatePath}.bak-20260408T111213Z`,
+      );
+      assert.deepEqual(
+        await readJsonFile(overwriteResult.backupPath),
+        INITIAL_STATE,
+      );
+      assert.deepEqual(
+        await readJsonFile(managedPaths.installStatePath),
+        UPDATED_STATE,
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
 
 test("readManagedInstallState returns undefined when the managed state file is absent", async () => {
   const harness = await createInstallIntegrationHarness();

@@ -20,6 +20,7 @@ const OLD_USER_CONFIG = '{\n  "model": "gonkagate/old"\n}\n';
 const NEW_USER_CONFIG = '{\n  "model": "gonkagate/new"\n}\n';
 const USER_SCOPE_CONFIG = '{\n  "model": "gonkagate/user"\n}\n';
 const PROJECT_SCOPE_CONFIG = '{\n  "model": "gonkagate/project"\n}\n';
+const SKIP_POSIX_HOST_INTEGRATION = process.platform === "win32";
 
 async function withInstallHarness(
   run: (
@@ -171,113 +172,133 @@ describe("writeManagedConfig [stubbed]", () => {
 });
 
 describe("writeManagedConfig [integration]", () => {
-  test("creates a timestamped backup before replacing an existing config", async () => {
-    await withInstallHarness(async (harness, managedPaths) => {
-      await seedTextFile(managedPaths.userConfigPath, OLD_USER_CONFIG);
-      const result = await writeManagedConfig(
-        {
-          contents: OLD_USER_CONFIG,
-          exists: true,
-          path: managedPaths.userConfigPath,
-          target: "user_config",
-        },
-        NEW_USER_CONFIG,
-        harness.createDependencies({
-          clock: {
-            now: () => new Date("2026-04-08T11:12:13.000Z"),
+  test(
+    "creates a timestamped backup before replacing an existing config",
+    { skip: SKIP_POSIX_HOST_INTEGRATION },
+    async () => {
+      await withInstallHarness(async (harness, managedPaths) => {
+        await seedTextFile(managedPaths.userConfigPath, OLD_USER_CONFIG);
+        const result = await writeManagedConfig(
+          {
+            contents: OLD_USER_CONFIG,
+            exists: true,
+            path: managedPaths.userConfigPath,
+            target: "user_config",
           },
-          runtime: {
-            platform: "linux",
+          NEW_USER_CONFIG,
+          harness.createDependencies({
+            clock: {
+              now: () => new Date("2026-04-08T11:12:13.000Z"),
+            },
+            runtime: {
+              platform: "linux",
+            },
+          }),
+        );
+
+        assert.equal(result.changed, true);
+        assert.equal(
+          result.backupPath,
+          `${managedPaths.userConfigPath}.bak-20260408T111213Z`,
+        );
+        assert.equal(
+          await readFile(result.backupPath, "utf8"),
+          OLD_USER_CONFIG,
+        );
+        assert.equal(
+          await readFile(managedPaths.userConfigPath, "utf8"),
+          NEW_USER_CONFIG,
+        );
+      });
+    },
+  );
+
+  test(
+    "can keep repo-local rollback backups outside the repository",
+    { skip: SKIP_POSIX_HOST_INTEGRATION },
+    async () => {
+      await withInstallHarness(async (harness, managedPaths) => {
+        const backupDirectoryPath =
+          resolveProjectConfigBackupDirectory(managedPaths);
+
+        await seedTextFile(managedPaths.projectConfigPath, OLD_USER_CONFIG);
+
+        const result = await writeManagedConfig(
+          {
+            contents: OLD_USER_CONFIG,
+            exists: true,
+            path: managedPaths.projectConfigPath,
+            target: "project_config",
           },
-        }),
-      );
-
-      assert.equal(result.changed, true);
-      assert.equal(
-        result.backupPath,
-        `${managedPaths.userConfigPath}.bak-20260408T111213Z`,
-      );
-      assert.equal(await readFile(result.backupPath, "utf8"), OLD_USER_CONFIG);
-      assert.equal(
-        await readFile(managedPaths.userConfigPath, "utf8"),
-        NEW_USER_CONFIG,
-      );
-    });
-  });
-
-  test("can keep repo-local rollback backups outside the repository", async () => {
-    await withInstallHarness(async (harness, managedPaths) => {
-      const backupDirectoryPath =
-        resolveProjectConfigBackupDirectory(managedPaths);
-
-      await seedTextFile(managedPaths.projectConfigPath, OLD_USER_CONFIG);
-
-      const result = await writeManagedConfig(
-        {
-          contents: OLD_USER_CONFIG,
-          exists: true,
-          path: managedPaths.projectConfigPath,
-          target: "project_config",
-        },
-        PROJECT_SCOPE_CONFIG,
-        harness.createDependencies({
-          clock: {
-            now: () => new Date("2026-04-08T11:12:13.000Z"),
+          PROJECT_SCOPE_CONFIG,
+          harness.createDependencies({
+            clock: {
+              now: () => new Date("2026-04-08T11:12:13.000Z"),
+            },
+            runtime: {
+              platform: "linux",
+            },
+          }),
+          {
+            backupDirectoryPath,
           },
-          runtime: {
-            platform: "linux",
+        );
+
+        assert.ok(
+          result.backupPath?.startsWith(
+            `${backupDirectoryPath}/opencode.json.`,
+          ),
+        );
+        assert.equal(
+          await readFile(managedPaths.projectConfigPath, "utf8"),
+          PROJECT_SCOPE_CONFIG,
+        );
+        assert.equal(
+          await readFile(result.backupPath!, "utf8"),
+          OLD_USER_CONFIG,
+        );
+      });
+    },
+  );
+
+  test(
+    "writes user and project targets independently",
+    { skip: SKIP_POSIX_HOST_INTEGRATION },
+    async () => {
+      await withInstallHarness(async (harness, managedPaths) => {
+        const dependencies = createLinuxDependencies(harness);
+        const userResult = await writeManagedConfig(
+          {
+            contents: "",
+            exists: false,
+            path: managedPaths.userConfigPath,
+            target: "user_config",
           },
-        }),
-        {
-          backupDirectoryPath,
-        },
-      );
+          USER_SCOPE_CONFIG,
+          dependencies,
+        );
+        const projectResult = await writeManagedConfig(
+          {
+            contents: "",
+            exists: false,
+            path: managedPaths.projectConfigPath,
+            target: "project_config",
+          },
+          PROJECT_SCOPE_CONFIG,
+          dependencies,
+        );
 
-      assert.ok(
-        result.backupPath?.startsWith(`${backupDirectoryPath}/opencode.json.`),
-      );
-      assert.equal(
-        await readFile(managedPaths.projectConfigPath, "utf8"),
-        PROJECT_SCOPE_CONFIG,
-      );
-      assert.equal(await readFile(result.backupPath!, "utf8"), OLD_USER_CONFIG);
-    });
-  });
-
-  test("writes user and project targets independently", async () => {
-    await withInstallHarness(async (harness, managedPaths) => {
-      const dependencies = createLinuxDependencies(harness);
-      const userResult = await writeManagedConfig(
-        {
-          contents: "",
-          exists: false,
-          path: managedPaths.userConfigPath,
-          target: "user_config",
-        },
-        USER_SCOPE_CONFIG,
-        dependencies,
-      );
-      const projectResult = await writeManagedConfig(
-        {
-          contents: "",
-          exists: false,
-          path: managedPaths.projectConfigPath,
-          target: "project_config",
-        },
-        PROJECT_SCOPE_CONFIG,
-        dependencies,
-      );
-
-      assert.equal(userResult.path, managedPaths.userConfigPath);
-      assert.equal(projectResult.path, managedPaths.projectConfigPath);
-      assert.equal(
-        await readFile(managedPaths.userConfigPath, "utf8"),
-        USER_SCOPE_CONFIG,
-      );
-      assert.equal(
-        await readFile(managedPaths.projectConfigPath, "utf8"),
-        PROJECT_SCOPE_CONFIG,
-      );
-    });
-  });
+        assert.equal(userResult.path, managedPaths.userConfigPath);
+        assert.equal(projectResult.path, managedPaths.projectConfigPath);
+        assert.equal(
+          await readFile(managedPaths.userConfigPath, "utf8"),
+          USER_SCOPE_CONFIG,
+        );
+        assert.equal(
+          await readFile(managedPaths.projectConfigPath, "utf8"),
+          PROJECT_SCOPE_CONFIG,
+        );
+      });
+    },
+  );
 });

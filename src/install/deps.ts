@@ -125,6 +125,7 @@ export interface CreateNodeInstallDependenciesOverrides {
 interface PreparedInstallCommand {
   args: string[];
   command: string;
+  shell?: boolean;
   windowsHide?: boolean;
 }
 
@@ -375,16 +376,21 @@ async function runCommand(
   args: readonly string[],
   options?: InstallCommandOptions,
 ): Promise<InstallCommandResult> {
-  const preparedCommand = await prepareInstallCommand(
-    command,
-    args,
-    options?.env ?? process.env,
-  );
+  const preparedCommand =
+    process.platform === "win32"
+      ? {
+          args: [...args],
+          command,
+          shell: true,
+          windowsHide: true,
+        }
+      : await prepareInstallCommand(command, args, options?.env ?? process.env);
 
   return await new Promise<InstallCommandResult>((resolve, reject) => {
     const child = spawn(preparedCommand.command, preparedCommand.args, {
       cwd: options?.cwd,
       env: options?.env,
+      shell: preparedCommand.shell,
       stdio: "pipe",
       windowsHide: preparedCommand.windowsHide,
     });
@@ -403,11 +409,26 @@ async function runCommand(
     child.on("error", reject);
 
     child.on("close", (code, signal) => {
+      const stderr = Buffer.concat(stderrChunks).toString("utf8");
+      const stdout = Buffer.concat(stdoutChunks).toString("utf8");
+      const combinedOutput = `${stdout}\n${stderr}`;
+
+      if (
+        preparedCommand.shell === true &&
+        code !== 0 &&
+        /is not recognized as an internal or external command/u.test(
+          combinedOutput,
+        )
+      ) {
+        reject(createCommandNotFoundError(command));
+        return;
+      }
+
       resolve({
         exitCode: code ?? 1,
         signal,
-        stderr: Buffer.concat(stderrChunks).toString("utf8"),
-        stdout: Buffer.concat(stdoutChunks).toString("utf8"),
+        stderr,
+        stdout,
       });
     });
 
