@@ -1,14 +1,12 @@
 #!/usr/bin/env node
 
 import process from "node:process";
-import { pathToFileURL } from "node:url";
 import { main, renderCliEntrypointError } from "../dist/cli.js";
+import { isEntrypointInvocation } from "../dist/entrypoint.js";
 
 export { renderCliEntrypointError };
 
-const isEntrypoint =
-  process.argv[1] !== undefined &&
-  import.meta.url === pathToFileURL(process.argv[1]).href;
+const isEntrypoint = isEntrypointInvocation(import.meta.url);
 
 function handleCliError(error) {
   const renderedError = renderCliEntrypointError(error);
