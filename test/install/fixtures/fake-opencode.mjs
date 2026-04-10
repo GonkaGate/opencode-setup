@@ -2,6 +2,10 @@ import { appendFileSync } from "node:fs";
 import process from "node:process";
 
 const args = process.argv.slice(2);
+const normalizedArgs = args.map((arg) =>
+  arg.trim().replace(/^"+/u, "").replace(/"+$/u, ""),
+);
+const normalizedJoinedArgs = normalizedArgs.join(" ");
 const invocationsFile = process.env.GONKAGATE_FAKE_OPENCODE_INVOCATIONS_FILE;
 
 if (invocationsFile !== undefined) {
@@ -78,18 +82,28 @@ function emitResult(result) {
   process.exit(result.exitCode);
 }
 
-if (args.length === 1 && args[0] === "--version") {
+if (normalizedArgs.length === 1 && normalizedArgs[0] === "--version") {
   emitResult(getResult("version"));
 }
 
-if (args.length === 3 && args[0] === "debug" && args[1] === "config") {
-  if (args[2] === "--pure") {
-    emitResult(getResult("debug_config_pure"));
-  }
+if (
+  normalizedArgs[0] === "debug" &&
+  normalizedArgs[1] === "config" &&
+  normalizedArgs.includes("--pure")
+) {
+  emitResult(getResult("debug_config_pure"));
 }
 
-if (args.length === 2 && args[0] === "debug" && args[1] === "config") {
+if (
+  normalizedArgs.length === 2 &&
+  normalizedArgs[0] === "debug" &&
+  normalizedArgs[1] === "config"
+) {
   emitResult(getResult("debug_config"));
+}
+
+if (/^debug config\b.*--pure\b/u.test(normalizedJoinedArgs)) {
+  emitResult(getResult("debug_config_pure"));
 }
 
 process.stderr.write(

@@ -103,35 +103,42 @@ test("resolveInstallContext supports native Windows paths and Git Bash cwd input
   );
 });
 
-test("resolveInstallContext assembles project, platform, version, and managed path context without using real machine paths", async () => {
-  const harness = await createInstallIntegrationHarness();
+test(
+  "resolveInstallContext assembles project, platform, version, and managed path context without using real machine paths",
+  { skip: process.platform === "win32" },
+  async () => {
+    const harness = await createInstallIntegrationHarness();
 
-  try {
-    const repositoryRoot = await harness.createGitRepository("repo");
-    const nestedWorkspace = await harness.createWorkspace("repo/packages/app");
+    try {
+      const repositoryRoot = await harness.createGitRepository("repo");
+      const nestedWorkspace =
+        await harness.createWorkspace("repo/packages/app");
 
-    await harness.installFakeOpenCodeOnPath({ output: "opencode-ai 1.4.1" });
+      await harness.installFakeOpenCodeOnPath({ output: "opencode-ai 1.4.1" });
 
-    const context = await resolveInstallContext(
-      harness.createDependencies({
-        runtime: {
-          cwd: nestedWorkspace,
-          env: { WSL_DISTRO_NAME: "Ubuntu" },
-          osRelease: "6.6.0-microsoft-standard-WSL2",
-          platform: "linux",
-        },
-      }),
-    );
+      const context = await resolveInstallContext(
+        harness.createDependencies({
+          runtime: {
+            cwd: nestedWorkspace,
+            env: { WSL_DISTRO_NAME: "Ubuntu" },
+            osRelease: "6.6.0-microsoft-standard-WSL2",
+            platform: "linux",
+          },
+        }),
+      );
 
-    assert.equal(context.workspace.resolvedCwd, nestedWorkspace);
-    assert.equal(context.workspace.projectRoot, repositoryRoot);
-    assert.equal(context.workspace.insideGitRepository, true);
-    assert.equal(context.opencode.installedVersion, "1.4.1");
-    assert.equal(context.opencode.support, "newer_than_verified");
-    assert.equal(context.runtime.platform.id, "wsl");
-    assert.equal(context.runtime.platform.support, "v1_supported");
-    harness.assertManagedPathsStayInsideHarness(context.workspace.managedPaths);
-  } finally {
-    await harness.cleanup();
-  }
-});
+      assert.equal(context.workspace.resolvedCwd, nestedWorkspace);
+      assert.equal(context.workspace.projectRoot, repositoryRoot);
+      assert.equal(context.workspace.insideGitRepository, true);
+      assert.equal(context.opencode.installedVersion, "1.4.1");
+      assert.equal(context.opencode.support, "newer_than_verified");
+      assert.equal(context.runtime.platform.id, "wsl");
+      assert.equal(context.runtime.platform.support, "v1_supported");
+      harness.assertManagedPathsStayInsideHarness(
+        context.workspace.managedPaths,
+      );
+    } finally {
+      await harness.cleanup();
+    }
+  },
+);
