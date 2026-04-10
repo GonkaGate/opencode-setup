@@ -9,6 +9,7 @@ import {
   writeFile as writeFileFs,
 } from "node:fs/promises";
 import os from "node:os";
+import path from "node:path";
 import process from "node:process";
 import { password, select } from "@inquirer/prompts";
 import writeFileAtomic from "write-file-atomic";
@@ -121,6 +122,22 @@ export interface CreateNodeInstallDependenciesOverrides {
   runtime?: InstallRuntimeOverrides;
 }
 
+interface PreparedInstallCommand {
+  args: string[];
+  command: string;
+  windowsHide?: boolean;
+}
+
+type PathExistsChecker = (path: string) => Promise<boolean>;
+
+const DEFAULT_WINDOWS_PATH_EXTENSIONS = Object.freeze([
+  ".COM",
+  ".EXE",
+  ".BAT",
+  ".CMD",
+] as const);
+const WINDOWS_SHELL_SCRIPT_EXTENSIONS = new Set([".BAT", ".CMD"]);
+
 async function pathExists(path: string): Promise<boolean> {
   try {
     await access(path, constants.F_OK);
@@ -183,16 +200,193 @@ async function chmod(path: string, mode: number): Promise<void> {
   await chmodFs(path, mode);
 }
 
+function getEnvironmentValue(
+  env: NodeJS.ProcessEnv,
+  key: string,
+): string | undefined {
+  const normalizedKey = key.toLowerCase();
+
+  for (const [candidateKey, value] of Object.entries(env)) {
+    if (candidateKey.toLowerCase() === normalizedKey) {
+      return value;
+    }
+  }
+
+  return undefined;
+}
+
+function getWindowsPathExtensions(env: NodeJS.ProcessEnv): readonly string[] {
+  const rawPathExtensions = getEnvironmentValue(env, "PATHEXT");
+
+  if (rawPathExtensions === undefined || rawPathExtensions.length === 0) {
+    return DEFAULT_WINDOWS_PATH_EXTENSIONS;
+  }
+
+  const parsedExtensions = rawPathExtensions
+    .split(";")
+    .map((extension) => extension.trim())
+    .filter((extension) => extension.length > 0)
+    .map((extension) =>
+      extension.startsWith(".")
+        ? extension.toUpperCase()
+        : `.${extension.toUpperCase()}`,
+    );
+
+  return parsedExtensions.length > 0
+    ? parsedExtensions
+    : DEFAULT_WINDOWS_PATH_EXTENSIONS;
+}
+
+function stripWrappingQuotes(value: string): string {
+  return value.length >= 2 && value.startsWith('"') && value.endsWith('"')
+    ? value.slice(1, -1)
+    : value;
+}
+
+function createWindowsCommandCandidates(
+  command: string,
+  pathExtensions: readonly string[],
+): string[] {
+  if (path.win32.extname(command).length > 0) {
+    return [command];
+  }
+
+  return [
+    command,
+    ...pathExtensions.map((extension) => `${command}${extension}`),
+  ];
+}
+
+export async function resolveWindowsCommandPath(
+  command: string,
+  env: NodeJS.ProcessEnv,
+  pathExistsChecker: PathExistsChecker = pathExists,
+): Promise<string | undefined> {
+  const commandCandidates = createWindowsCommandCandidates(
+    command,
+    getWindowsPathExtensions(env),
+  );
+  const hasPathQualifier =
+    command.includes("\\") ||
+    command.includes("/") ||
+    path.win32.isAbsolute(command);
+
+  if (hasPathQualifier) {
+    for (const candidate of commandCandidates) {
+      if (await pathExistsChecker(candidate)) {
+        return candidate;
+      }
+    }
+
+    return undefined;
+  }
+
+  const rawPath = getEnvironmentValue(env, "PATH") ?? "";
+
+  for (const rawDirectory of rawPath.split(path.win32.delimiter)) {
+    const directory = stripWrappingQuotes(rawDirectory.trim());
+
+    if (directory.length === 0) {
+      continue;
+    }
+
+    const joinedCandidates = commandCandidates.map((candidate) =>
+      path.win32.join(directory, candidate),
+    );
+
+    for (const candidate of joinedCandidates) {
+      if (await pathExistsChecker(candidate)) {
+        return candidate;
+      }
+    }
+  }
+
+  return undefined;
+}
+
+function quoteWindowsShellArgument(argument: string): string {
+  if (argument.length === 0) {
+    return '""';
+  }
+
+  return /[\s"&()<>^|]/u.test(argument)
+    ? `"${argument.replaceAll('"', '""')}"`
+    : argument;
+}
+
+function createCommandNotFoundError(command: string): NodeJS.ErrnoException {
+  const error = new Error(`spawn ${command} ENOENT`) as NodeJS.ErrnoException;
+
+  error.code = "ENOENT";
+  error.errno = -2;
+  error.path = command;
+  error.syscall = "spawn";
+
+  return error;
+}
+
+export async function prepareInstallCommand(
+  command: string,
+  args: readonly string[],
+  env: NodeJS.ProcessEnv,
+  platform: NodeJS.Platform = process.platform,
+  pathExistsChecker: PathExistsChecker = pathExists,
+): Promise<PreparedInstallCommand> {
+  if (platform !== "win32") {
+    return {
+      args: [...args],
+      command,
+    };
+  }
+
+  const resolvedCommandPath = await resolveWindowsCommandPath(
+    command,
+    env,
+    pathExistsChecker,
+  );
+
+  if (resolvedCommandPath === undefined) {
+    throw createCommandNotFoundError(command);
+  }
+
+  const extension = path.win32.extname(resolvedCommandPath).toUpperCase();
+
+  if (!WINDOWS_SHELL_SCRIPT_EXTENSIONS.has(extension)) {
+    return {
+      args: [...args],
+      command: resolvedCommandPath,
+      windowsHide: true,
+    };
+  }
+
+  const commandLine = [resolvedCommandPath, ...args]
+    .map(quoteWindowsShellArgument)
+    .join(" ");
+
+  return {
+    args: ["/d", "/s", "/c", commandLine],
+    command: getEnvironmentValue(env, "ComSpec") ?? "cmd.exe",
+    windowsHide: true,
+  };
+}
+
 async function runCommand(
   command: string,
   args: readonly string[],
   options?: InstallCommandOptions,
 ): Promise<InstallCommandResult> {
+  const preparedCommand = await prepareInstallCommand(
+    command,
+    args,
+    options?.env ?? process.env,
+  );
+
   return await new Promise<InstallCommandResult>((resolve, reject) => {
-    const child = spawn(command, [...args], {
+    const child = spawn(preparedCommand.command, preparedCommand.args, {
       cwd: options?.cwd,
       env: options?.env,
       stdio: "pipe",
+      windowsHide: preparedCommand.windowsHide,
     });
 
     const stdoutChunks: Buffer[] = [];
