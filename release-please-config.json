@@ -4,6 +4,8 @@
   "include-component-in-tag": false,
   "include-v-in-tag": true,
   "packages": {
-    ".": {}
+    ".": {
+      "extra-files": ["src/constants/contract.ts"]
+    }
   }
 }

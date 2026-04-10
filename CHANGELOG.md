@@ -2,10 +2,9 @@
 
 ## [0.2.1](https://github.com/GonkaGate/opencode-setup/compare/v0.2.0...v0.2.1) (2026-04-10)
 
-
 ### Bug Fixes
 
-* add API reference link to README ([ebedd07](https://github.com/GonkaGate/opencode-setup/commit/ebedd07faef4529015b5e5d8a8e6277e938f20e4))
+- add API reference link to README ([ebedd07](https://github.com/GonkaGate/opencode-setup/commit/ebedd07faef4529015b5e5d8a8e6277e938f20e4))
 
 ## [0.2.0](https://github.com/GonkaGate/opencode-setup/compare/v0.1.0...v0.2.0) (2026-04-10)
 
