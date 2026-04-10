@@ -27,6 +27,8 @@ and then sends you back to plain `opencode`.
 - [Get API key](https://gonkagate.com/en/register) if you still need access.
 - [Quickstart](https://gonkagate.com/en/docs/quickstart) if you want to see
   the direct API flow first.
+- [API Reference](https://gonkagate.com/en/docs/api/reference/overview) if you
+  want the HTTP surface and endpoint details.
 - [Pricing](https://gonkagate.com/en/pricing) for current USD billing details.
 - [About GonkaGate](https://gonkagate.com/en/about) for the higher-level
   product explanation.
