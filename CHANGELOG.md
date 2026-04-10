@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.2.0](https://github.com/GonkaGate/opencode-setup/compare/v0.1.0...v0.2.0) (2026-04-10)
+
+
+### Features
+
+* ship public opencode setup runtime ([7ae6dbd](https://github.com/GonkaGate/opencode-setup/commit/7ae6dbd26f8e5a7728cac0bcca6397bdb7f75cc6))
+
+
+### Bug Fixes
+
+* enforce LF checkouts for cross-platform CI ([ce88c90](https://github.com/GonkaGate/opencode-setup/commit/ce88c906e3fc6be9754f6c19f0365cd6c2a486a3))
+* normalize Windows fake opencode pure mode ([2424474](https://github.com/GonkaGate/opencode-setup/commit/24244746b73c9b7d877f0f5688ca93fff482c95e))
+* stabilize Windows CI host-specific tests ([d8351c7](https://github.com/GonkaGate/opencode-setup/commit/d8351c72ac44ce591f72a1d1b00ea72af412cb2e))
+* support Windows opencode command shims ([4d73af9](https://github.com/GonkaGate/opencode-setup/commit/4d73af927d128a4e50f25f409f76b21a4d05f494))
+* use prepared Windows command runner ([5594ff1](https://github.com/GonkaGate/opencode-setup/commit/5594ff1e4f063a5c6c67f8e821c8282d61ebca4c))
+* use prepared Windows command runner ([b895035](https://github.com/GonkaGate/opencode-setup/commit/b8950354ea0648938e80d63a50a19783bdc92b86))
+
 ## [Unreleased]
 
 ### Changed
