@@ -97,6 +97,12 @@
   `lastDurableSetupAt` while keeping legacy `lastSuccessfulSetupAt` readable as
   a backward-compatible migration path
 
+### Bug Fixes
+
+- make the published bin wrapper follow symlinked `.bin` entrypoints so
+  `npx @gonkagate/opencode-setup` and `node_modules/.bin/opencode-setup`
+  actually execute on Unix-like systems instead of exiting silently
+
 ### Added
 
 - public curated model picker UI in the CLI, currently backed by one validated

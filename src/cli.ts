@@ -1,9 +1,9 @@
 import process from "node:process";
-import { pathToFileURL } from "node:url";
 import { run as runCli } from "./cli/execute.js";
 import { parseCliOptions } from "./cli/parse.js";
 import { renderCliEntrypointError } from "./cli/render.js";
 import type { CliRunOptions, CliRunResult } from "./cli/contracts.js";
+import { isEntrypointInvocation } from "./entrypoint.js";
 
 export { parseCliOptions };
 export { renderCliEntrypointError } from "./cli/render.js";
@@ -45,9 +45,7 @@ function handleCliError(error: unknown): void {
   process.exitCode = renderedError.exitCode;
 }
 
-const isEntrypoint =
-  process.argv[1] !== undefined &&
-  import.meta.url === pathToFileURL(process.argv[1]).href;
+const isEntrypoint = isEntrypointInvocation(import.meta.url);
 
 if (isEntrypoint) {
   main().catch(handleCliError);

@@ -1,6 +1,8 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { resolve } from "node:path";
+import { mkdtempSync, rmSync, symlinkSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import test from "node:test";
 import { formatOpencodeModelRef } from "../src/constants/models.js";
@@ -159,6 +161,40 @@ test("CLI wrapper exposes the shipped help surface", () => {
     new RegExp(escapeRegExp(CONTRACT_METADATA.publicEntrypoint)),
   );
   assert.match(helpResult.stdout, new RegExp(escapeRegExp(GONKAGATE_BASE_URL)));
+});
+
+test("CLI wrapper still runs when invoked through a symlinked bin path", (t) => {
+  const tempDir = mkdtempSync(join(tmpdir(), "gonkagate-opencode-bin-"));
+  const binPath = resolve(repoRoot, CONTRACT_METADATA.binPath);
+  const linkedBinPath = resolve(tempDir, CONTRACT_METADATA.binName);
+
+  t.after(() => {
+    rmSync(tempDir, { force: true, recursive: true });
+  });
+
+  try {
+    symlinkSync(binPath, linkedBinPath, "file");
+  } catch (error) {
+    if (
+      error instanceof Error &&
+      "code" in error &&
+      (error as NodeJS.ErrnoException).code === "EPERM"
+    ) {
+      t.skip("Symlinks are unavailable in this environment.");
+      return;
+    }
+
+    throw error;
+  }
+
+  const helpResult = spawnSync(process.execPath, [linkedBinPath, "--help"], {
+    cwd: repoRoot,
+    encoding: "utf8",
+  });
+
+  assert.equal(helpResult.status, 0);
+  assert.match(helpResult.stdout, /Usage: opencode-setup/i);
+  assert.match(helpResult.stdout, /Configure OpenCode to use GonkaGate/i);
 });
 
 test("interactive runs show the public model picker even when one validated model is available", async () => {
