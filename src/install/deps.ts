@@ -201,13 +201,59 @@ async function chmod(path: string, mode: number): Promise<void> {
   await chmodFs(path, mode);
 }
 
+function compareEnvironmentKeys(a: string, b: string): number {
+  if (a < b) {
+    return -1;
+  }
+
+  if (a > b) {
+    return 1;
+  }
+
+  return 0;
+}
+
+function normalizeEnvironmentForPlatform(
+  env: NodeJS.ProcessEnv,
+  platform: NodeJS.Platform,
+): NodeJS.ProcessEnv {
+  if (platform !== "win32") {
+    return env;
+  }
+
+  const normalizedEnv: NodeJS.ProcessEnv = {};
+  const seenKeys = new Set<string>();
+  const sortedKeys = Object.keys(env).sort(compareEnvironmentKeys);
+
+  for (const key of sortedKeys) {
+    const normalizedKey = key.toUpperCase();
+
+    if (seenKeys.has(normalizedKey)) {
+      continue;
+    }
+
+    seenKeys.add(normalizedKey);
+    normalizedEnv[key] = env[key];
+  }
+
+  return normalizedEnv;
+}
+
 function getEnvironmentValue(
   env: NodeJS.ProcessEnv,
   key: string,
+  platform: NodeJS.Platform = process.platform,
 ): string | undefined {
-  const normalizedKey = key.toLowerCase();
+  if (platform !== "win32") {
+    return env[key];
+  }
 
-  for (const [candidateKey, value] of Object.entries(env)) {
+  const normalizedKey = key.toLowerCase();
+  const sortedKeys = Object.keys(env).sort(compareEnvironmentKeys);
+
+  for (const candidateKey of sortedKeys) {
+    const value = env[candidateKey];
+
     if (candidateKey.toLowerCase() === normalizedKey) {
       return value;
     }
@@ -217,7 +263,7 @@ function getEnvironmentValue(
 }
 
 function getWindowsPathExtensions(env: NodeJS.ProcessEnv): readonly string[] {
-  const rawPathExtensions = getEnvironmentValue(env, "PATHEXT");
+  const rawPathExtensions = getEnvironmentValue(env, "PATHEXT", "win32");
 
   if (rawPathExtensions === undefined || rawPathExtensions.length === 0) {
     return DEFAULT_WINDOWS_PATH_EXTENSIONS;
@@ -263,9 +309,10 @@ export async function resolveWindowsCommandPath(
   env: NodeJS.ProcessEnv,
   pathExistsChecker: PathExistsChecker = pathExists,
 ): Promise<string | undefined> {
+  const normalizedEnv = normalizeEnvironmentForPlatform(env, "win32");
   const commandCandidates = createWindowsCommandCandidates(
     command,
-    getWindowsPathExtensions(env),
+    getWindowsPathExtensions(normalizedEnv),
   );
   const hasPathQualifier =
     command.includes("\\") ||
@@ -282,7 +329,7 @@ export async function resolveWindowsCommandPath(
     return undefined;
   }
 
-  const rawPath = getEnvironmentValue(env, "PATH") ?? "";
+  const rawPath = getEnvironmentValue(normalizedEnv, "PATH", "win32") ?? "";
 
   for (const rawDirectory of rawPath.split(path.win32.delimiter)) {
     const directory = stripWrappingQuotes(rawDirectory.trim());
@@ -340,9 +387,10 @@ export async function prepareInstallCommand(
     };
   }
 
+  const normalizedEnv = normalizeEnvironmentForPlatform(env, platform);
   const resolvedCommandPath = await resolveWindowsCommandPath(
     command,
-    env,
+    normalizedEnv,
     pathExistsChecker,
   );
 
@@ -366,7 +414,8 @@ export async function prepareInstallCommand(
 
   return {
     args: ["/d", "/s", "/c", commandLine],
-    command: getEnvironmentValue(env, "ComSpec") ?? "cmd.exe",
+    command:
+      getEnvironmentValue(normalizedEnv, "ComSpec", platform) ?? "cmd.exe",
     windowsHide: true,
   };
 }
@@ -376,17 +425,21 @@ async function runCommand(
   args: readonly string[],
   options?: InstallCommandOptions,
 ): Promise<InstallCommandResult> {
+  const runtimeEnv = normalizeEnvironmentForPlatform(
+    options?.env ?? process.env,
+    process.platform,
+  );
   const preparedCommand = await prepareInstallCommand(
     command,
     args,
-    options?.env ?? process.env,
+    runtimeEnv,
     process.platform,
   );
 
   return await new Promise<InstallCommandResult>((resolve, reject) => {
     const child = spawn(preparedCommand.command, preparedCommand.args, {
       cwd: options?.cwd,
-      env: options?.env,
+      env: runtimeEnv,
       shell: preparedCommand.shell,
       stdio: "pipe",
       windowsHide: preparedCommand.windowsHide,

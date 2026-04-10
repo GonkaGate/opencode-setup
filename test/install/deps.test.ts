@@ -30,6 +30,20 @@ test("resolveWindowsCommandPath finds PATH commands through PATHEXT", async () =
   assert.equal(resolvedPath, "C:\\Program Files\\OpenCode\\opencode.CMD");
 });
 
+test("resolveWindowsCommandPath prefers the lexicographically first PATH variant on Windows", async () => {
+  const resolvedPath = await resolveWindowsCommandPath(
+    "opencode",
+    {
+      PATH: "C:\\Harness\\Bin",
+      PATHEXT: ".CMD",
+      Path: "C:\\Windows\\System32",
+    },
+    createWindowsPathExistsChecker(["C:\\Harness\\Bin\\opencode.CMD"]),
+  );
+
+  assert.equal(resolvedPath, "C:\\Harness\\Bin\\opencode.CMD");
+});
+
 test("prepareInstallCommand routes Windows .cmd shims through ComSpec", async () => {
   const preparedCommand = await prepareInstallCommand(
     "opencode",
