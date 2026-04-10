@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.3](https://github.com/GonkaGate/opencode-setup/compare/v0.2.2...v0.2.3) (2026-04-10)
+
+
+### Bug Fixes
+
+* ignore release changelog in prettier ([2c9724d](https://github.com/GonkaGate/opencode-setup/commit/2c9724d94d403adc75d8f35bb15a3c79a40e10eb))
+
 ## [0.2.2](https://github.com/GonkaGate/opencode-setup/compare/v0.2.1...v0.2.2) (2026-04-10)
 
 
