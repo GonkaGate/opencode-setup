@@ -3,15 +3,36 @@ name: Release Please
 on:
   push:
     branches: [main]
+    tags:
+      - "v*.*.*"
+  workflow_dispatch:
+    inputs:
+      action:
+        description: What to do (check verifies OIDC without publishing)
+        required: true
+        type: choice
+        default: check
+        options:
+          - check
+          - publish
+      publish_ref:
+        description: Git ref to publish (for example tag v0.2.2). Leave empty to publish the workflow ref.
+        required: false
+        type: string
+        default: ""
 
 permissions:
   contents: write
+  id-token: write
   pull-requests: write
-  actions: write
 
 jobs:
   release-please:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
     steps:
       - uses: googleapis/release-please-action@16a9c90856f42705d54a6fda1823352bdc62cf38 # v4.4.0
         id: release
@@ -19,16 +40,27 @@ jobs:
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
-      - name: Trigger Publish (npm)
-        if: ${{ steps.release.outputs.release_created == 'true' }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WORKFLOW_REF: ${{ github.ref_name }}
-          PUBLISH_REF: ${{ steps.release.outputs.tag_name }}
-        run: |
-          set -euo pipefail
-          curl -fsS -X POST \
-            -H "Authorization: Bearer $GH_TOKEN" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/publish.yml/dispatches" \
-            -d "{\"ref\":\"${WORKFLOW_REF}\",\"inputs\":{\"action\":\"publish\",\"publish_ref\":\"${PUBLISH_REF}\"}}"
+  # npm trusted publishing validates the calling workflow name for
+  # workflow_dispatch/workflow_call flows, so release-please.yml must remain the
+  # top-level entrypoint for both automatic and manual publish paths.
+  publish-release:
+    if: needs.release-please.outputs.release_created == 'true'
+    needs:
+      - release-please
+    permissions:
+      contents: read
+      id-token: write
+    uses: ./.github/workflows/publish.yml
+    with:
+      action: publish
+      publish_ref: ${{ needs.release-please.outputs.tag_name }}
+
+  publish-manual-or-tag:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: read
+      id-token: write
+    uses: ./.github/workflows/publish.yml
+    with:
+      action: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.action || 'publish' }}
+      publish_ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.publish_ref != '' && github.event.inputs.publish_ref || github.ref }}
