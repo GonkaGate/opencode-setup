@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.5](https://github.com/GonkaGate/opencode-setup/compare/v0.2.4...v0.2.5) (2026-04-10)
+
+
+### Bug Fixes
+
+* follow symlinked bin entrypoints ([1155c6d](https://github.com/GonkaGate/opencode-setup/commit/1155c6d34569986c43d6726089aa17c9e5646c9a))
+* follow symlinked bin entrypoints ([e06df14](https://github.com/GonkaGate/opencode-setup/commit/e06df140d2854597cc43f97982cc33a9c45c8e7c))
+
 ## [0.2.4](https://github.com/GonkaGate/opencode-setup/compare/v0.2.3...v0.2.4) (2026-04-10)
 
 
