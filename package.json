@@ -1,6 +1,6 @@
 {
   "name": "@gonkagate/opencode-setup",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Onboarding CLI for configuring OpenCode to use GonkaGate as a custom provider.",
   "homepage": "https://github.com/GonkaGate/opencode-setup#readme",
   "bugs": {
