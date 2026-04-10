@@ -520,13 +520,19 @@ export function createStubbedTestInstallDependencies(
 export function createNodeBackedTestInstallDependencies(
   overrides: CreateNodeInstallDependenciesOverrides = {},
 ): InstallDependencies {
+  const runtimeOverrides = Object.fromEntries(
+    Object.entries(overrides.runtime ?? {}).filter(
+      ([, value]) => value !== undefined,
+    ),
+  ) as InstallRuntimeOverrides;
+
   return createNodeInstallDependencies({
     clock: overrides.clock,
     commands: overrides.commands,
     fs: overrides.fs,
     input: overrides.input,
     prompts: overrides.prompts,
-    runtime: createTestInstallRuntime(overrides.runtime),
+    runtime: runtimeOverrides,
   });
 }
 
