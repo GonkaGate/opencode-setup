@@ -376,15 +376,12 @@ async function runCommand(
   args: readonly string[],
   options?: InstallCommandOptions,
 ): Promise<InstallCommandResult> {
-  const preparedCommand =
-    process.platform === "win32"
-      ? {
-          args: [...args],
-          command,
-          shell: true,
-          windowsHide: true,
-        }
-      : await prepareInstallCommand(command, args, options?.env ?? process.env);
+  const preparedCommand = await prepareInstallCommand(
+    command,
+    args,
+    options?.env ?? process.env,
+    process.platform,
+  );
 
   return await new Promise<InstallCommandResult>((resolve, reject) => {
     const child = spawn(preparedCommand.command, preparedCommand.args, {
