@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.4](https://github.com/GonkaGate/opencode-setup/compare/v0.2.3...v0.2.4) (2026-04-10)
+
+
+### Bug Fixes
+
+* publish opencode-setup bin alias for npx ([5ce6b6d](https://github.com/GonkaGate/opencode-setup/commit/5ce6b6d3303227157e69d19e74fab3c8323deedb))
+* publish opencode-setup bin alias for npx ([45e9d85](https://github.com/GonkaGate/opencode-setup/commit/45e9d8519ad25cbf388165b5cb47f42f360a6bf8))
+
 ## [0.2.3](https://github.com/GonkaGate/opencode-setup/compare/v0.2.2...v0.2.3) (2026-04-10)
 
 
