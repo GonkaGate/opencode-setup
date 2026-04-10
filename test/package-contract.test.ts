@@ -23,6 +23,10 @@ test("package metadata matches the scaffold contract", () => {
     packageJson.bin?.[CONTRACT_METADATA.binName],
     CONTRACT_METADATA.binPath,
   );
+  assert.equal(
+    packageJson.bin?.[CONTRACT_METADATA.legacyBinName],
+    CONTRACT_METADATA.binPath,
+  );
   assert.equal(packageJson.engines?.node, ">=22.14.0");
   assert.equal(packageJson.files?.includes("dist"), true);
   assert.equal(packageJson.files?.includes("docs"), true);
