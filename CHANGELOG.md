@@ -39,6 +39,9 @@
 
 ### Changed
 
+- publish the `opencode-setup` bin alias so `npx @gonkagate/opencode-setup`
+  resolves on modern npm while keeping `gonkagate-opencode` as a compatible
+  direct command
 - replaced the scaffold-only CLI surface with the real shipped installer flow
 - made rerun the official safe update path with transactional rollback for
   changed managed files

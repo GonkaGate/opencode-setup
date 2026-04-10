@@ -12,6 +12,7 @@
   },
   "type": "module",
   "bin": {
+    "opencode-setup": "bin/gonkagate-opencode.js",
     "gonkagate-opencode": "bin/gonkagate-opencode.js"
   },
   "files": [

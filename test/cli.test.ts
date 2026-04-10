@@ -148,6 +148,7 @@ test("CLI wrapper exposes the shipped help surface", () => {
   });
 
   assert.equal(helpResult.status, 0);
+  assert.match(helpResult.stdout, /Usage: opencode-setup/i);
   assert.match(helpResult.stdout, /Configure OpenCode to use GonkaGate/i);
   assert.match(helpResult.stdout, /validated-model-only/i);
   assert.match(helpResult.stdout, /--scope <scope>/);

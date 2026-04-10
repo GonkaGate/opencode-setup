@@ -1,5 +1,6 @@
 export const CONTRACT_METADATA = {
-  binName: "gonkagate-opencode",
+  binName: "opencode-setup",
+  legacyBinName: "gonkagate-opencode",
   binPath: "bin/gonkagate-opencode.js",
   cliVersion: "0.2.3", // x-release-please-version
   curatedRegistryPublished: true,
