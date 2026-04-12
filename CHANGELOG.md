@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.6](https://github.com/GonkaGate/opencode-setup/compare/v0.2.5...v0.2.6) (2026-04-12)
+
+
+### Bug Fixes
+
+* mask api key prompt input ([14cfcb6](https://github.com/GonkaGate/opencode-setup/commit/14cfcb6c5fe6c887aefaa6b2321fa371c3517111))
+* mask api key prompt input ([5e22974](https://github.com/GonkaGate/opencode-setup/commit/5e229744ede05f8e4d0ed97879ff787bac337385))
+
 ## [0.2.5](https://github.com/GonkaGate/opencode-setup/compare/v0.2.4...v0.2.5) (2026-04-10)
 
 
