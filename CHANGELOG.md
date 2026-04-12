@@ -123,6 +123,7 @@
 
 ### Added
 
+- README demo media showing the public `opencode` installer flow
 - public curated model picker UI in the CLI, currently backed by one validated
   GonkaGate model
 - structured machine-readable installer results with `success`, `blocked`, and

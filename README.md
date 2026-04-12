@@ -21,6 +21,14 @@ The installer walks you through the setup, writes the minimum safe OpenCode
 config, verifies that OpenCode actually resolves GonkaGate the way it should,
 and then sends you back to plain `opencode`.
 
+## See It In Action
+
+From API key to a verified `opencode` setup in one short walkthrough:
+
+[![See the installer in action](https://raw.githubusercontent.com/GonkaGate/opencode-setup/main/.github/assets/gonkagate-opencode-setup-demo.gif)](https://raw.githubusercontent.com/GonkaGate/opencode-setup/main/.github/assets/gonkagate-opencode-setup-demo.mp4)
+
+Need an API key first? [Get one on GonkaGate](https://gonkagate.com/en/register).
+
 ## Useful Links
 
 - [GonkaGate website](https://gonkagate.com/en) for the main product overview.
