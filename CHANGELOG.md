@@ -107,6 +107,8 @@
 
 ### Bug Fixes
 
+- mask the interactive API key prompt with `*` characters while users enter or
+  paste the secret
 - make the published bin wrapper follow symlinked `.bin` entrypoints so
   `npx @gonkagate/opencode-setup` and `node_modules/.bin/opencode-setup`
   actually execute on Unix-like systems instead of exiting silently

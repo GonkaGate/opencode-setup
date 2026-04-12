@@ -485,7 +485,7 @@ async function readStdin(): Promise<string> {
 }
 
 async function readSecret(message: string): Promise<string> {
-  return await password({ message });
+  return await password({ mask: "*", message });
 }
 
 async function selectOption<TValue extends string>(
