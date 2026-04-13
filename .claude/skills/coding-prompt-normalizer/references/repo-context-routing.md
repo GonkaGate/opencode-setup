@@ -1,7 +1,7 @@
 # Repo Context Routing
 
 Use this file to choose only the repository context that materially changes the
-generated prompt.
+generated context handoff prompt.
 
 Do not dump the whole repo summary into the output. Pull only the relevant
 points.
@@ -11,13 +11,13 @@ points.
 - The downstream agent already works inside this repository.
 - Do not explain how to inspect files, edit code, create folders, or run
   ordinary repo commands.
-- `opencode-setup` is currently a TypeScript/Node scaffold for a future
-  GonkaGate OpenCode setup tool, not an implemented installer runtime.
-- Canonical surfaces today are `src/cli.ts`, `README.md`, `AGENTS.md`,
-  `docs/`, `test/package-contract.test.ts`, `test/docs-contract.test.ts`,
-  `test/skills-contract.test.ts`, `scripts/run-tests.mjs`,
-  `.github/workflows/`, `package.json`, `release-please-config.json`,
-  `.claude/skills/`, and `.agents/skills/`.
+- `opencode-setup` is an implemented TypeScript/Node installer for configuring
+  local OpenCode to use GonkaGate.
+- Canonical surfaces today are `src/cli.ts`, `src/install/`, `src/constants/`,
+  `README.md`, `AGENTS.md`, `docs/`, `test/package-contract.test.ts`,
+  `test/docs-contract.test.ts`, `test/skills-contract.test.ts`,
+  `scripts/run-tests.mjs`, `.github/workflows/`, `package.json`,
+  `release-please-config.json`, `.claude/skills/`, and `.agents/skills/`.
 - `README.md`, `AGENTS.md`, and the files under `docs/` are the main current
   contract surfaces for product and security behavior.
 - Avoid generic tool instructions like "inspect the repo" unless the request
@@ -27,8 +27,8 @@ points.
 
 Include a repository constraint only when it changes the task:
 
-- the target public UX is `npx @gonkagate/opencode-setup`, but the current CLI
-  is still a placeholder scaffold
+- the target public UX is `npx @gonkagate/opencode-setup`, and the current CLI
+  implements the end-to-end public installer flow
 - user-level config target is `~/.config/opencode/opencode.json`
 - project activation target is `opencode.json`
 - the managed provider key is `provider.gonkagate`
@@ -82,10 +82,9 @@ Useful context:
 
 Relevant reminders:
 
-- the runtime does not yet exist under `src/install/`
-- config and provider rules currently live in docs, tests, and constants
-- prompts should not describe runtime modules as implemented if they are still
-  scaffold-only
+- the runtime exists under `src/install/`
+- config and provider rules live in docs, tests, constants, and runtime modules
+- prompts should inspect existing runtime modules before proposing new seams
 
 ### Docs, Product Messaging, Truthfulness
 
@@ -106,7 +105,7 @@ Useful context:
 
 Relevant reminders:
 
-- docs should distinguish current scaffold behavior from future product intent
+- docs should distinguish shipped installer behavior from future product intent
 - product-surface changes are not just copy edits; they may imply architecture
   or implementation work
 
@@ -127,7 +126,7 @@ Useful context:
 
 Relevant reminders:
 
-- repository tests currently protect scaffold and doc-contract expectations
+- repository tests protect shipped runtime and doc-contract expectations
 - `npm run ci` is the primary local verification command
 
 ### Skills, Prompts, Agent Workflow
@@ -152,7 +151,7 @@ Relevant reminders:
 
 ## Output Discipline
 
-When you include repo context in the final prompt:
+When you include repo context in the final handoff prompt:
 
 - prefer short bullets or short paragraphs
 - name the most relevant docs or code areas first

@@ -93,7 +93,7 @@ test("the imported skill pack includes the expected high-value entries", () => {
   assert.match(codingPromptNormalizer, /--api-key-stdin/);
   assert.match(codingPromptNormalizer, /provider\.gonkagate/);
   assert.match(codingPromptNormalizer, /chat_completions/);
-  assert.match(codingPromptNormalizer, /scaffold/i);
+  assert.match(codingPromptNormalizer, /shipped installer runtime/i);
   assert.doesNotMatch(codingPromptNormalizer, /codex-setup/);
   assert.doesNotMatch(codingPromptNormalizer, /\.codex\/config\.toml/);
 
@@ -103,6 +103,7 @@ test("the imported skill pack includes the expected high-value entries", () => {
     codingPromptRepoRouting,
     /docs\/specs\/opencode-setup-prd\/spec\.md/,
   );
+  assert.match(codingPromptRepoRouting, /src\/install\//);
   assert.match(codingPromptRepoRouting, /provider\.gonkagate/);
   assert.doesNotMatch(codingPromptRepoRouting, /bin\/gonkagate-codex\.js/);
   assert.doesNotMatch(codingPromptRepoRouting, /\.codex\/config\.toml/);
