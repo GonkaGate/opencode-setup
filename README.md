@@ -1,25 +1,22 @@
 # @gonkagate/opencode-setup
 
-`@gonkagate/opencode-setup` is the onboarding CLI for people who already use
-`opencode` and want it configured to use GonkaGate without hand-editing
-`opencode.json`, exporting secrets through shell profiles, or dealing with
-OpenCode provider internals.
-
-If you want the product context first, start with
-[GonkaGate](https://gonkagate.com/en),
-[How it works](https://gonkagate.com/en/about),
-[Pricing](https://gonkagate.com/en/pricing), or the public
-[Quickstart](https://gonkagate.com/en/docs/quickstart).
-
-If you only remember one command, make it this:
+Set up local `opencode` to use GonkaGate in one `npx` command.
 
 ```bash
 npx @gonkagate/opencode-setup
 ```
 
-The installer walks you through the setup, writes the minimum safe OpenCode
-config, verifies that OpenCode actually resolves GonkaGate the way it should,
-and then sends you back to plain `opencode`.
+![Package](https://img.shields.io/badge/package-%40gonkagate%2Fopencode--setup-6E63FF?style=flat-square)
+![Node](https://img.shields.io/badge/node-%3E%3D22.14.0-4DA2FF?style=flat-square)
+![OpenCode](https://img.shields.io/badge/OpenCode-%3E%3D1.4.0-35D6FF?style=flat-square)
+![License](https://img.shields.io/badge/license-Apache--2.0-2A2A2A?style=flat-square)
+
+[![Website](https://img.shields.io/badge/Website-gonkagate.com-111827?style=flat-square)](https://gonkagate.com/en)
+[![Docs](https://img.shields.io/badge/Docs-API%20Guides-2563EB?style=flat-square)](https://gonkagate.com/en/docs)
+[![API%20Key](https://img.shields.io/badge/API%20Key-Dashboard-F97316?style=flat-square)](https://gonkagate.com/en/register)
+[![Telegram](https://img.shields.io/badge/Telegram-%40gonkagate-229ED9?style=flat-square&logo=telegram&logoColor=white)](https://t.me/gonkagate)
+[![X](https://img.shields.io/badge/X-%40gonkagate-000000?style=flat-square&logo=x&logoColor=white)](https://x.com/gonkagate)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-GonkaGate-0A66C2?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/gonkagate)
 
 ## See It In Action
 
@@ -29,17 +26,16 @@ From API key to a verified `opencode` setup in one short walkthrough:
 
 Need an API key first? [Get one on GonkaGate](https://gonkagate.com/en/register).
 
-## Useful Links
+## Overview
 
-- [GonkaGate website](https://gonkagate.com/en) for the main product overview.
-- [Get API key](https://gonkagate.com/en/register) if you still need access.
-- [Quickstart](https://gonkagate.com/en/docs/quickstart) if you want to see
-  the direct API flow first.
-- [API Reference](https://gonkagate.com/en/docs/api/reference/overview) if you
-  want the HTTP surface and endpoint details.
-- [Pricing](https://gonkagate.com/en/pricing) for current USD billing details.
-- [About GonkaGate](https://gonkagate.com/en/about) for the higher-level
-  product explanation.
+`@gonkagate/opencode-setup` is the onboarding CLI for people who already use
+`opencode` and want it configured to use GonkaGate without hand-editing
+`opencode.json`, exporting secrets through shell profiles, or dealing with
+OpenCode provider internals.
+
+The installer walks you through the setup, writes the minimum safe OpenCode
+config, verifies that OpenCode actually resolves GonkaGate the way it should,
+and then sends you back to plain `opencode`.
 
 ## What This Does For You
 
