@@ -194,7 +194,7 @@ These are implementation facts today, not future plans:
 - the curated model registry under `src/constants/models.ts` now includes
   pinned public validated entries for
   `qwen/qwen3-235b-a22b-instruct-2507-fp8` and
-  `moonshotai/Kimi-K2.6`, with Qwen still marked as the recommended default
+  `moonshotai/Kimi-K2.6`, with Kimi K2.6 marked as the recommended default
 - a mirrored skill pack is present under `.agents/skills/` and
   `.claude/skills/`, imported from `codex-setup` as an initial shared
   engineering baseline

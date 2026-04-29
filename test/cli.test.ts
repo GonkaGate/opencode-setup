@@ -22,6 +22,7 @@ import { createInstallIntegrationHarness } from "./install/harness.js";
 
 const MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8" as const;
 const KIMI_MODEL_KEY = "kimi-k2.6" as const;
+const RECOMMENDED_MODEL_KEY = KIMI_MODEL_KEY;
 
 type TestSelectOption = <TValue extends string>(
   options: InstallSelectOptions<TValue>,
@@ -49,9 +50,10 @@ function createResolvedConfigFixture(
       }
     | ((config: Record<string, unknown>) => void) = {},
 ): string {
-  const modelKey = typeof options === "function" ? MODEL_KEY : options.modelKey;
+  const modelKey =
+    typeof options === "function" ? RECOMMENDED_MODEL_KEY : options.modelKey;
   const mutate = typeof options === "function" ? options : options.mutate;
-  const model = resolveValidatedModel(modelKey ?? MODEL_KEY);
+  const model = resolveValidatedModel(modelKey ?? RECOMMENDED_MODEL_KEY);
   const providerConfig = buildManagedProviderConfig(model);
   const resolvedConfig = {
     model: formatOpencodeModelRef(model),
@@ -235,8 +237,8 @@ test("interactive runs show the public model picker with the validated models", 
       /Choose the GonkaGate model to configure for OpenCode/i,
     );
     assert.deepEqual(promptChoiceSnapshots[0], [
-      "Qwen3 235B A22B Instruct 2507 FP8 (Recommended)",
-      "Kimi K2.6",
+      "Qwen3 235B A22B Instruct 2507 FP8",
+      "Kimi K2.6 (Recommended)",
     ]);
     assert.match(
       promptMessages[1] ?? "",
@@ -268,6 +270,10 @@ test("--yes auto-selects the recommended model and scope without prompting", asy
     assert.equal(selectCallCount, 0);
     assert.match(fixture.stdout.contents, /"status": "success"/);
     assert.match(fixture.stdout.contents, /"scope": "project"/);
+    assert.match(
+      fixture.stdout.contents,
+      new RegExp(escapeRegExp('"modelRef": "gonkagate/kimi-k2.6"')),
+    );
   } finally {
     await fixture.harness.cleanup();
   }

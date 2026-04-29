@@ -262,8 +262,10 @@ test("model validation doc matches the shipped small_model and picker contract",
 
   assertMatchesAll(modelValidation, [
     /qwen3-235b-a22b-instruct-2507-fp8/,
+    /Qwen3 235B A22B Instruct 2507 FP8[\s\S]*recommended: `false`/i,
     /kimi-k2\.6/,
     /moonshotai\/Kimi-K2\.6/,
+    /Kimi K2\.6[\s\S]*recommended: `true`/i,
     /@ai-sdk\/openai-compatible/,
     /writes both `model` and `small_model`/i,
     /public curated picker visible/i,

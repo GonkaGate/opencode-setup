@@ -86,7 +86,7 @@ test("createCuratedModelIndex rejects more than one recommended validated model"
 test("the recommended validated model is selected by explicit metadata, not array order", () => {
   const recommendedModel = getRecommendedValidatedModel();
 
-  assert.equal(recommendedModel?.key, "qwen3-235b-a22b-instruct-2507-fp8");
+  assert.equal(recommendedModel?.key, "kimi-k2.6");
   assert.equal(recommendedModel?.recommended, true);
 });
 

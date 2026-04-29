@@ -102,8 +102,8 @@ options:
 
 | Status                       | Model                                    |
 | ---------------------------- | ---------------------------------------- |
-| Recommended validated option | `qwen/qwen3-235b-a22b-instruct-2507-fp8` |
-| Additional validated option  | `moonshotai/Kimi-K2.6`                   |
+| Recommended validated option | `moonshotai/Kimi-K2.6`                   |
+| Additional validated option  | `qwen/qwen3-235b-a22b-instruct-2507-fp8` |
 
 We are treating this as a curated list, not a free-form custom model box. More
 options can be added as they pass the same OpenCode validation path.

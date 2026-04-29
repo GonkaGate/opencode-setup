@@ -30,7 +30,7 @@ picker.
 - model id: `qwen/qwen3-235b-a22b-instruct-2507-fp8`
 - transport: `chat_completions`
 - adapter package: `@ai-sdk/openai-compatible`
-- recommended: `true`
+- recommended: `false`
 
 ### Kimi K2.6
 
@@ -39,7 +39,7 @@ picker.
 - model id: `moonshotai/Kimi-K2.6`
 - transport: `chat_completions`
 - adapter package: `@ai-sdk/openai-compatible`
-- recommended: `false`
+- recommended: `true`
 
 ## Notes
 

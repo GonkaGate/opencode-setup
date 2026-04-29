@@ -64,7 +64,7 @@
 ### Changed
 
 - added `moonshotai/Kimi-K2.6` to the public curated validated GonkaGate model
-  picker while keeping Qwen3 as the recommended default
+  picker as the recommended default
 - publish the `opencode-setup` bin alias so `npx @gonkagate/opencode-setup`
   resolves on modern npm while keeping `gonkagate-opencode` as a compatible
   direct command
