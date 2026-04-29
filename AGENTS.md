@@ -22,8 +22,8 @@ Current honest state:
   OpenCode config, and ends with plain `opencode`
 - the product docs, CI, package contract, and PRD are implemented and now
   describe the shipped runtime
-- the public curated model picker is shipped and currently exposes one
-  validated model
+- the public curated model picker is shipped and currently exposes two
+  validated models
 - native Windows support is part of the current contract and is backed by
   native Windows CI and integration proof, not only simulated `win32` tests
 - the minimum verified OpenCode version remains `1.4.0`, and the latest
@@ -191,10 +191,10 @@ These are implementation facts today, not future plans:
   blocker reporting, installer-owned scope normalization, separate resolved-
   config versus secret-binding provenance verification, redacted effective-
   config diagnostics, and the end-to-end installer flow
-- the curated model registry under `src/constants/models.ts` now includes one
-  pinned public validated entry for
-  `qwen/qwen3-235b-a22b-instruct-2507-fp8`, and the public picker is designed
-  to grow as more validated models land
+- the curated model registry under `src/constants/models.ts` now includes
+  pinned public validated entries for
+  `qwen/qwen3-235b-a22b-instruct-2507-fp8` and
+  `moonshotai/Kimi-K2.6`, with Qwen still marked as the recommended default
 - a mirrored skill pack is present under `.agents/skills/` and
   `.claude/skills/`, imported from `codex-setup` as an initial shared
   engineering baseline

@@ -103,6 +103,14 @@ export const CURATED_MODEL_REGISTRY = Object.freeze({
     transport: "chat_completions",
     validationStatus: "validated",
   },
+  "kimi-k2.6": {
+    adapterPackage: "@ai-sdk/openai-compatible",
+    displayName: "Kimi K2.6",
+    modelId: "moonshotai/Kimi-K2.6",
+    recommended: false,
+    transport: "chat_completions",
+    validationStatus: "validated",
+  },
 } as const satisfies CuratedModelRegistry);
 
 function toCuratedModelRecord<

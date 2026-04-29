@@ -76,13 +76,14 @@ If you do not pass `--scope`, then:
 - `--yes` will accept the recommended scope
 - non-interactive mode without `--yes` will stop instead of guessing
 
-## Why does the public model picker only show one option right now?
+## Why does the public model picker only show curated options?
 
 Because the shipped picker exposes validated models only.
 
-The current public validated entry is:
+The current public validated entries are:
 
 - `qwen/qwen3-235b-a22b-instruct-2507-fp8`
+- `moonshotai/Kimi-K2.6`
 
 Interactive mode still keeps that public picker visible, so more validated
 models can be added later without changing the CLI contract.

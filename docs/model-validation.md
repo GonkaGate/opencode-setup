@@ -1,7 +1,7 @@
 # Model Validation
 
 This document records the minimum validation gate for curated GonkaGate models
-and the first approved public validated model in the shipped runtime.
+and the approved public validated models in the shipped runtime.
 
 ## Minimum Validation Gate
 
@@ -18,10 +18,12 @@ the current verified OpenCode baseline:
 - any required provider options, model options, or model headers needed for
   stable validated behavior
 
-## Approved Public Record
+## Approved Public Records
 
-The current shipped runtime exposes this validated model through the public
-picker:
+The current shipped runtime exposes these validated models through the public
+picker.
+
+### Qwen3 235B A22B Instruct 2507 FP8
 
 - display name: `Qwen3 235B A22B Instruct 2507 FP8`
 - key: `qwen3-235b-a22b-instruct-2507-fp8`
@@ -30,13 +32,21 @@ picker:
 - adapter package: `@ai-sdk/openai-compatible`
 - recommended: `true`
 
+### Kimi K2.6
+
+- display name: `Kimi K2.6`
+- key: `kimi-k2.6`
+- model id: `moonshotai/Kimi-K2.6`
+- transport: `chat_completions`
+- adapter package: `@ai-sdk/openai-compatible`
+- recommended: `false`
+
 ## Notes
 
 - v1 explicitly writes both `model` and `small_model` to the same selected
   validated GonkaGate model
-- interactive setup keeps the public curated picker visible even while this
-  approved public record contains one validated choice, so broader public model
-  choice can land later without changing the UX contract
+- interactive setup keeps the public curated picker visible as broader public
+  model choice lands without changing the UX contract
 - future `/v1/responses` support requires a separate migration and revalidation
-- broader public model choice stays out of scope until more entries pass the
-  same validation gate
+- broader public model choice stays gated on entries passing the same
+  validation gate

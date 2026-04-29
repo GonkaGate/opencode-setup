@@ -120,7 +120,7 @@ Under the hood, the shipped runtime:
 
 - validates local `opencode`
 - keeps the public curated model picker visible in interactive mode, even
-  though the current picker exposes one validated model
+  as the curated validated model list grows
 - resolves the curated validated model and activation scope
 - accepts the secret only through a hidden prompt, `GONKAGATE_API_KEY`, or
   `--api-key-stdin`
@@ -180,15 +180,15 @@ rely on inherited per-user ACLs instead of portable `chmod`-style enforcement.
 
 ## Current Product Truth
 
-The current public curated model picker is shipped and currently exposes one
-validated model:
+The current public curated model picker is shipped and currently exposes two
+validated models:
 
 - `qwen/qwen3-235b-a22b-instruct-2507-fp8`
+- `moonshotai/Kimi-K2.6`
 
-Interactive mode keeps the public curated model picker visible even when only
-one validated model is currently available. `--yes` and safe non-interactive
-flows may auto-select the recommended validated model without showing the
-picker.
+Interactive mode keeps the public curated model picker visible. `--yes` and
+safe non-interactive flows may auto-select the recommended validated model
+without showing the picker.
 
 The runtime is curated-model-first:
 
