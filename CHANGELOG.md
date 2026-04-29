@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/GonkaGate/opencode-setup/compare/v0.2.6...v0.3.0) (2026-04-29)
+
+
+### Features
+
+* add Kimi K2.6 curated model ([8680e9a](https://github.com/GonkaGate/opencode-setup/commit/8680e9a7ef42ce262820317b1a80e948046768de))
+
+
+### Bug Fixes
+
+* make Kimi K2.6 the recommended model ([cb41281](https://github.com/GonkaGate/opencode-setup/commit/cb41281b1c38019c221446fa420221d73be1277d))
+
 ## [0.2.6](https://github.com/GonkaGate/opencode-setup/compare/v0.2.5...v0.2.6) (2026-04-12)
 
 
