@@ -1,0 +1,185 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "label": "redact.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "redact_issecretbearingkey",
+      "label": "isSecretBearingKey()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L14"
+    },
+    {
+      "id": "redact_redactsecretbearingtext",
+      "label": "redactSecretBearingText()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L18"
+    },
+    {
+      "id": "redact_redactsecretbearingvalue",
+      "label": "redactSecretBearingValue()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L28"
+    },
+    {
+      "id": "redact_createredacteddiagnosticvalue",
+      "label": "createRedactedDiagnosticValue()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L65"
+    },
+    {
+      "id": "redact_formatredacteddiagnosticvalue",
+      "label": "formatRedactedDiagnosticValue()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L81"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_json_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_effective_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "target": "redact_issecretbearingkey",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "target": "redact_redactsecretbearingtext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "target": "redact_redactsecretbearingvalue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L28",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "target": "redact_createredacteddiagnosticvalue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "target": "redact_formatredacteddiagnosticvalue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "redact_redactsecretbearingvalue",
+      "target": "redact_redactsecretbearingtext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "redact_createredacteddiagnosticvalue",
+      "target": "redact_redactsecretbearingvalue",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L77",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "redact_issecretbearingkey",
+      "callee": "test",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L15"
+    },
+    {
+      "caller_nid": "redact_redactsecretbearingtext",
+      "callee": "replace",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L22"
+    },
+    {
+      "caller_nid": "redact_redactsecretbearingvalue",
+      "callee": "some",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L32"
+    },
+    {
+      "caller_nid": "redact_redactsecretbearingvalue",
+      "callee": "isArray",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L48"
+    },
+    {
+      "caller_nid": "redact_redactsecretbearingvalue",
+      "callee": "map",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L49"
+    },
+    {
+      "caller_nid": "redact_redactsecretbearingvalue",
+      "callee": "isJsonObjectRecord",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L52"
+    },
+    {
+      "caller_nid": "redact_redactsecretbearingvalue",
+      "callee": "String",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L53"
+    },
+    {
+      "caller_nid": "redact_redactsecretbearingvalue",
+      "callee": "entries",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L58"
+    },
+    {
+      "caller_nid": "redact_formatredacteddiagnosticvalue",
+      "callee": "stringify",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/redact.ts",
+      "source_location": "L90"
+    }
+  ]
+}

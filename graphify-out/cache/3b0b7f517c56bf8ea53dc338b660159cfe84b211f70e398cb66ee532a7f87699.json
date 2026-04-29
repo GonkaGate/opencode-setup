@@ -1,0 +1,214 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "label": "config.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "config_readmanagedconfigdocument",
+      "label": "readManagedConfigDocument()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L23"
+    },
+    {
+      "id": "config_applymanagedconfigmutations",
+      "label": "applyManagedConfigMutations()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L55"
+    },
+    {
+      "id": "config_applymutation",
+      "label": "applyMutation()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L84"
+    },
+    {
+      "id": "config_parsemanagedconfigobject",
+      "label": "parseManagedConfigObject()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L109"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "jsonc_parser",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "config_readmanagedconfigdocument",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "config_applymanagedconfigmutations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "config_applymutation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "target": "config_parsemanagedconfigobject",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L109",
+      "weight": 1.0
+    },
+    {
+      "source": "config_readmanagedconfigdocument",
+      "target": "config_parsemanagedconfigobject",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "config_applymanagedconfigmutations",
+      "target": "config_applymutation",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L73",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "config_readmanagedconfigdocument",
+      "callee": "pathExists",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L30"
+    },
+    {
+      "caller_nid": "config_readmanagedconfigdocument",
+      "callee": "readFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L43"
+    },
+    {
+      "caller_nid": "config_readmanagedconfigdocument",
+      "callee": "detectConfigDocumentEndOfLine",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L47"
+    },
+    {
+      "caller_nid": "config_applymanagedconfigmutations",
+      "callee": "ensureTrailingConfigDocumentNewline",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L62"
+    },
+    {
+      "caller_nid": "config_applymanagedconfigmutations",
+      "callee": "ensureTrailingConfigDocumentNewline",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L81"
+    },
+    {
+      "caller_nid": "config_applymutation",
+      "callee": "modify",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L91"
+    },
+    {
+      "caller_nid": "config_applymutation",
+      "callee": "applyEdits",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L98"
+    },
+    {
+      "caller_nid": "config_applymutation",
+      "callee": "createInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L100"
+    },
+    {
+      "caller_nid": "config_applymutation",
+      "callee": "formatConfigPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L101"
+    },
+    {
+      "caller_nid": "config_applymutation",
+      "callee": "String",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L103"
+    },
+    {
+      "caller_nid": "config_parsemanagedconfigobject",
+      "callee": "tryParseJsoncObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L114"
+    },
+    {
+      "caller_nid": "config_parsemanagedconfigobject",
+      "callee": "createInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/config.ts",
+      "source_location": "L117"
+    }
+  ]
+}

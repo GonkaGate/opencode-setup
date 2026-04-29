@@ -1,0 +1,245 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "label": "scope.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "scope_writescopemanagedconfigs",
+      "label": "writeScopeManagedConfigs()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L20"
+    },
+    {
+      "id": "scope_createmanagedconfigwritecontext",
+      "label": "createManagedConfigWriteContext()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L37"
+    },
+    {
+      "id": "scope_createownedactivationmodelrefs",
+      "label": "createOwnedActivationModelRefs()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L50"
+    },
+    {
+      "id": "scope_writeplantargets",
+      "label": "writePlanTargets()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L66"
+    },
+    {
+      "id": "scope_requiretargetwriteresult",
+      "label": "requireTargetWriteResult()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L97"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "scope_writescopemanagedconfigs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "scope_createmanagedconfigwritecontext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L37",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "scope_createownedactivationmodelrefs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "scope_writeplantargets",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "target": "scope_requiretargetwriteresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "scope_writescopemanagedconfigs",
+      "target": "scope_writeplantargets",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "scope_writescopemanagedconfigs",
+      "target": "scope_createmanagedconfigwritecontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "scope_writescopemanagedconfigs",
+      "target": "scope_requiretargetwriteresult",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "scope_createmanagedconfigwritecontext",
+      "target": "scope_createownedactivationmodelrefs",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L45",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "scope_createmanagedconfigwritecontext",
+      "callee": "resolveValidatedModel",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L40"
+    },
+    {
+      "caller_nid": "scope_createmanagedconfigwritecontext",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L43"
+    },
+    {
+      "caller_nid": "scope_createmanagedconfigwritecontext",
+      "callee": "buildManagedProviderConfig",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L46"
+    },
+    {
+      "caller_nid": "scope_createownedactivationmodelrefs",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L54"
+    },
+    {
+      "caller_nid": "scope_createownedactivationmodelrefs",
+      "callee": "add",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L58"
+    },
+    {
+      "caller_nid": "scope_createownedactivationmodelrefs",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L59"
+    },
+    {
+      "caller_nid": "scope_createownedactivationmodelrefs",
+      "callee": "freeze",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L63"
+    },
+    {
+      "caller_nid": "scope_writeplantargets",
+      "callee": "writeManagedConfigTarget",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L75"
+    },
+    {
+      "caller_nid": "scope_writeplantargets",
+      "callee": "writeManagedConfigTarget",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L85"
+    },
+    {
+      "caller_nid": "scope_requiretargetwriteresult",
+      "callee": "createInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/scope.ts",
+      "source_location": "L105"
+    }
+  ]
+}

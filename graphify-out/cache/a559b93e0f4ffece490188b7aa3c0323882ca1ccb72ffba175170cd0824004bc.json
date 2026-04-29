@@ -1,0 +1,37 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_json_ts",
+      "label": "json.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/json.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "json_isjsonobjectrecord",
+      "label": "isJsonObjectRecord()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/json.ts",
+      "source_location": "L13"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_json_ts",
+      "target": "json_isjsonobjectrecord",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/json.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "json_isjsonobjectrecord",
+      "callee": "isArray",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/json.ts",
+      "source_location": "L16"
+    }
+  ]
+}

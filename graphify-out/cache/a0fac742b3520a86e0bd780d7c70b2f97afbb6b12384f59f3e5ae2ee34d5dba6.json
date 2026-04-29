@@ -1,0 +1,629 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "label": "verify-layers.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "verify_layers_inspectverificationlayers",
+      "label": "inspectVerificationLayers()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L41"
+    },
+    {
+      "id": "verify_layers_inspectsecretbindingverificationlayers",
+      "label": "inspectSecretBindingVerificationLayers()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L61"
+    },
+    {
+      "id": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "label": "selectHighestPrecedenceInspectableBlockers()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L102"
+    },
+    {
+      "id": "verify_layers_collectinspectablelayerconfigs",
+      "label": "collectInspectableLayerConfigs()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L127"
+    },
+    {
+      "id": "verify_layers_readlayerfromfile",
+      "label": "readLayerFromFile()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L181"
+    },
+    {
+      "id": "verify_layers_parselayercontents",
+      "label": "parseLayerContents()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L217"
+    },
+    {
+      "id": "verify_layers_inspectlayerforprovideractivation",
+      "label": "inspectLayerForProviderActivation()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L233"
+    },
+    {
+      "id": "verify_layers_inspectlayerforprovideractivationandmanagedoverlap",
+      "label": "inspectLayerForProviderActivationAndManagedOverlap()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L244"
+    },
+    {
+      "id": "verify_layers_inspectlayerblockers",
+      "label": "inspectLayerBlockers()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L260"
+    },
+    {
+      "id": "verify_layers_inspectprojectlayerblockers",
+      "label": "inspectProjectLayerBlockers()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L281"
+    },
+    {
+      "id": "verify_layers_inspectuserlayerblockers",
+      "label": "inspectUserLayerBlockers()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L294"
+    },
+    {
+      "id": "verify_layers_isinspectablefilebackedlayer",
+      "label": "isInspectableFileBackedLayer()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L301"
+    },
+    {
+      "id": "verify_layers_getinspectablelayerprecedence",
+      "label": "getInspectableLayerPrecedence()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L307"
+    },
+    {
+      "id": "verify_layers_compareinspectableblockers",
+      "label": "compareInspectableBlockers()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L313"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_effective_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_effective_config_policy_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_verification_blockers_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_inspectverificationlayers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_inspectsecretbindingverificationlayers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_collectinspectablelayerconfigs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_readlayerfromfile",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L181",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_parselayercontents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L217",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_inspectlayerforprovideractivation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L233",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_inspectlayerforprovideractivationandmanagedoverlap",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L244",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_inspectlayerblockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L260",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_inspectprojectlayerblockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L281",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_inspectuserlayerblockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L294",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_isinspectablefilebackedlayer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L301",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_getinspectablelayerprecedence",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L307",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verify_layers_ts",
+      "target": "verify_layers_compareinspectableblockers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L313",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectverificationlayers",
+      "target": "verify_layers_collectinspectablelayerconfigs",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L47",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectverificationlayers",
+      "target": "verify_layers_inspectlayerblockers",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectsecretbindingverificationlayers",
+      "target": "verify_layers_collectinspectablelayerconfigs",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "target": "verify_layers_isinspectablefilebackedlayer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L108",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "target": "verify_layers_getinspectablelayerprecedence",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_collectinspectablelayerconfigs",
+      "target": "verify_layers_readlayerfromfile",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_readlayerfromfile",
+      "target": "verify_layers_parselayercontents",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L212",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectlayerforprovideractivationandmanagedoverlap",
+      "target": "verify_layers_inspectlayerforprovideractivation",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L248",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectlayerblockers",
+      "target": "verify_layers_inspectlayerforprovideractivationandmanagedoverlap",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L268",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectlayerblockers",
+      "target": "verify_layers_inspectprojectlayerblockers",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L273",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectlayerblockers",
+      "target": "verify_layers_inspectuserlayerblockers",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L275",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectprojectlayerblockers",
+      "target": "verify_layers_inspectlayerforprovideractivationandmanagedoverlap",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L287",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectprojectlayerblockers",
+      "target": "verify_layers_inspectlayerforprovideractivation",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L291",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_inspectuserlayerblockers",
+      "target": "verify_layers_inspectlayerforprovideractivation",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L298",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_compareinspectableblockers",
+      "target": "verify_layers_isinspectablefilebackedlayer",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L318",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_layers_compareinspectableblockers",
+      "target": "verify_layers_getinspectablelayerprecedence",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L325",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "verify_layers_inspectverificationlayers",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L53"
+    },
+    {
+      "caller_nid": "verify_layers_inspectsecretbindingverificationlayers",
+      "callee": "createSecretBindingVerificationPolicy",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L69"
+    },
+    {
+      "caller_nid": "verify_layers_inspectsecretbindingverificationlayers",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L80"
+    },
+    {
+      "caller_nid": "verify_layers_inspectsecretbindingverificationlayers",
+      "callee": "collectSecretBindingProvenanceBlockers",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L81"
+    },
+    {
+      "caller_nid": "verify_layers_inspectsecretbindingverificationlayers",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L90"
+    },
+    {
+      "caller_nid": "verify_layers_inspectsecretbindingverificationlayers",
+      "callee": "collectSecretBindingProvenanceBlockers",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L91"
+    },
+    {
+      "caller_nid": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "callee": "get",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L112"
+    },
+    {
+      "caller_nid": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "callee": "set",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L120"
+    },
+    {
+      "caller_nid": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "callee": "sort",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L124"
+    },
+    {
+      "caller_nid": "verify_layers_selecthighestprecedenceinspectableblockers",
+      "callee": "values",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L124"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "resolveInspectableSystemManagedConfigPaths",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L133"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "pathExists",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L137"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L138"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L147"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "pathExists",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L157"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L159"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "pathExists",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L168"
+    },
+    {
+      "caller_nid": "verify_layers_collectinspectablelayerconfigs",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L169"
+    },
+    {
+      "caller_nid": "verify_layers_readlayerfromfile",
+      "callee": "pathExists",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L191"
+    },
+    {
+      "caller_nid": "verify_layers_readlayerfromfile",
+      "callee": "createInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L194"
+    },
+    {
+      "caller_nid": "verify_layers_readlayerfromfile",
+      "callee": "readFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L203"
+    },
+    {
+      "caller_nid": "verify_layers_readlayerfromfile",
+      "callee": "createInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L205"
+    },
+    {
+      "caller_nid": "verify_layers_parselayercontents",
+      "callee": "tryParseJsoncObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L221"
+    },
+    {
+      "caller_nid": "verify_layers_parselayercontents",
+      "callee": "createInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L224"
+    },
+    {
+      "caller_nid": "verify_layers_inspectlayerforprovideractivation",
+      "callee": "collectProviderActivationBlockers",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L237"
+    },
+    {
+      "caller_nid": "verify_layers_inspectlayerforprovideractivationandmanagedoverlap",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L250"
+    },
+    {
+      "caller_nid": "verify_layers_inspectlayerforprovideractivationandmanagedoverlap",
+      "callee": "collectManagedOverlapBlockers",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L251"
+    },
+    {
+      "caller_nid": "verify_layers_compareinspectableblockers",
+      "callee": "localeCompare",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L321"
+    },
+    {
+      "caller_nid": "verify_layers_compareinspectableblockers",
+      "callee": "localeCompare",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verify-layers.ts",
+      "source_location": "L327"
+    }
+  ]
+}

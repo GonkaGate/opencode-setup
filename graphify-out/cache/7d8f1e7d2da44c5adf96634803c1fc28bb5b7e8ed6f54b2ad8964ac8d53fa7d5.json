@@ -1,0 +1,202 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "label": "managed-config-mutations.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "managed_config_mutations_createmanagedconfigmutations",
+      "label": "createManagedConfigMutations()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L16"
+    },
+    {
+      "id": "managed_config_mutations_createmanagedproviderremovalmutation",
+      "label": "createManagedProviderRemovalMutation()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L76"
+    },
+    {
+      "id": "managed_config_mutations_createownedactivationremovalmutations",
+      "label": "createOwnedActivationRemovalMutations()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L98"
+    },
+    {
+      "id": "managed_config_mutations_isownedactivationvalue",
+      "label": "isOwnedActivationValue()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L120"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_json_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "target": "managed_config_mutations_createmanagedconfigmutations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "target": "managed_config_mutations_createmanagedproviderremovalmutation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "target": "managed_config_mutations_createownedactivationremovalmutations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L98",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "target": "managed_config_mutations_isownedactivationvalue",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "managed_config_mutations_createmanagedconfigmutations",
+      "target": "managed_config_mutations_createmanagedproviderremovalmutation",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L22",
+      "weight": 1.0
+    },
+    {
+      "source": "managed_config_mutations_createmanagedconfigmutations",
+      "target": "managed_config_mutations_createownedactivationremovalmutations",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "managed_config_mutations_createownedactivationremovalmutations",
+      "target": "managed_config_mutations_isownedactivationvalue",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L107",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "managed_config_mutations_createmanagedconfigmutations",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L26"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedconfigmutations",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L30"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedconfigmutations",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L38"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedconfigmutations",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L53"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedconfigmutations",
+      "callee": "hasOwn",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L63"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedconfigmutations",
+      "callee": "some",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L64"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedconfigmutations",
+      "callee": "unshift",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L66"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedproviderremovalmutation",
+      "callee": "isJsonObjectRecord",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L82"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedproviderremovalmutation",
+      "callee": "hasOwn",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L83"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedproviderremovalmutation",
+      "callee": "filter",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L88"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createmanagedproviderremovalmutation",
+      "callee": "keys",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L88"
+    },
+    {
+      "caller_nid": "managed_config_mutations_createownedactivationremovalmutations",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L111"
+    },
+    {
+      "caller_nid": "managed_config_mutations_isownedactivationvalue",
+      "callee": "has",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-config-mutations.ts",
+      "source_location": "L124"
+    }
+  ]
+}

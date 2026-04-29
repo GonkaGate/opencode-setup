@@ -1,0 +1,188 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "label": "state.test.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "state_test_expectinstallerrorcode",
+      "label": "expectInstallErrorCode()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L42"
+    },
+    {
+      "id": "state_test_readjsonfile",
+      "label": "readJsonFile()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L48"
+    },
+    {
+      "id": "state_test_writefile",
+      "label": "writeFile()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L321"
+    },
+    {
+      "id": "state_test_mkdir",
+      "label": "mkdir()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L344"
+    },
+    {
+      "id": "state_test_writefileatomic",
+      "label": "writeFileAtomic()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L367"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "strict",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "promises",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "node_path",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_state_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_harness_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "state_test_expectinstallerrorcode",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L42",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "state_test_readjsonfile",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L48",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "state_test_writefile",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L321",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "state_test_mkdir",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L344",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_state_test_ts",
+      "target": "state_test_writefileatomic",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L367",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "state_test_readjsonfile",
+      "callee": "parse",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L49"
+    },
+    {
+      "caller_nid": "state_test_readjsonfile",
+      "callee": "readFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/state.test.ts",
+      "source_location": "L49"
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "label": "context.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "context_resolveinstallcontext",
+      "label": "resolveInstallContext()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L44"
+    },
+    {
+      "id": "context_iswslenvironment",
+      "label": "isWslEnvironment()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L69"
+    },
+    {
+      "id": "context_classifyinstallplatform",
+      "label": "classifyInstallPlatform()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L83"
+    },
+    {
+      "id": "context_resolveruntimecontext",
+      "label": "resolveRuntimeContext()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L127"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_opencode_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "target": "context_resolveinstallcontext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "target": "context_iswslenvironment",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L69",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "target": "context_classifyinstallplatform",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L83",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "target": "context_resolveruntimecontext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L127",
+      "weight": 1.0
+    },
+    {
+      "source": "context_resolveinstallcontext",
+      "target": "context_resolveruntimecontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L57",
+      "weight": 1.0
+    },
+    {
+      "source": "context_classifyinstallplatform",
+      "target": "context_iswslenvironment",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L86",
+      "weight": 1.0
+    },
+    {
+      "source": "context_resolveruntimecontext",
+      "target": "context_classifyinstallplatform",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L132",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "context_resolveinstallcontext",
+      "callee": "all",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L50"
+    },
+    {
+      "caller_nid": "context_resolveinstallcontext",
+      "callee": "resolveProjectRoot",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L51"
+    },
+    {
+      "caller_nid": "context_resolveinstallcontext",
+      "callee": "detectOpenCode",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L52"
+    },
+    {
+      "caller_nid": "context_resolveinstallcontext",
+      "callee": "resolveManagedPaths",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L60"
+    },
+    {
+      "caller_nid": "context_iswslenvironment",
+      "callee": "toLowerCase",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L74"
+    },
+    {
+      "caller_nid": "context_iswslenvironment",
+      "callee": "includes",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/context.ts",
+      "source_location": "L79"
+    }
+  ]
+}

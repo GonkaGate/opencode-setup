@@ -1,0 +1,128 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "label": "config.test.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "config_test_createtargetdependencies",
+      "label": "createTargetDependencies()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L39"
+    },
+    {
+      "id": "config_test_readtestdocument",
+      "label": "readTestDocument()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L54"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "strict",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_test_helpers_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "config_test_createtargetdependencies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L39",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_config_test_ts",
+      "target": "config_test_readtestdocument",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "config_test_readtestdocument",
+      "target": "config_test_createtargetdependencies",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L63",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "config_test_createtargetdependencies",
+      "callee": "createTestInstallDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L41"
+    },
+    {
+      "caller_nid": "config_test_createtargetdependencies",
+      "callee": "createTestInstallDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L44"
+    },
+    {
+      "caller_nid": "config_test_readtestdocument",
+      "callee": "readManagedConfigDocument",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/config.test.ts",
+      "source_location": "L60"
+    }
+  ]
+}

@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "label": "rollback.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "rollback_rollbackmanagedwrites",
+      "label": "rollbackManagedWrites()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "rollback_rollbackmanagedwrite",
+      "label": "rollbackManagedWrite()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L21"
+    },
+    {
+      "id": "rollback_assertnever",
+      "label": "assertNever()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L49"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_artifact_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_managed_files_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "target": "rollback_rollbackmanagedwrites",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "target": "rollback_rollbackmanagedwrite",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "target": "rollback_assertnever",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "rollback_rollbackmanagedwrites",
+      "target": "rollback_rollbackmanagedwrite",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "rollback_rollbackmanagedwrite",
+      "target": "rollback_assertnever",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L45",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "rollback_rollbackmanagedwrites",
+      "callee": "reverse",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L11"
+    },
+    {
+      "caller_nid": "rollback_rollbackmanagedwrites",
+      "callee": "createInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L15"
+    },
+    {
+      "caller_nid": "rollback_rollbackmanagedwrite",
+      "callee": "readFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L27"
+    },
+    {
+      "caller_nid": "rollback_rollbackmanagedwrite",
+      "callee": "writeManagedTextFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L32"
+    },
+    {
+      "caller_nid": "rollback_rollbackmanagedwrite",
+      "callee": "pathExists",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L40"
+    },
+    {
+      "caller_nid": "rollback_rollbackmanagedwrite",
+      "callee": "removeFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L41"
+    },
+    {
+      "caller_nid": "rollback_assertnever",
+      "callee": "stringify",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/rollback.ts",
+      "source_location": "L50"
+    }
+  ]
+}

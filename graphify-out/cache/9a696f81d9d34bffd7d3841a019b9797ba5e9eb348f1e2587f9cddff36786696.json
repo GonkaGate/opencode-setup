@@ -1,0 +1,306 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "label": "errors.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "errors_formatmanagedtarget",
+      "label": "formatManagedTarget()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L221"
+    },
+    {
+      "id": "errors_formatmanagedconfigtarget",
+      "label": "formatManagedConfigTarget()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L227"
+    },
+    {
+      "id": "errors_formatmanagedartifactfailuremessage",
+      "label": "formatManagedArtifactFailureMessage()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L233"
+    },
+    {
+      "id": "errors_formatcommand",
+      "label": "formatCommand()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L249"
+    },
+    {
+      "id": "errors_formatverificationconflicts",
+      "label": "formatVerificationConflicts()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L253"
+    },
+    {
+      "id": "errors_formatverificationlayersource",
+      "label": "formatVerificationLayerSource()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L262"
+    },
+    {
+      "id": "errors_formatinstallerrormessage",
+      "label": "formatInstallErrorMessage()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L272"
+    },
+    {
+      "id": "errors_installerror",
+      "label": "InstallError",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L279"
+    },
+    {
+      "id": "errors_installerror_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L285"
+    },
+    {
+      "id": "errors_createinstallerror",
+      "label": "createInstallError()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L297"
+    },
+    {
+      "id": "errors_isinstallerror",
+      "label": "isInstallError()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L304"
+    },
+    {
+      "id": "errors_isinstallerrorcode",
+      "label": "isInstallErrorCode()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L308"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_contract_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_effective_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_secret_intake_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_formatmanagedtarget",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L221",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_formatmanagedconfigtarget",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L227",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_formatmanagedartifactfailuremessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L233",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_formatcommand",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L249",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_formatverificationconflicts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L253",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_formatverificationlayersource",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L262",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_formatinstallerrormessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L272",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_installerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L279",
+      "weight": 1.0
+    },
+    {
+      "source": "errors_installerror",
+      "target": "errors_installerror_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L285",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_createinstallerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L297",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_isinstallerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L304",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "target": "errors_isinstallerrorcode",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L308",
+      "weight": 1.0
+    },
+    {
+      "source": "errors_formatmanagedartifactfailuremessage",
+      "target": "errors_formatmanagedtarget",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L246",
+      "weight": 1.0
+    },
+    {
+      "source": "errors_isinstallerrorcode",
+      "target": "errors_isinstallerror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L312",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "errors_formatcommand",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L250"
+    },
+    {
+      "caller_nid": "errors_formatverificationconflicts",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L256"
+    },
+    {
+      "caller_nid": "errors_formatverificationconflicts",
+      "callee": "map",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L256"
+    },
+    {
+      "caller_nid": "errors_formatverificationconflicts",
+      "callee": "slice",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L256"
+    },
+    {
+      "caller_nid": "errors_formatinstallerrormessage",
+      "callee": "INSTALL_ERROR_MESSAGE_FACTORIES[code]",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L276"
+    },
+    {
+      "caller_nid": "errors_installerror_constructor",
+      "callee": "super",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/errors.ts",
+      "source_location": "L290"
+    }
+  ]
+}

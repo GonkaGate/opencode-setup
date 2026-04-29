@@ -1,0 +1,186 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "label": "managed-provider-config.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "managed_provider_config_resolvevalidatedmodel",
+      "label": "resolveValidatedModel()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L50"
+    },
+    {
+      "id": "managed_provider_config_buildmanagedproviderconfig",
+      "label": "buildManagedProviderConfig()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L62"
+    },
+    {
+      "id": "managed_provider_config_buildmanagedprovideroptions",
+      "label": "buildManagedProviderOptions()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L78"
+    },
+    {
+      "id": "managed_provider_config_buildmanagedprovidermodelconfig",
+      "label": "buildManagedProviderModelConfig()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L111"
+    },
+    {
+      "id": "managed_provider_config_assertcanonicalmodelcontract",
+      "label": "assertCanonicalModelContract()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L152"
+    },
+    {
+      "id": "managed_provider_config_assertmodelprovideroverride",
+      "label": "assertModelProviderOverride()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L166"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_json_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_gateway_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "managed_provider_config_resolvevalidatedmodel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "managed_provider_config_buildmanagedproviderconfig",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "managed_provider_config_buildmanagedprovideroptions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "managed_provider_config_buildmanagedprovidermodelconfig",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "managed_provider_config_assertcanonicalmodelcontract",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "target": "managed_provider_config_assertmodelprovideroverride",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L166",
+      "weight": 1.0
+    },
+    {
+      "source": "managed_provider_config_buildmanagedproviderconfig",
+      "target": "managed_provider_config_assertcanonicalmodelcontract",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L65",
+      "weight": 1.0
+    },
+    {
+      "source": "managed_provider_config_buildmanagedproviderconfig",
+      "target": "managed_provider_config_buildmanagedprovidermodelconfig",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "managed_provider_config_buildmanagedproviderconfig",
+      "target": "managed_provider_config_buildmanagedprovideroptions",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "managed_provider_config_buildmanagedprovidermodelconfig",
+      "target": "managed_provider_config_assertmodelprovideroverride",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L145",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "managed_provider_config_resolvevalidatedmodel",
+      "callee": "getCuratedModelByKey",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L53"
+    },
+    {
+      "caller_nid": "managed_provider_config_buildmanagedprovideroptions",
+      "callee": "entries",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/managed-provider-config.ts",
+      "source_location": "L86"
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "label": "jsonc.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "jsonc_jsoncobjectparseerror",
+      "label": "JsoncObjectParseError",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L6"
+    },
+    {
+      "id": "jsonc_jsoncobjectparseerror_constructor",
+      "label": ".constructor()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L9"
+    },
+    {
+      "id": "jsonc_tryparsejsoncobject",
+      "label": "tryParseJsoncObject()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L26"
+    },
+    {
+      "id": "jsonc_parsejsoncobject",
+      "label": "parseJsoncObject()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L62"
+    },
+    {
+      "id": "jsonc_detectconfigdocumentendofline",
+      "label": "detectConfigDocumentEndOfLine()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L72"
+    },
+    {
+      "id": "jsonc_ensuretrailingconfigdocumentnewline",
+      "label": "ensureTrailingConfigDocumentNewline()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L78"
+    },
+    {
+      "id": "jsonc_formatconfigpath",
+      "label": "formatConfigPath()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L85"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "jsonc_parser",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_json_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "jsonc_jsoncobjectparseerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "jsonc_jsoncobjectparseerror",
+      "target": "jsonc_jsoncobjectparseerror_constructor",
+      "relation": "method",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "jsonc_tryparsejsoncobject",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "jsonc_parsejsoncobject",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L62",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "jsonc_detectconfigdocumentendofline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "jsonc_ensuretrailingconfigdocumentnewline",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "target": "jsonc_formatconfigpath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "jsonc_parsejsoncobject",
+      "target": "jsonc_tryparsejsoncobject",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L63",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "jsonc_jsoncobjectparseerror_constructor",
+      "callee": "super",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L10"
+    },
+    {
+      "caller_nid": "jsonc_tryparsejsoncobject",
+      "callee": "trim",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L27"
+    },
+    {
+      "caller_nid": "jsonc_tryparsejsoncobject",
+      "callee": "parse",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L35"
+    },
+    {
+      "caller_nid": "jsonc_tryparsejsoncobject",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L43"
+    },
+    {
+      "caller_nid": "jsonc_tryparsejsoncobject",
+      "callee": "map",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L43"
+    },
+    {
+      "caller_nid": "jsonc_tryparsejsoncobject",
+      "callee": "isJsonObjectRecord",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L49"
+    },
+    {
+      "caller_nid": "jsonc_detectconfigdocumentendofline",
+      "callee": "includes",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L75"
+    },
+    {
+      "caller_nid": "jsonc_ensuretrailingconfigdocumentnewline",
+      "callee": "endsWith",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L82"
+    },
+    {
+      "caller_nid": "jsonc_formatconfigpath",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/jsonc.ts",
+      "source_location": "L86"
+    }
+  ]
+}

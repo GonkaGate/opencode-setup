@@ -1,0 +1,132 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "label": "session.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "session_createinstallprogressstateformodel",
+      "label": "createInstallProgressStateForModel()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L24"
+    },
+    {
+      "id": "session_prepareinstallsession",
+      "label": "prepareInstallSession()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L34"
+    },
+    {
+      "id": "session_createsuccessfulinstallresult",
+      "label": "createSuccessfulInstallResult()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L49"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_gateway_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_install_flow_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "session_createinstallprogressstateformodel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "session_prepareinstallsession",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L34",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "target": "session_createsuccessfulinstallresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L49",
+      "weight": 1.0
+    },
+    {
+      "source": "session_prepareinstallsession",
+      "target": "session_createinstallprogressstateformodel",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L43",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "session_createinstallprogressstateformodel",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/session.ts",
+      "source_location": "L30"
+    }
+  ]
+}

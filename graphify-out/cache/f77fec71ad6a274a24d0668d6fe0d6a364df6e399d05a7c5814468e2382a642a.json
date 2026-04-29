@@ -1,0 +1,107 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_test_install_fixtures_fake_opencode_mjs",
+      "label": "fake-opencode.mjs",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L1"
+    },
+    {
+      "id": "fake_opencode_getresult",
+      "label": "getResult()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L15"
+    },
+    {
+      "id": "fake_opencode_emitresult",
+      "label": "emitResult()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L73"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_fixtures_fake_opencode_mjs",
+      "target": "node_fs",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_fixtures_fake_opencode_mjs",
+      "target": "node_process",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_fixtures_fake_opencode_mjs",
+      "target": "fake_opencode_getresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_fixtures_fake_opencode_mjs",
+      "target": "fake_opencode_emitresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L73",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "fake_opencode_getresult",
+      "callee": "Number",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L36"
+    },
+    {
+      "caller_nid": "fake_opencode_getresult",
+      "callee": "Number",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L46"
+    },
+    {
+      "caller_nid": "fake_opencode_getresult",
+      "callee": "Number",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L58"
+    },
+    {
+      "caller_nid": "fake_opencode_getresult",
+      "callee": "Number",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L67"
+    },
+    {
+      "caller_nid": "fake_opencode_emitresult",
+      "callee": "write",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L75"
+    },
+    {
+      "caller_nid": "fake_opencode_emitresult",
+      "callee": "write",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L79"
+    },
+    {
+      "caller_nid": "fake_opencode_emitresult",
+      "callee": "exit",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/fixtures/fake-opencode.mjs",
+      "source_location": "L82"
+    }
+  ]
+}

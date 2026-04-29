@@ -1,0 +1,305 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "label": "models.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "models_tocuratedmodelrecord",
+      "label": "toCuratedModelRecord()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L116"
+    },
+    {
+      "id": "models_isvalidatedmodel",
+      "label": "isValidatedModel()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L126"
+    },
+    {
+      "id": "models_isrecommendedcuratedmodel",
+      "label": "isRecommendedCuratedModel()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L132"
+    },
+    {
+      "id": "models_createcuratedmodelindex",
+      "label": "createCuratedModelIndex()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L138"
+    },
+    {
+      "id": "models_iscuratedmodelkey",
+      "label": "isCuratedModelKey()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L205"
+    },
+    {
+      "id": "models_iscuratedmodeltransport",
+      "label": "isCuratedModelTransport()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L209"
+    },
+    {
+      "id": "models_getcuratedmodelbykey",
+      "label": "getCuratedModelByKey()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L222"
+    },
+    {
+      "id": "models_getvalidatedmodels",
+      "label": "getValidatedModels()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L230"
+    },
+    {
+      "id": "models_getvalidatedmodelkeys",
+      "label": "getValidatedModelKeys()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L234"
+    },
+    {
+      "id": "models_getrecommendedvalidatedmodel",
+      "label": "getRecommendedValidatedModel()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L238"
+    },
+    {
+      "id": "models_formatopencodemodelref",
+      "label": "formatOpencodeModelRef()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L244"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_json_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_tocuratedmodelrecord",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_isvalidatedmodel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L126",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_isrecommendedcuratedmodel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_createcuratedmodelindex",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_iscuratedmodelkey",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L205",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_iscuratedmodeltransport",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L209",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_getcuratedmodelbykey",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L222",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_getvalidatedmodels",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L230",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_getvalidatedmodelkeys",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L234",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_getrecommendedvalidatedmodel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L238",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "target": "models_formatopencodemodelref",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L244",
+      "weight": 1.0
+    },
+    {
+      "source": "models_createcuratedmodelindex",
+      "target": "models_tocuratedmodelrecord",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L154",
+      "weight": 1.0
+    },
+    {
+      "source": "models_createcuratedmodelindex",
+      "target": "models_isvalidatedmodel",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L157",
+      "weight": 1.0
+    },
+    {
+      "source": "models_createcuratedmodelindex",
+      "target": "models_isrecommendedcuratedmodel",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L164",
+      "weight": 1.0
+    },
+    {
+      "source": "models_getcuratedmodelbykey",
+      "target": "models_iscuratedmodelkey",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L223",
+      "weight": 1.0
+    },
+    {
+      "source": "models_getcuratedmodelbykey",
+      "target": "models_tocuratedmodelrecord",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L227",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "keys",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L147"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L155"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L161"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L162"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L165"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "freeze",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L176"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "freeze",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L177"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "freeze",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L179"
+    },
+    {
+      "caller_nid": "models_createcuratedmodelindex",
+      "callee": "freeze",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L180"
+    },
+    {
+      "caller_nid": "models_iscuratedmodeltransport",
+      "callee": "includes",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/constants/models.ts",
+      "source_location": "L214"
+    }
+  ]
+}

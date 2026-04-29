@@ -1,0 +1,174 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "label": "write-target-config.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "write_target_config_writemanagedconfigtarget",
+      "label": "writeManagedConfigTarget()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L24"
+    },
+    {
+      "id": "write_target_config_resolvemanagedconfigtargetpath",
+      "label": "resolveManagedConfigTargetPath()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L55"
+    },
+    {
+      "id": "write_target_config_resolvemanagedconfigbackupdirectorypath",
+      "label": "resolveManagedConfigBackupDirectoryPath()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L64"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_managed_config_mutations_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_write_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "write_target_config_writemanagedconfigtarget",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "write_target_config_resolvemanagedconfigtargetpath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L55",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_write_target_config_ts",
+      "target": "write_target_config_resolvemanagedconfigbackupdirectorypath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L64",
+      "weight": 1.0
+    },
+    {
+      "source": "write_target_config_writemanagedconfigtarget",
+      "target": "write_target_config_resolvemanagedconfigtargetpath",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "write_target_config_writemanagedconfigtarget",
+      "target": "write_target_config_resolvemanagedconfigbackupdirectorypath",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L47",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "write_target_config_writemanagedconfigtarget",
+      "callee": "readManagedConfigDocument",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L34"
+    },
+    {
+      "caller_nid": "write_target_config_writemanagedconfigtarget",
+      "callee": "createManagedConfigMutations",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L39"
+    },
+    {
+      "caller_nid": "write_target_config_writemanagedconfigtarget",
+      "callee": "applyManagedConfigMutations",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L44"
+    },
+    {
+      "caller_nid": "write_target_config_writemanagedconfigtarget",
+      "callee": "writeManagedConfig",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L46"
+    },
+    {
+      "caller_nid": "write_target_config_resolvemanagedconfigbackupdirectorypath",
+      "callee": "resolveProjectConfigBackupDirectory",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/write-target-config.ts",
+      "source_location": "L73"
+    }
+  ]
+}

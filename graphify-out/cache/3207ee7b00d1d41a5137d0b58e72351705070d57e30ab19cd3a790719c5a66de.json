@@ -1,0 +1,295 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "label": "scope.test.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "scope_test_createseedfiles",
+      "label": "createSeedFiles()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L40"
+    },
+    {
+      "id": "scope_test_readconfigsnapshot",
+      "label": "readConfigSnapshot()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L63"
+    },
+    {
+      "id": "scope_test_expectproviderentry",
+      "label": "expectProviderEntry()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L74"
+    },
+    {
+      "id": "scope_test_expectmanagedgonkagateprovider",
+      "label": "expectManagedGonkagateProvider()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L90"
+    },
+    {
+      "id": "scope_test_expectcommandentry",
+      "label": "expectCommandEntry()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L112"
+    },
+    {
+      "id": "scope_test_createscopewritecontext",
+      "label": "createScopeWriteContext()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L125"
+    },
+    {
+      "id": "scope_test_runscopewrite",
+      "label": "runScopeWrite()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L148"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "strict",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_test_helpers_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "scope_test_createseedfiles",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "scope_test_readconfigsnapshot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "scope_test_expectproviderentry",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "scope_test_expectmanagedgonkagateprovider",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "scope_test_expectcommandentry",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L112",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "scope_test_createscopewritecontext",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L125",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_scope_test_ts",
+      "target": "scope_test_runscopewrite",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "scope_test_expectmanagedgonkagateprovider",
+      "target": "scope_test_expectproviderentry",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "scope_test_createscopewritecontext",
+      "target": "scope_test_createseedfiles",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L128",
+      "weight": 1.0
+    },
+    {
+      "source": "scope_test_runscopewrite",
+      "target": "scope_test_createscopewritecontext",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L152",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "scope_test_createseedfiles",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L47"
+    },
+    {
+      "caller_nid": "scope_test_createseedfiles",
+      "callee": "push",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L54"
+    },
+    {
+      "caller_nid": "scope_test_readconfigsnapshot",
+      "callee": "parseWrittenConfig",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L69"
+    },
+    {
+      "caller_nid": "scope_test_readconfigsnapshot",
+      "callee": "readWrittenText",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L70"
+    },
+    {
+      "caller_nid": "scope_test_expectproviderentry",
+      "callee": "expectObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L79"
+    },
+    {
+      "caller_nid": "scope_test_expectproviderentry",
+      "callee": "expectObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L84"
+    },
+    {
+      "caller_nid": "scope_test_expectmanagedgonkagateprovider",
+      "callee": "expectObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L101"
+    },
+    {
+      "caller_nid": "scope_test_expectmanagedgonkagateprovider",
+      "callee": "expectObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L105"
+    },
+    {
+      "caller_nid": "scope_test_expectcommandentry",
+      "callee": "expectObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L117"
+    },
+    {
+      "caller_nid": "scope_test_expectcommandentry",
+      "callee": "expectObject",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L119"
+    },
+    {
+      "caller_nid": "scope_test_createscopewritecontext",
+      "callee": "resolveManagedPaths",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L126"
+    },
+    {
+      "caller_nid": "scope_test_createscopewritecontext",
+      "callee": "createTestInstallDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L127"
+    },
+    {
+      "caller_nid": "scope_test_runscopewrite",
+      "callee": "writeScopeManagedConfigs",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/scope.test.ts",
+      "source_location": "L153"
+    }
+  ]
+}

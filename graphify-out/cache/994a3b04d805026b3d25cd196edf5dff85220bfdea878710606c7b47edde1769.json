@@ -1,0 +1,700 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "label": "index.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "index_runinstallflow",
+      "label": "runInstallFlow()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L40"
+    },
+    {
+      "id": "index_applymanagedwrites",
+      "label": "applyManagedWrites()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L99"
+    },
+    {
+      "id": "index_writemanagedsecretforinstall",
+      "label": "writeManagedSecretForInstall()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L124"
+    },
+    {
+      "id": "index_writemanagedconfigsforinstall",
+      "label": "writeManagedConfigsForInstall()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L145"
+    },
+    {
+      "id": "index_verifypreparedinstall",
+      "label": "verifyPreparedInstall()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L166"
+    },
+    {
+      "id": "index_verifycurrentsessioninstall",
+      "label": "verifyCurrentSessionInstall()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L180"
+    },
+    {
+      "id": "index_persistinstallstate",
+      "label": "persistInstallState()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L205"
+    },
+    {
+      "id": "index_buildinstallfailureresult",
+      "label": "buildInstallFailureResult()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L225"
+    },
+    {
+      "id": "index_buildinstallresultfromerror",
+      "label": "buildInstallResultFromError()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L244"
+    },
+    {
+      "id": "index_buildfailedinstallresult",
+      "label": "buildFailedInstallResult()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L262"
+    },
+    {
+      "id": "index_buildcurrentsessionresultfromerror",
+      "label": "buildCurrentSessionResultFromError()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L275"
+    },
+    {
+      "id": "index_formatinstallfailuremessage",
+      "label": "formatInstallFailureMessage()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L300"
+    },
+    {
+      "id": "index_formatcurrentsessionfailuremessage",
+      "label": "formatCurrentSessionFailureMessage()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L312"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_contract_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_artifact_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_managed_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_install_flow_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_rollback_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L10",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_selection_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_secrets_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_session_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_managed_write_transaction_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_scope_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_state_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_storage_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_verify_effective_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L27",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_runinstallflow",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_applymanagedwrites",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L99",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_writemanagedsecretforinstall",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_writemanagedconfigsforinstall",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L145",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_verifypreparedinstall",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L166",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_verifycurrentsessioninstall",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L180",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_persistinstallstate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L205",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_buildinstallfailureresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L225",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_buildinstallresultfromerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L244",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_buildfailedinstallresult",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L262",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_buildcurrentsessionresultfromerror",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L275",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_formatinstallfailuremessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L300",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_index_ts",
+      "target": "index_formatcurrentsessionfailuremessage",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L312",
+      "weight": 1.0
+    },
+    {
+      "source": "index_runinstallflow",
+      "target": "index_buildinstallresultfromerror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L74",
+      "weight": 1.0
+    },
+    {
+      "source": "index_runinstallflow",
+      "target": "index_applymanagedwrites",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "index_runinstallflow",
+      "target": "index_verifypreparedinstall",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L79",
+      "weight": 1.0
+    },
+    {
+      "source": "index_runinstallflow",
+      "target": "index_persistinstallstate",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L80",
+      "weight": 1.0
+    },
+    {
+      "source": "index_runinstallflow",
+      "target": "index_buildinstallfailureresult",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L82",
+      "weight": 1.0
+    },
+    {
+      "source": "index_runinstallflow",
+      "target": "index_verifycurrentsessioninstall",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "index_applymanagedwrites",
+      "target": "index_writemanagedsecretforinstall",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "index_applymanagedwrites",
+      "target": "index_writemanagedconfigsforinstall",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "index_verifycurrentsessioninstall",
+      "target": "index_buildcurrentsessionresultfromerror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L199",
+      "weight": 1.0
+    },
+    {
+      "source": "index_buildinstallfailureresult",
+      "target": "index_buildinstallresultfromerror",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L232",
+      "weight": 1.0
+    },
+    {
+      "source": "index_buildinstallfailureresult",
+      "target": "index_buildfailedinstallresult",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L238",
+      "weight": 1.0
+    },
+    {
+      "source": "index_buildinstallresultfromerror",
+      "target": "index_buildfailedinstallresult",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L259",
+      "weight": 1.0
+    },
+    {
+      "source": "index_buildfailedinstallresult",
+      "target": "index_formatinstallfailuremessage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L269",
+      "weight": 1.0
+    },
+    {
+      "source": "index_buildcurrentsessionresultfromerror",
+      "target": "index_formatcurrentsessionfailuremessage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L294",
+      "weight": 1.0
+    },
+    {
+      "source": "index_formatcurrentsessionfailuremessage",
+      "target": "index_formatinstallfailuremessage",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L313",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "index_runinstallflow",
+      "callee": "createManagedWriteTransaction",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L45"
+    },
+    {
+      "caller_nid": "index_runinstallflow",
+      "callee": "resolveInstallContext",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L49"
+    },
+    {
+      "caller_nid": "index_runinstallflow",
+      "callee": "resolveInstallModel",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L52"
+    },
+    {
+      "caller_nid": "index_runinstallflow",
+      "callee": "createInstallProgressStateForModel",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L60"
+    },
+    {
+      "caller_nid": "index_runinstallflow",
+      "callee": "resolveInstallScope",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L62"
+    },
+    {
+      "caller_nid": "index_runinstallflow",
+      "callee": "prepareInstallSession",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L70"
+    },
+    {
+      "caller_nid": "index_runinstallflow",
+      "callee": "createSuccessfulInstallResult",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L96"
+    },
+    {
+      "caller_nid": "index_applymanagedwrites",
+      "callee": "readManagedInstallState",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L105"
+    },
+    {
+      "caller_nid": "index_writemanagedsecretforinstall",
+      "callee": "resolveSecretInput",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L130"
+    },
+    {
+      "caller_nid": "index_writemanagedsecretforinstall",
+      "callee": "run",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L136"
+    },
+    {
+      "caller_nid": "index_writemanagedsecretforinstall",
+      "callee": "writeManagedSecret",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L137"
+    },
+    {
+      "caller_nid": "index_writemanagedconfigsforinstall",
+      "callee": "runAll",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L151"
+    },
+    {
+      "caller_nid": "index_writemanagedconfigsforinstall",
+      "callee": "then",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L152"
+    },
+    {
+      "caller_nid": "index_writemanagedconfigsforinstall",
+      "callee": "writeScopeManagedConfigs",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L152"
+    },
+    {
+      "caller_nid": "index_verifypreparedinstall",
+      "callee": "verifyEffectiveConfig",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L170"
+    },
+    {
+      "caller_nid": "index_verifycurrentsessioninstall",
+      "callee": "verifyCurrentSessionEffectiveConfig",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L190"
+    },
+    {
+      "caller_nid": "index_persistinstallstate",
+      "callee": "run",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L210"
+    },
+    {
+      "caller_nid": "index_persistinstallstate",
+      "callee": "writeManagedInstallState",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L211"
+    },
+    {
+      "caller_nid": "index_persistinstallstate",
+      "callee": "toISOString",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L215"
+    },
+    {
+      "caller_nid": "index_persistinstallstate",
+      "callee": "now",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L215"
+    },
+    {
+      "caller_nid": "index_buildinstallfailureresult",
+      "callee": "rollbackManagedWrites",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L236"
+    },
+    {
+      "caller_nid": "index_buildinstallresultfromerror",
+      "callee": "isInstallErrorCode",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L248"
+    },
+    {
+      "caller_nid": "index_buildfailedinstallresult",
+      "callee": "isInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L268"
+    },
+    {
+      "caller_nid": "index_buildcurrentsessionresultfromerror",
+      "callee": "isInstallErrorCode",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L279"
+    },
+    {
+      "caller_nid": "index_buildcurrentsessionresultfromerror",
+      "callee": "isInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L293"
+    },
+    {
+      "caller_nid": "index_formatinstallfailuremessage",
+      "callee": "isInstallError",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L301"
+    },
+    {
+      "caller_nid": "index_formatinstallfailuremessage",
+      "callee": "redactSecretBearingText",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L302"
+    },
+    {
+      "caller_nid": "index_formatinstallfailuremessage",
+      "callee": "redactSecretBearingText",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L306"
+    },
+    {
+      "caller_nid": "index_formatinstallfailuremessage",
+      "callee": "redactSecretBearingText",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L309"
+    },
+    {
+      "caller_nid": "index_formatinstallfailuremessage",
+      "callee": "String",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/index.ts",
+      "source_location": "L309"
+    }
+  ]
+}

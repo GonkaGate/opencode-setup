@@ -1,0 +1,159 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "label": "verification-mismatches.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "verification_mismatches_compareconfigvalueatpath",
+      "label": "compareConfigValueAtPath()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L13"
+    },
+    {
+      "id": "verification_mismatches_createconfigvaluemismatchatpath",
+      "label": "createConfigValueMismatchAtPath()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L26"
+    },
+    {
+      "id": "verification_mismatches_collectvaluecheckmismatches",
+      "label": "collectValueCheckMismatches()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L41"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "node_util",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_contracts_effective_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_jsonc_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_config_value_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "verification_mismatches_compareconfigvalueatpath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "verification_mismatches_createconfigvaluemismatchatpath",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L26",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_verification_mismatches_ts",
+      "target": "verification_mismatches_collectvaluecheckmismatches",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L41",
+      "weight": 1.0
+    },
+    {
+      "source": "verification_mismatches_compareconfigvalueatpath",
+      "target": "verification_mismatches_createconfigvaluemismatchatpath",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L23",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "verification_mismatches_compareconfigvalueatpath",
+      "callee": "getNestedConfigValue",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L17"
+    },
+    {
+      "caller_nid": "verification_mismatches_compareconfigvalueatpath",
+      "callee": "isDeepStrictEqual",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L19"
+    },
+    {
+      "caller_nid": "verification_mismatches_createconfigvaluemismatchatpath",
+      "callee": "getNestedConfigValue",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L30"
+    },
+    {
+      "caller_nid": "verification_mismatches_createconfigvaluemismatchatpath",
+      "callee": "createRedactedDiagnosticValue",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L33"
+    },
+    {
+      "caller_nid": "verification_mismatches_createconfigvaluemismatchatpath",
+      "callee": "createRedactedDiagnosticValue",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L34"
+    },
+    {
+      "caller_nid": "verification_mismatches_createconfigvaluemismatchatpath",
+      "callee": "formatConfigPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L35"
+    },
+    {
+      "caller_nid": "verification_mismatches_collectvaluecheckmismatches",
+      "callee": "flatMap",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/verification-mismatches.ts",
+      "source_location": "L45"
+    }
+  ]
+}

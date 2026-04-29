@@ -1,0 +1,441 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "label": "test-deps.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "test_deps_createstubinstallfs",
+      "label": "createStubInstallFs()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L117"
+    },
+    {
+      "id": "test_deps_createstubinstallcommandrunner",
+      "label": "createStubInstallCommandRunner()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L350"
+    },
+    {
+      "id": "test_deps_createtestinstallruntime",
+      "label": "createTestInstallRuntime()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L367"
+    },
+    {
+      "id": "test_deps_createstubinstallclock",
+      "label": "createStubInstallClock()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L382"
+    },
+    {
+      "id": "test_deps_createstubinstallinput",
+      "label": "createStubInstallInput()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L390"
+    },
+    {
+      "id": "test_deps_createstubinstallprompts",
+      "label": "createStubInstallPrompts()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L398"
+    },
+    {
+      "id": "test_deps_resolvetestdependency",
+      "label": "resolveTestDependency()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L434"
+    },
+    {
+      "id": "test_deps_createstubbedtestfs",
+      "label": "createStubbedTestFs()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L447"
+    },
+    {
+      "id": "test_deps_createstubbedtestcommands",
+      "label": "createStubbedTestCommands()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L460"
+    },
+    {
+      "id": "test_deps_createstubbedtestclock",
+      "label": "createStubbedTestClock()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L475"
+    },
+    {
+      "id": "test_deps_createstubbedtestinput",
+      "label": "createStubbedTestInput()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L483"
+    },
+    {
+      "id": "test_deps_createstubbedtestprompts",
+      "label": "createStubbedTestPrompts()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L491"
+    },
+    {
+      "id": "test_deps_createstubbedtestinstalldependencies",
+      "label": "createStubbedTestInstallDependencies()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L507"
+    },
+    {
+      "id": "test_deps_createnodebackedtestinstalldependencies",
+      "label": "createNodeBackedTestInstallDependencies()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L520"
+    },
+    {
+      "id": "test_deps_createtestinstalldependencies",
+      "label": "createTestInstallDependencies()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L539"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_platform_path_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubinstallfs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L117",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubinstallcommandrunner",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L350",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createtestinstallruntime",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L367",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubinstallclock",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L382",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubinstallinput",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L390",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubinstallprompts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L398",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_resolvetestdependency",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L434",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubbedtestfs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L447",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubbedtestcommands",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L460",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubbedtestclock",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L475",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubbedtestinput",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L483",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubbedtestprompts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L491",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createstubbedtestinstalldependencies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L507",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createnodebackedtestinstalldependencies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L520",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "target": "test_deps_createtestinstalldependencies",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L539",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestfs",
+      "target": "test_deps_createstubinstallfs",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L450",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestcommands",
+      "target": "test_deps_resolvetestdependency",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L463",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestclock",
+      "target": "test_deps_resolvetestdependency",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L478",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestinput",
+      "target": "test_deps_resolvetestdependency",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L486",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestprompts",
+      "target": "test_deps_resolvetestdependency",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L494",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestinstalldependencies",
+      "target": "test_deps_createstubbedtestclock",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L511",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestinstalldependencies",
+      "target": "test_deps_createstubbedtestcommands",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L512",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestinstalldependencies",
+      "target": "test_deps_createstubbedtestfs",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L513",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestinstalldependencies",
+      "target": "test_deps_createstubbedtestinput",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L514",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestinstalldependencies",
+      "target": "test_deps_createstubbedtestprompts",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L515",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createstubbedtestinstalldependencies",
+      "target": "test_deps_createtestinstallruntime",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L516",
+      "weight": 1.0
+    },
+    {
+      "source": "test_deps_createtestinstalldependencies",
+      "target": "test_deps_createstubbedtestinstalldependencies",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L542",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "test_deps_createstubinstallfs",
+      "callee": "getInstallPathApi",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L127"
+    },
+    {
+      "caller_nid": "test_deps_createstubinstallfs",
+      "callee": "seedDirectory",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L256"
+    },
+    {
+      "caller_nid": "test_deps_createstubinstallfs",
+      "callee": "seedFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L260"
+    },
+    {
+      "caller_nid": "test_deps_createstubinstallfs",
+      "callee": "seedFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L264"
+    },
+    {
+      "caller_nid": "test_deps_resolvetestdependency",
+      "callee": "createStub",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L444"
+    },
+    {
+      "caller_nid": "test_deps_createstubbedtestinstalldependencies",
+      "callee": "createNodeInstallDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L510"
+    },
+    {
+      "caller_nid": "test_deps_createnodebackedtestinstalldependencies",
+      "callee": "fromEntries",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L523"
+    },
+    {
+      "caller_nid": "test_deps_createnodebackedtestinstalldependencies",
+      "callee": "filter",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L524"
+    },
+    {
+      "caller_nid": "test_deps_createnodebackedtestinstalldependencies",
+      "callee": "entries",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L524"
+    },
+    {
+      "caller_nid": "test_deps_createnodebackedtestinstalldependencies",
+      "callee": "createNodeInstallDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/test-deps.ts",
+      "source_location": "L529"
+    }
+  ]
+}

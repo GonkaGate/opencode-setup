@@ -1,0 +1,390 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "label": "verify-effective.test.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "verify_effective_test_createcanonicaluserconfigcontents",
+      "label": "createCanonicalUserConfigContents()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L30"
+    },
+    {
+      "id": "verify_effective_test_createverificationseedfiles",
+      "label": "createVerificationSeedFiles()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L46"
+    },
+    {
+      "id": "verify_effective_test_expectinstallerrorcode",
+      "label": "expectInstallErrorCode()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L70"
+    },
+    {
+      "id": "verify_effective_test_createresolvedconfigfixture",
+      "label": "createResolvedConfigFixture()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L84"
+    },
+    {
+      "id": "verify_effective_test_createverificationfixture",
+      "label": "createVerificationFixture()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L103"
+    },
+    {
+      "id": "verify_effective_test_createstubverificationfixture",
+      "label": "createStubVerificationFixture()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L157"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "strict",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "node_path",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_context_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_verify_effective_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_errors_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_redact_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L17",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L18",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_verify_effective_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_harness_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L23",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_test_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L24",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "verify_effective_test_createcanonicaluserconfigcontents",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "verify_effective_test_createverificationseedfiles",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L46",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "verify_effective_test_expectinstallerrorcode",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L70",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "verify_effective_test_createresolvedconfigfixture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "verify_effective_test_createverificationfixture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_install_verify_effective_test_ts",
+      "target": "verify_effective_test_createstubverificationfixture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L157",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_effective_test_createverificationseedfiles",
+      "target": "verify_effective_test_createcanonicaluserconfigcontents",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_effective_test_createverificationfixture",
+      "target": "verify_effective_test_createresolvedconfigfixture",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L118",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_effective_test_createverificationfixture",
+      "target": "verify_effective_test_createcanonicaluserconfigcontents",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L139",
+      "weight": 1.0
+    },
+    {
+      "source": "verify_effective_test_createstubverificationfixture",
+      "target": "verify_effective_test_createverificationseedfiles",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L211",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "verify_effective_test_createcanonicaluserconfigcontents",
+      "callee": "concat",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L31"
+    },
+    {
+      "caller_nid": "verify_effective_test_createcanonicaluserconfigcontents",
+      "callee": "stringify",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L31"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationseedfiles",
+      "callee": "some",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L57"
+    },
+    {
+      "caller_nid": "verify_effective_test_createresolvedconfigfixture",
+      "callee": "resolveValidatedModel",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L87"
+    },
+    {
+      "caller_nid": "verify_effective_test_createresolvedconfigfixture",
+      "callee": "buildManagedProviderConfig",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L88"
+    },
+    {
+      "caller_nid": "verify_effective_test_createresolvedconfigfixture",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L90"
+    },
+    {
+      "caller_nid": "verify_effective_test_createresolvedconfigfixture",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L94"
+    },
+    {
+      "caller_nid": "verify_effective_test_createresolvedconfigfixture",
+      "callee": "structuredClone",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L96"
+    },
+    {
+      "caller_nid": "verify_effective_test_createresolvedconfigfixture",
+      "callee": "mutate",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L98"
+    },
+    {
+      "caller_nid": "verify_effective_test_createresolvedconfigfixture",
+      "callee": "stringify",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L100"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "createInstallIntegrationHarness",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L111"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "createGitRepository",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L114"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "installFakeOpenCodeOnPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L116"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "createDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L124"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "resolveInstallContext",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L130"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "mkdir",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L133"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "dirname",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L134"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "writeFile",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L137"
+    },
+    {
+      "caller_nid": "verify_effective_test_createverificationfixture",
+      "callee": "cleanup",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L152"
+    },
+    {
+      "caller_nid": "verify_effective_test_createstubverificationfixture",
+      "callee": "resolveManagedPaths",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L171"
+    },
+    {
+      "caller_nid": "verify_effective_test_createstubverificationfixture",
+      "callee": "createTestInstallDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/install/verify-effective.test.ts",
+      "source_location": "L187"
+    }
+  ]
+}

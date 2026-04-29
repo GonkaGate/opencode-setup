@@ -1,0 +1,288 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "label": "cli.test.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "cli_test_createbufferwriter",
+      "label": "createBufferWriter()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L36"
+    },
+    {
+      "id": "cli_test_createresolvedconfigfixture",
+      "label": "createResolvedConfigFixture()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L45"
+    },
+    {
+      "id": "cli_test_createclifixture",
+      "label": "createCliFixture()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L72"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "strict",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "node_child_process",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "node_fs",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "node_path",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L4",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "node_os",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L5",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "node_url",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L6",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "node_test",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L7",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_models_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_contract_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L12",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_constants_gateway_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_cli_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_managed_provider_config_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L16",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_contract_helpers_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L20",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_test_install_harness_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L21",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "cli_test_createbufferwriter",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "cli_test_createresolvedconfigfixture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L45",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_test_cli_test_ts",
+      "target": "cli_test_createclifixture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L72",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_test_createclifixture",
+      "target": "cli_test_createresolvedconfigfixture",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L88",
+      "weight": 1.0
+    },
+    {
+      "source": "cli_test_createclifixture",
+      "target": "cli_test_createbufferwriter",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L94",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "cli_test_createresolvedconfigfixture",
+      "callee": "resolveValidatedModel",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L56"
+    },
+    {
+      "caller_nid": "cli_test_createresolvedconfigfixture",
+      "callee": "buildManagedProviderConfig",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L57"
+    },
+    {
+      "caller_nid": "cli_test_createresolvedconfigfixture",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L59"
+    },
+    {
+      "caller_nid": "cli_test_createresolvedconfigfixture",
+      "callee": "formatOpencodeModelRef",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L63"
+    },
+    {
+      "caller_nid": "cli_test_createresolvedconfigfixture",
+      "callee": "structuredClone",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L65"
+    },
+    {
+      "caller_nid": "cli_test_createresolvedconfigfixture",
+      "callee": "mutate",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L67"
+    },
+    {
+      "caller_nid": "cli_test_createresolvedconfigfixture",
+      "callee": "stringify",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L69"
+    },
+    {
+      "caller_nid": "cli_test_createclifixture",
+      "callee": "createInstallIntegrationHarness",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L81"
+    },
+    {
+      "caller_nid": "cli_test_createclifixture",
+      "callee": "createGitRepository",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L84"
+    },
+    {
+      "caller_nid": "cli_test_createclifixture",
+      "callee": "installFakeOpenCodeOnPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L86"
+    },
+    {
+      "caller_nid": "cli_test_createclifixture",
+      "callee": "createDependencies",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L98"
+    },
+    {
+      "caller_nid": "cli_test_createclifixture",
+      "callee": "cleanup",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/test/cli.test.ts",
+      "source_location": "L125"
+    }
+  ]
+}

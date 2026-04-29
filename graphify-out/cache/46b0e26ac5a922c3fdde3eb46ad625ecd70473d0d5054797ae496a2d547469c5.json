@@ -1,0 +1,411 @@
+{
+  "nodes": [
+    {
+      "id": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "label": "paths.ts",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L1"
+    },
+    {
+      "id": "paths_inferpathplatform",
+      "label": "inferPathPlatform()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L25"
+    },
+    {
+      "id": "paths_resolveinstallcwd",
+      "label": "resolveInstallCwd()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L40"
+    },
+    {
+      "id": "paths_findnearestgitroot",
+      "label": "findNearestGitRoot()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L59"
+    },
+    {
+      "id": "paths_resolveprojectroot",
+      "label": "resolveProjectRoot()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L85"
+    },
+    {
+      "id": "paths_resolvemanagedpaths",
+      "label": "resolveManagedPaths()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L103"
+    },
+    {
+      "id": "paths_resolveprojectconfigbackupdirectory",
+      "label": "resolveProjectConfigBackupDirectory()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L135"
+    },
+    {
+      "id": "paths_resolveinspectablesystemmanagedconfigpaths",
+      "label": "resolveInspectableSystemManagedConfigPaths()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L152"
+    },
+    {
+      "id": "paths_resolvesystemmanagedconfigdirectory",
+      "label": "resolveSystemManagedConfigDirectory()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L169"
+    },
+    {
+      "id": "paths_getwindowsprogramdatadirectory",
+      "label": "getWindowsProgramDataDirectory()",
+      "file_type": "code",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L194"
+    }
+  ],
+  "edges": [
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_deps_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "users_daniil_projects_opensource_opencode_setup_src_install_platform_path_ts",
+      "relation": "imports_from",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L2",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_inferpathplatform",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_resolveinstallcwd",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L40",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_findnearestgitroot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L59",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_resolveprojectroot",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_resolvemanagedpaths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L103",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_resolveprojectconfigbackupdirectory",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L135",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_resolveinspectablesystemmanagedconfigpaths",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L152",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_resolvesystemmanagedconfigdirectory",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "users_daniil_projects_opensource_opencode_setup_src_install_paths_ts",
+      "target": "paths_getwindowsprogramdatadirectory",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L194",
+      "weight": 1.0
+    },
+    {
+      "source": "paths_resolveprojectroot",
+      "target": "paths_resolveinstallcwd",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L89",
+      "weight": 1.0
+    },
+    {
+      "source": "paths_resolveprojectroot",
+      "target": "paths_findnearestgitroot",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L94",
+      "weight": 1.0
+    },
+    {
+      "source": "paths_resolveinspectablesystemmanagedconfigpaths",
+      "target": "paths_resolvesystemmanagedconfigdirectory",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L156",
+      "weight": 1.0
+    },
+    {
+      "source": "paths_resolvesystemmanagedconfigdirectory",
+      "target": "paths_getwindowsprogramdatadirectory",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L185",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "paths_inferpathplatform",
+      "callee": "test",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L28"
+    },
+    {
+      "caller_nid": "paths_inferpathplatform",
+      "callee": "test",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L29"
+    },
+    {
+      "caller_nid": "paths_inferpathplatform",
+      "callee": "test",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L30"
+    },
+    {
+      "caller_nid": "paths_inferpathplatform",
+      "callee": "includes",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L31"
+    },
+    {
+      "caller_nid": "paths_resolveinstallcwd",
+      "callee": "getInstallPathApi",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L45"
+    },
+    {
+      "caller_nid": "paths_resolveinstallcwd",
+      "callee": "normalizeInstallPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L46"
+    },
+    {
+      "caller_nid": "paths_resolveinstallcwd",
+      "callee": "resolve",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L49"
+    },
+    {
+      "caller_nid": "paths_resolveinstallcwd",
+      "callee": "normalizeInstallPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L52"
+    },
+    {
+      "caller_nid": "paths_resolveinstallcwd",
+      "callee": "isAbsolute",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L54"
+    },
+    {
+      "caller_nid": "paths_resolveinstallcwd",
+      "callee": "resolve",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L55"
+    },
+    {
+      "caller_nid": "paths_resolveinstallcwd",
+      "callee": "resolve",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L56"
+    },
+    {
+      "caller_nid": "paths_findnearestgitroot",
+      "callee": "getInstallPathApi",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L63"
+    },
+    {
+      "caller_nid": "paths_findnearestgitroot",
+      "callee": "resolve",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L64"
+    },
+    {
+      "caller_nid": "paths_findnearestgitroot",
+      "callee": "normalizeInstallPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L65"
+    },
+    {
+      "caller_nid": "paths_findnearestgitroot",
+      "callee": "pathExists",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L70"
+    },
+    {
+      "caller_nid": "paths_findnearestgitroot",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L70"
+    },
+    {
+      "caller_nid": "paths_findnearestgitroot",
+      "callee": "dirname",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L75"
+    },
+    {
+      "caller_nid": "paths_resolvemanagedpaths",
+      "callee": "getInstallPathApi",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L108"
+    },
+    {
+      "caller_nid": "paths_resolvemanagedpaths",
+      "callee": "normalizeInstallPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L109"
+    },
+    {
+      "caller_nid": "paths_resolvemanagedpaths",
+      "callee": "normalizeInstallPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L110"
+    },
+    {
+      "caller_nid": "paths_resolvemanagedpaths",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L113"
+    },
+    {
+      "caller_nid": "paths_resolvemanagedpaths",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L119"
+    },
+    {
+      "caller_nid": "paths_resolvemanagedpaths",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L120"
+    },
+    {
+      "caller_nid": "paths_resolvemanagedpaths",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L126"
+    },
+    {
+      "caller_nid": "paths_resolveprojectconfigbackupdirectory",
+      "callee": "getInstallPathApi",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L139"
+    },
+    {
+      "caller_nid": "paths_resolveprojectconfigbackupdirectory",
+      "callee": "normalizeInstallPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L140"
+    },
+    {
+      "caller_nid": "paths_resolveprojectconfigbackupdirectory",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L145"
+    },
+    {
+      "caller_nid": "paths_resolveprojectconfigbackupdirectory",
+      "callee": "dirname",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L146"
+    },
+    {
+      "caller_nid": "paths_resolveinspectablesystemmanagedconfigpaths",
+      "callee": "getInstallPathApi",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L162"
+    },
+    {
+      "caller_nid": "paths_resolveinspectablesystemmanagedconfigpaths",
+      "callee": "map",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L164"
+    },
+    {
+      "caller_nid": "paths_resolvesystemmanagedconfigdirectory",
+      "callee": "join",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L191"
+    },
+    {
+      "caller_nid": "paths_resolvesystemmanagedconfigdirectory",
+      "callee": "getInstallPathApi",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L191"
+    },
+    {
+      "caller_nid": "paths_getwindowsprogramdatadirectory",
+      "callee": "normalizeInstallPath",
+      "source_file": "/Users/daniil/Projects/Opensource/opencode-setup/src/install/paths.ts",
+      "source_location": "L205"
+    }
+  ]
+}
