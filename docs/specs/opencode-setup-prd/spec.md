@@ -591,8 +591,8 @@ It must not depend on `gonkagate doctor`.
 8. future `responses` migration must not require a new package identity
 9. setup should minimize prompts by accepting recommended defaults when it is
    safe to do so
-10. interactive setup should keep the public curated picker visible even when a
-    single validated model is currently available so the public UX stays stable
+10. interactive setup should keep the public curated picker visible even when
+    the curated validated list is small so the public UX stays stable
 11. on macOS, Linux, and WSL, reruns must repair drifted managed-secret file
     and directory modes without rewriting unchanged secret contents or creating
     backups

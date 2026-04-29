@@ -63,6 +63,8 @@
 
 ### Changed
 
+- added `moonshotai/Kimi-K2.6` to the public curated validated GonkaGate model
+  picker as the recommended default
 - publish the `opencode-setup` bin alias so `npx @gonkagate/opencode-setup`
   resolves on modern npm while keeping `gonkagate-opencode` as a compatible
   direct command
@@ -124,8 +126,8 @@
 ### Added
 
 - README demo media showing the public `opencode` installer flow
-- public curated model picker UI in the CLI, currently backed by one validated
-  GonkaGate model
+- public curated model picker UI in the CLI, backed by curated validated
+  GonkaGate models
 - structured machine-readable installer results with `success`, `blocked`, and
   `failed` statuses
 - end-to-end install orchestration under `src/install/index.ts`

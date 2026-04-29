@@ -5,7 +5,10 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import test from "node:test";
-import { formatOpencodeModelRef } from "../src/constants/models.js";
+import {
+  formatOpencodeModelRef,
+  type CuratedModelKey,
+} from "../src/constants/models.js";
 import { CONTRACT_METADATA } from "../src/constants/contract.js";
 import { GONKAGATE_BASE_URL } from "../src/constants/gateway.js";
 import { parseCliOptions, renderCliEntrypointError, run } from "../src/cli.js";
@@ -18,6 +21,8 @@ import { escapeRegExp, repoRoot } from "./contract-helpers.js";
 import { createInstallIntegrationHarness } from "./install/harness.js";
 
 const MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8" as const;
+const KIMI_MODEL_KEY = "kimi-k2.6" as const;
+const RECOMMENDED_MODEL_KEY = KIMI_MODEL_KEY;
 
 type TestSelectOption = <TValue extends string>(
   options: InstallSelectOptions<TValue>,
@@ -38,9 +43,17 @@ function createBufferWriter(): BufferWriter {
 }
 
 function createResolvedConfigFixture(
-  mutate?: (config: Record<string, unknown>) => void,
+  options:
+    | {
+        modelKey?: CuratedModelKey;
+        mutate?: (config: Record<string, unknown>) => void;
+      }
+    | ((config: Record<string, unknown>) => void) = {},
 ): string {
-  const model = resolveValidatedModel(MODEL_KEY);
+  const modelKey =
+    typeof options === "function" ? RECOMMENDED_MODEL_KEY : options.modelKey;
+  const mutate = typeof options === "function" ? options : options.mutate;
+  const model = resolveValidatedModel(modelKey ?? RECOMMENDED_MODEL_KEY);
   const providerConfig = buildManagedProviderConfig(model);
   const resolvedConfig = {
     model: formatOpencodeModelRef(model),
@@ -197,7 +210,7 @@ test("CLI wrapper still runs when invoked through a symlinked bin path", (t) => 
   assert.match(helpResult.stdout, /Configure OpenCode to use GonkaGate/i);
 });
 
-test("interactive runs show the public model picker even when one validated model is available", async () => {
+test("interactive runs show the public model picker with the validated models", async () => {
   const promptMessages: string[] = [];
   const promptChoiceSnapshots: string[][] = [];
   const fixture = await createCliFixture({
@@ -224,7 +237,8 @@ test("interactive runs show the public model picker even when one validated mode
       /Choose the GonkaGate model to configure for OpenCode/i,
     );
     assert.deepEqual(promptChoiceSnapshots[0], [
-      "Qwen3 235B A22B Instruct 2507 FP8 (Recommended)",
+      "Qwen3 235B A22B Instruct 2507 FP8",
+      "Kimi K2.6 (Recommended)",
     ]);
     assert.match(
       promptMessages[1] ?? "",
@@ -256,12 +270,16 @@ test("--yes auto-selects the recommended model and scope without prompting", asy
     assert.equal(selectCallCount, 0);
     assert.match(fixture.stdout.contents, /"status": "success"/);
     assert.match(fixture.stdout.contents, /"scope": "project"/);
+    assert.match(
+      fixture.stdout.contents,
+      new RegExp(escapeRegExp('"modelRef": "gonkagate/kimi-k2.6"')),
+    );
   } finally {
     await fixture.harness.cleanup();
   }
 });
 
-test("non-interactive runs require --scope or --yes", async () => {
+test("non-interactive runs require model selection when multiple validated models are available", async () => {
   const fixture = await createCliFixture();
 
   try {
@@ -275,7 +293,53 @@ test("non-interactive runs require --scope or --yes", async () => {
     assert.match(fixture.stdout.contents, /"status": "failed"/);
     assert.match(
       fixture.stdout.contents,
+      /"errorCode": "model_selection_required"/,
+    );
+  } finally {
+    await fixture.harness.cleanup();
+  }
+});
+
+test("non-interactive runs still require scope after an explicit model selection", async () => {
+  const fixture = await createCliFixture();
+
+  try {
+    const result = await run(["--json", "--model", MODEL_KEY], {
+      dependencies: fixture.dependencies,
+      stderr: fixture.stderr,
+      stdout: fixture.stdout,
+    });
+
+    assert.equal(result.exitCode, 1);
+    assert.match(fixture.stdout.contents, /"status": "failed"/);
+    assert.match(
+      fixture.stdout.contents,
       /"errorCode": "scope_selection_required"/,
+    );
+  } finally {
+    await fixture.harness.cleanup();
+  }
+});
+
+test("CLI accepts Kimi K2.6 as an explicit curated model selection", async () => {
+  const fixture = await createCliFixture({
+    debugConfigPureOutput: createResolvedConfigFixture({
+      modelKey: KIMI_MODEL_KEY,
+    }),
+  });
+
+  try {
+    const result = await run(["--json", "--yes", "--model", KIMI_MODEL_KEY], {
+      dependencies: fixture.dependencies,
+      stderr: fixture.stderr,
+      stdout: fixture.stdout,
+    });
+
+    assert.equal(result.exitCode, 0);
+    assert.match(fixture.stdout.contents, /"status": "success"/);
+    assert.match(
+      fixture.stdout.contents,
+      new RegExp(escapeRegExp('"modelRef": "gonkagate/kimi-k2.6"')),
     );
   } finally {
     await fixture.harness.cleanup();

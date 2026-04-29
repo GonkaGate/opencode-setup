@@ -49,29 +49,27 @@ Verified upstream facts used here:
 - `opencode debug config` outputs resolved config values, including substituted
   secret material, so raw output is secret-bearing.
 
-## Decision 1: Launch v1 with exactly one validated GonkaGate model
+## Decision 1: Expose only validated curated GonkaGate models
 
 **Decision**
 
-The first production runtime release must ship with exactly one curated model
-entry marked `validated`.
-
-For that initial release:
+The runtime must expose only curated model entries marked `validated`, with one
+explicit recommended default for automation-safe flows.
 
 - the installer keeps the public curated picker visible in interactive mode
 - `--yes` and safe non-interactive flows may auto-select the recommended
   validated model
-- `model` and `small_model` are both set to that same validated model
-- additional public model choices are deferred until they pass the same
-  validation gate
+- `model` and `small_model` are both set to the selected validated model
+- additional public model choices may land after they pass the same validation
+  gate
 
 **Rationale**
 
-For v1, the safest public shape is to keep the picker visible in interactive
-mode while still allowing automatic recommended-default behavior when prompts
-are intentionally bypassed:
+The safest public shape is to keep the picker visible in interactive mode while
+still allowing automatic recommended-default behavior when prompts are
+intentionally bypassed:
 
-- smallest compatibility surface
+- bounded compatibility surface
 - smallest rollback surface
 - no ambiguity about the recommended default in automation-safe paths
 - stable public UX even as more validated models are added later
@@ -93,10 +91,9 @@ is forcing the runtime to ship only behind end-to-end proof.
 
 **What this means for v1**
 
-- The initial runtime release is blocked until one GonkaGate model passes the
-  validation matrix from the PRD.
-- Once that model exists, interactive users still see the public picker, while
-  `--yes` and safe non-interactive flows may accept the recommended default.
+- Every public picker entry must pass the validation matrix from the PRD.
+- Interactive users still see the public picker, while `--yes` and safe
+  non-interactive flows may accept the recommended default.
 
 ## Decision 2: Do not reconcile or mutate `OPENCODE_CONFIG` in v1
 
@@ -340,9 +337,10 @@ are safe.
 
 These decisions fix the v1 production shape as follows:
 
-- one validated GonkaGate model at launch
-- interactive public picker remains visible even while only one validated model
-  is currently available
+- one validated GonkaGate model at launch, with later choices gated by the same
+  validation bar
+- interactive public picker remains visible while the curated model list is
+  small
 - durable writes only to the documented user config target, project activation
   file, and GonkaGate-managed user storage
 - hard-stop conflict handling for overlapping `OPENCODE_CONFIG` and effective

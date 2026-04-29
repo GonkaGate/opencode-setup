@@ -178,6 +178,7 @@ async function assertPathExists(
 function createInstallRequest(scope: InstallScope) {
   return {
     apiKeyStdin: false,
+    modelKey: MODEL_KEY,
     scope,
     yes: false,
   } as const;
