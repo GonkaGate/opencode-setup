@@ -14,7 +14,7 @@ import { GONKAGATE_BASE_URL } from "../src/constants/gateway.js";
 import { parseCliOptions, renderCliEntrypointError, run } from "../src/cli.js";
 import type { InstallSelectOptions } from "../src/install/deps.js";
 import {
-  buildManagedProviderConfig,
+  buildManagedProviderCatalogConfig,
   resolveValidatedModel,
 } from "../src/install/managed-provider-config.js";
 import { escapeRegExp, repoRoot } from "./contract-helpers.js";
@@ -54,7 +54,7 @@ function createResolvedConfigFixture(
     typeof options === "function" ? RECOMMENDED_MODEL_KEY : options.modelKey;
   const mutate = typeof options === "function" ? options : options.mutate;
   const model = resolveValidatedModel(modelKey ?? RECOMMENDED_MODEL_KEY);
-  const providerConfig = buildManagedProviderConfig(model);
+  const providerConfig = buildManagedProviderCatalogConfig();
   const resolvedConfig = {
     model: formatOpencodeModelRef(model),
     provider: {

@@ -1,12 +1,13 @@
 import {
   formatOpencodeModelRef,
+  getValidatedModelKeys,
   type CuratedModelKey,
 } from "../constants/models.js";
 import { GONKAGATE_PROVIDER_ID } from "../constants/gateway.js";
 import type { EffectiveConfigVerificationTarget } from "./contracts/effective-config.js";
 import type { EffectiveConfigValueCheck } from "./verification-mismatches.js";
 import {
-  buildManagedProviderConfig,
+  buildManagedProviderCatalogConfig,
   GONKAGATE_SECRET_FILE_REFERENCE,
   resolveValidatedModel,
 } from "./managed-provider-config.js";
@@ -91,11 +92,40 @@ export function createResolvedConfigVerificationPolicy(
   modelKey: CuratedModelKey,
 ): ResolvedConfigVerificationPolicy {
   const target = createEffectiveConfigVerificationTarget(modelKey);
-  const selectedModel = resolveValidatedModel(modelKey);
-  const expectedProviderConfig = buildManagedProviderConfig(selectedModel);
+  const expectedProviderConfig = buildManagedProviderCatalogConfig();
   const providerPath = ["provider", target.providerId] as const;
-  const modelEntryPath = [...providerPath, "models", modelKey] as const;
-  const expectedModelEntry = expectedProviderConfig.models[modelKey];
+  const requiredModelEntries = getValidatedModelKeys().map(
+    (catalogModelKey) => {
+      const modelEntryPath = [
+        ...providerPath,
+        "models",
+        catalogModelKey,
+      ] as const;
+      const expectedModelEntry = expectedProviderConfig.models[catalogModelKey];
+
+      if (expectedModelEntry === undefined) {
+        throw new Error(
+          `Managed GonkaGate provider catalog is missing ${catalogModelKey}.`,
+        );
+      }
+
+      return {
+        object: {
+          expected: expectedModelEntry,
+          path: modelEntryPath,
+          reason:
+            "Resolved config is missing a curated GonkaGate model catalog entry.",
+        },
+        valueChecks: createObjectValueChecks(
+          modelEntryPath,
+          expectedModelEntry,
+        ),
+      };
+    },
+  );
+  const modelEntryPaths = requiredModelEntries.map(
+    (entry) => entry.object.path,
+  );
 
   return {
     provider: {
@@ -104,24 +134,7 @@ export function createResolvedConfigVerificationPolicy(
         path: providerPath,
         reason: "Resolved config is missing the GonkaGate provider block.",
       },
-      requiredNestedObjects:
-        expectedModelEntry === undefined
-          ? undefined
-          : [
-              {
-                object: {
-                  expected: expectedModelEntry,
-                  path: modelEntryPath,
-                  reason:
-                    "Resolved config is missing the curated GonkaGate model entry.",
-                },
-                valueChecks: createObjectValueChecks(
-                  modelEntryPath,
-                  expectedModelEntry,
-                  modelKey,
-                ),
-              },
-            ],
+      requiredNestedObjects: requiredModelEntries,
       summaryOnMismatch: {
         expected: expectedProviderConfig,
         path: providerPath,
@@ -130,11 +143,9 @@ export function createResolvedConfigVerificationPolicy(
       valueChecks: createObjectValueChecks(
         providerPath,
         expectedProviderConfig,
-        modelKey,
         {
           skipExactPaths: [[...providerPath, "options", "apiKey"]],
-          skipSubtreePaths:
-            expectedModelEntry === undefined ? undefined : [modelEntryPath],
+          skipSubtreePaths: modelEntryPaths,
         },
       ),
     },
@@ -175,7 +186,6 @@ interface FlattenValueCheckOptions {
 function createObjectValueChecks(
   path: readonly string[],
   value: unknown,
-  modelKey: CuratedModelKey,
   options: FlattenValueCheckOptions = {},
 ): EffectiveConfigValueCheck[] {
   if (shouldSkipExactPath(path, options.skipExactPaths)) {
@@ -191,7 +201,7 @@ function createObjectValueChecks(
 
     for (const [key, nestedValue] of Object.entries(value)) {
       checks.push(
-        ...createObjectValueChecks([...path, key], nestedValue, modelKey, {
+        ...createObjectValueChecks([...path, key], nestedValue, {
           skipExactPaths: options.skipExactPaths,
           skipSubtreePaths: options.skipSubtreePaths,
         }),
@@ -205,7 +215,7 @@ function createObjectValueChecks(
     {
       expected: value,
       path,
-      reason: resolveProviderMismatchReason(path, modelKey),
+      reason: resolveProviderMismatchReason(path),
     },
   ];
 }
@@ -250,18 +260,11 @@ function isPathWithinSubtree(
   return subtreeRoot.every((segment, index) => segment === path[index]);
 }
 
-function resolveProviderMismatchReason(
-  path: readonly string[],
-  modelKey: CuratedModelKey,
-): string {
+function resolveProviderMismatchReason(path: readonly string[]): string {
   const formattedPath = path.join(".");
 
-  if (
-    formattedPath.startsWith(
-      `provider.${GONKAGATE_PROVIDER_ID}.models.${modelKey}.`,
-    )
-  ) {
-    return "Resolved GonkaGate model compatibility settings do not match the curated validated contract.";
+  if (formattedPath.startsWith(`provider.${GONKAGATE_PROVIDER_ID}.models.`)) {
+    return "Resolved GonkaGate model catalog settings do not match the curated validated contract.";
   }
 
   for (const rule of PROVIDER_REASON_RULES) {

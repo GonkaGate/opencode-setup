@@ -11,7 +11,7 @@ import {
   resolveProjectConfigBackupDirectory,
 } from "../../src/install/paths.js";
 import {
-  buildManagedProviderConfig,
+  buildManagedProviderCatalogConfig,
   resolveValidatedModel,
 } from "../../src/install/managed-provider-config.js";
 import { createInstallIntegrationHarness } from "./harness.js";
@@ -36,7 +36,7 @@ function createResolvedConfigFixture(
   mutate?: (config: Record<string, unknown>) => void,
 ): string {
   const model = resolveValidatedModel(MODEL_KEY);
-  const providerConfig = buildManagedProviderConfig(model);
+  const providerConfig = buildManagedProviderCatalogConfig();
   const resolvedConfig = {
     model: MODEL_REF,
     provider: {

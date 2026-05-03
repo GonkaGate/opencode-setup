@@ -327,7 +327,8 @@ Instead it ships a curated model registry that records, per model:
 - optional migration metadata for future per-model adapter changes
 
 Registry keys must map cleanly to OpenCode's `provider_id/model_id` format so
-the selected model can be written as `gonkagate/<model-key>`.
+validated entries can be written under `provider.gonkagate.models` and the
+selected setup default can be written as `gonkagate/<model-key>`.
 
 Registry data must be sufficient for the installer to reproduce the exact
 provider and model config shape used during validation, not only the visible
@@ -369,6 +370,11 @@ The installer must explicitly set both:
 
 In v1 they should be set to the same selected GonkaGate model.
 
+The selected model is only the default activation target. The installer must
+also write every validated curated model into `provider.gonkagate.models` so
+OpenCode's `/models` command can switch between managed GonkaGate models after
+setup.
+
 Why:
 
 - keeps default OpenCode traffic on an explicitly selected GonkaGate model
@@ -409,6 +415,7 @@ The installer owns only the GonkaGate-managed subset of config.
 User-level managed keys:
 
 - `provider.gonkagate` in the durable global config
+- the full validated GonkaGate catalog under `provider.gonkagate.models`
 - validated GonkaGate compatibility settings under `provider.gonkagate` and its
   model entries when the curated registry requires them
 - GonkaGate-managed activation settings when scope is `user`
@@ -484,7 +491,7 @@ Before claiming success, the installer must:
   verified baseline instead of reimplementing the full upstream merge engine
 - use resolved-config verification for `model`, `small_model`,
   `provider.gonkagate`, validated transport and base URL shape, curated
-  model-entry shape, and provider allow/deny gating
+  model-catalog shape, and provider allow/deny gating
 - verify `provider.gonkagate.options.apiKey` provenance separately instead of
   inferring secret ownership from redacted resolved output
 - detect higher-precedence custom or managed layers that keep GonkaGate from
@@ -554,25 +561,28 @@ It must not depend on `gonkagate doctor`.
     substituted secrets
 16. the curated model registry must be able to encode any validated
     compatibility settings required beyond model id and adapter choice
-17. the installer must treat `enabled_providers` and `disabled_providers` that
+17. the installer must write every validated curated model into
+    `provider.gonkagate.models` so OpenCode's `/models` command can switch
+    between managed GonkaGate models
+18. the installer must treat `enabled_providers` and `disabled_providers` that
     exclude `gonkagate` as blocking conflicts unless it is explicitly
     reconciling a GonkaGate-managed list
-18. the installer must only claim exact durable blocker attribution for
+19. the installer must only claim exact durable blocker attribution for
     locally inspectable `OPENCODE_CONFIG`, user config, project config, and
     file-based system managed config layers
-19. when more than one locally inspectable layer conflicts on the same
+20. when more than one locally inspectable layer conflicts on the same
     GonkaGate-managed key, durable blocker attribution must follow real
     OpenCode precedence among those layers rather than file traversal order
-20. when resolved config proves provider gating but no locally inspectable
+21. when resolved config proves provider gating but no locally inspectable
     layer explains it, the installer must report an inferred
     higher-precedence or managed blocker instead of a generic mismatch
-21. the installer must enforce the canonical secret-binding provenance rule:
+22. the installer must enforce the canonical secret-binding provenance rule:
     `user_config` owns
     `provider.gonkagate.options.apiKey = {file:~/.gonkagate/opencode/api-key}`
-22. the installer must block project config, `OPENCODE_CONFIG`, and
+23. the installer must block project config, `OPENCODE_CONFIG`, and
     inspectable file-based system managed config when they define
     `provider.gonkagate.options.apiKey`
-23. the installer must block any inline
+24. the installer must block any inline
     `OPENCODE_CONFIG_CONTENT.provider.gonkagate.options.apiKey` override in v1
 
 ## Non-Functional Requirements
@@ -647,7 +657,8 @@ The correct v1 product shape is:
 
 - a small onboarding CLI
 - one stable provider id: `gonkagate`
-- one curated model picker
+- one curated model picker and a validated GonkaGate model catalog for
+  OpenCode `/models` switching
 - one safe secret flow
 - zero manual config editing
 - zero `.env`

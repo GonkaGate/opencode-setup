@@ -1,7 +1,7 @@
 import type { JsonObject } from "../json.js";
 import {
   getCuratedModelByKey,
-  type CuratedModelCompatibility,
+  getValidatedModels,
   type CuratedModelKey,
   type CuratedModelProviderOverride,
   type CuratedModelRecord,
@@ -62,29 +62,59 @@ export function resolveValidatedModel(
 export function buildManagedProviderConfig(
   model: ManagedProviderSourceModel,
 ): ManagedProviderConfig {
-  assertCanonicalModelContract(model);
+  return buildManagedProviderConfigForModels([model]);
+}
+
+export function buildManagedProviderCatalogConfig(): ManagedProviderConfig {
+  return buildManagedProviderConfigForModels(getValidatedModels());
+}
+
+function buildManagedProviderConfigForModels(
+  models: readonly ManagedProviderSourceModel[],
+): ManagedProviderConfig {
+  if (models.length === 0) {
+    throw new Error(
+      "GonkaGate provider catalog must include at least one model.",
+    );
+  }
+
+  const providerModels: ManagedProviderModelMap = {};
+
+  for (const model of models) {
+    assertCanonicalModelContract(model);
+    providerModels[model.key] = buildManagedProviderModelConfig(model);
+  }
 
   return {
-    api: model.transport,
-    models: {
-      [model.key]: buildManagedProviderModelConfig(model),
-    },
+    api: CURRENT_TRANSPORT,
+    models: providerModels,
     name: GONKAGATE_PROVIDER_NAME,
-    npm: model.adapterPackage,
-    options: buildManagedProviderOptions(model.runtimeCompatibility),
+    npm: OPENAI_COMPATIBLE_ADAPTER,
+    options: buildManagedProviderOptions(models),
   };
 }
 
 function buildManagedProviderOptions(
-  compatibility: CuratedModelCompatibility | undefined,
+  models: readonly ManagedProviderSourceModel[],
 ): JsonObject {
   const providerOptions: JsonObject = {
     apiKey: GONKAGATE_SECRET_FILE_REFERENCE,
     baseURL: GONKAGATE_BASE_URL,
   };
 
+  for (const model of models) {
+    mergeManagedProviderOptions(providerOptions, model);
+  }
+
+  return providerOptions;
+}
+
+function mergeManagedProviderOptions(
+  providerOptions: JsonObject,
+  model: ManagedProviderSourceModel,
+): void {
   for (const [key, value] of Object.entries(
-    compatibility?.providerOptions ?? {},
+    model.runtimeCompatibility?.providerOptions ?? {},
   )) {
     if (key === "apiKey" && value !== GONKAGATE_SECRET_FILE_REFERENCE) {
       throw new Error(
@@ -102,10 +132,21 @@ function buildManagedProviderOptions(
       continue;
     }
 
+    if (
+      Object.hasOwn(providerOptions, key) &&
+      !areJsonValuesEqual(providerOptions[key], value)
+    ) {
+      throw new Error(
+        `Validated model compatibility for ${GONKAGATE_PROVIDER_ID} must not define conflicting provider option "${key}" across the managed catalog.`,
+      );
+    }
+
     providerOptions[key] = value;
   }
+}
 
-  return providerOptions;
+function areJsonValuesEqual(left: unknown, right: unknown): boolean {
+  return JSON.stringify(left) === JSON.stringify(right);
 }
 
 function buildManagedProviderModelConfig(
