@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.4.0](https://github.com/GonkaGate/opencode-setup/compare/v0.3.0...v0.4.0) (2026-05-03)
+
+
+### Features
+
+* expose GonkaGate model catalog ([af30c4b](https://github.com/GonkaGate/opencode-setup/commit/af30c4be377f2789f5eee70253afd5bfa6bff30c))
+
 ## [0.3.0](https://github.com/GonkaGate/opencode-setup/compare/v0.2.6...v0.3.0) (2026-04-29)
 
 
