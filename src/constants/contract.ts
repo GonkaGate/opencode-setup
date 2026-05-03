@@ -2,7 +2,7 @@ export const CONTRACT_METADATA = {
   binName: "opencode-setup",
   legacyBinName: "gonkagate-opencode",
   binPath: "bin/gonkagate-opencode.js",
-  cliVersion: "0.3.0", // x-release-please-version
+  cliVersion: "0.4.0", // x-release-please-version
   curatedRegistryPublished: true,
   packageName: "@gonkagate/opencode-setup",
   publicEntrypoint: "npx @gonkagate/opencode-setup",
