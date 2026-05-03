@@ -60,6 +60,8 @@ explicit recommended default for automation-safe flows.
 - `--yes` and safe non-interactive flows may auto-select the recommended
   validated model
 - `model` and `small_model` are both set to the selected validated model
+- every validated curated model is written to `provider.gonkagate.models` so
+  OpenCode's `/models` command can switch between managed GonkaGate models
 - additional public model choices may land after they pass the same validation
   gate
 
@@ -85,9 +87,10 @@ is forcing the runtime to ship only behind end-to-end proof.
 - The curated registry should add explicit default-selection metadata such as
   `recommended: true` rather than relying on array order once multiple
   validated models exist.
-- The exact first GonkaGate model ID is a release input that must be pinned in
-  a model validation record before runtime launch. It is not a safe
-  architecture placeholder to invent in advance.
+- The managed provider catalog should be derived from validated registry
+  entries, while `model` and `small_model` remain only the setup defaults.
+- Each public GonkaGate model ID must be pinned in a model validation record
+  before it is exposed through the picker or provider catalog.
 
 **What this means for v1**
 
@@ -217,7 +220,8 @@ At minimum, the verification gate should confirm:
 - `small_model` resolves to the same v1 model
 - `provider.gonkagate` is present with the expected transport package and base
   URL
-- required compatibility fragments from the curated registry are present
+- required compatibility fragments and model catalog entries from the curated
+  registry are present
 - no higher-precedence layer excludes `gonkagate`
 
 ## Decision 4: Prefer the plugin-safe verification path when available
@@ -337,8 +341,8 @@ are safe.
 
 These decisions fix the v1 production shape as follows:
 
-- one validated GonkaGate model at launch, with later choices gated by the same
-  validation bar
+- only validated GonkaGate models are exposed, with later choices gated by the
+  same validation bar
 - interactive public picker remains visible while the curated model list is
   small
 - durable writes only to the documented user config target, project activation

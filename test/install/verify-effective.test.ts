@@ -10,7 +10,7 @@ import {
   type InstallErrorCode,
 } from "../../src/install/errors.js";
 import {
-  buildManagedProviderConfig,
+  buildManagedProviderCatalogConfig,
   GONKAGATE_SECRET_FILE_REFERENCE,
   resolveValidatedModel,
 } from "../../src/install/managed-provider-config.js";
@@ -85,7 +85,7 @@ function createResolvedConfigFixture(
   mutate?: (config: Record<string, unknown>) => void,
 ): string {
   const model = resolveValidatedModel(MODEL_KEY);
-  const providerConfig = buildManagedProviderConfig(model);
+  const providerConfig = buildManagedProviderCatalogConfig();
   const resolvedConfig = {
     model: formatOpencodeModelRef(model),
     provider: {
@@ -1082,6 +1082,42 @@ test("verifyEffectiveConfig detects a missing curated model entry under provider
           error.details.mismatches.some(
             (mismatch) =>
               mismatch.key === `provider.gonkagate.models.${MODEL_KEY}`,
+          ),
+          true,
+        );
+      }),
+    );
+  } finally {
+    await fixture.harness.cleanup();
+  }
+});
+
+test("verifyEffectiveConfig requires the full GonkaGate model catalog", async () => {
+  const fixture = await createVerificationFixture({
+    debugConfigPureOutput: createResolvedConfigFixture((config) => {
+      const provider = (config.provider as Record<string, unknown>)
+        .gonkagate as Record<string, unknown>;
+      const models = provider.models as Record<string, unknown>;
+      delete models["kimi-k2.6"];
+    }),
+  });
+
+  try {
+    await assert.rejects(
+      () =>
+        verifyEffectiveConfig(
+          {
+            context: fixture.context,
+            model: MODEL_KEY,
+            scope: "user",
+          },
+          fixture.dependencies,
+        ),
+      expectInstallErrorCode("effective_config_mismatch", (error) => {
+        assert.equal(
+          error.details.mismatches.some(
+            (mismatch) =>
+              mismatch.key === "provider.gonkagate.models.kimi-k2.6",
           ),
           true,
         );

@@ -18,6 +18,9 @@ Today the repository ships:
 - the public CLI
 - the public curated model picker UI, which currently exposes two validated
   models
+- a managed GonkaGate provider catalog that writes every validated curated
+  model into `provider.gonkagate.models` so OpenCode's `/models` command can
+  switch between GonkaGate models after setup
 - end-to-end secret intake, managed secret persistence, managed OpenCode config
   parse/merge/write, rerun-safe rollback, precedence-based locally inspectable
   blocker attribution, inferred higher-precedence fallback reporting, and
@@ -47,7 +50,8 @@ Current validated picker entries:
    WSL, reruns also repair drifted owner-only modes on the managed secret file
    and directory without rewriting unchanged secret contents or creating a
    backup.
-6. Write or update the durable global user-level provider definition.
+6. Write or update the durable global user-level provider definition and the
+   full validated GonkaGate model catalog.
 7. When `project` scope is chosen, write only activation settings to
    `opencode.json`.
 8. On rerun, normalize both managed targets to the selected final scope by
@@ -63,7 +67,7 @@ Current validated picker entries:
     `opencode debug config --pure` on the verified baseline without treating
     `OPENCODE_CONFIG_CONTENT` as a durable install target. This resolved check
     covers `model`, `small_model`, `provider.gonkagate`, validated transport
-    and base URL shape, curated model-entry shape, and provider allow/deny
+    and base URL shape, curated model-catalog shape, and provider allow/deny
     gating.
 11. Verify secret-binding provenance separately instead of inferring it from
     redacted resolved-config output: `user_config` must own
@@ -229,9 +233,13 @@ user. Resolved-config output can already contain expanded `{file:...}` or
 redacted diagnostics.
 
 The curated model registry also carries enough metadata to reproduce the exact
-validated config shape. If a GonkaGate model requires extra provider options,
-model options, or headers for stable OpenCode behavior, those requirements live
-in the registry and are written by the installer.
+validated config shape. The installer writes all validated registry entries to
+`provider.gonkagate.models`; the selected setup model only controls the root
+`model` and `small_model` defaults. That lets users switch between managed
+GonkaGate models through OpenCode's `/models` command without exposing arbitrary
+custom model ids. If a GonkaGate model requires extra provider options, model
+options, or headers for stable OpenCode behavior, those requirements live in
+the registry and are written by the installer.
 
 ## Windows Support
 

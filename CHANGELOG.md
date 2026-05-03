@@ -65,6 +65,9 @@
 
 - added `moonshotai/Kimi-K2.6` to the public curated validated GonkaGate model
   picker as the recommended default
+- write the full validated GonkaGate model catalog into
+  `provider.gonkagate.models` so OpenCode's `/models` command can switch
+  between managed GonkaGate models after setup
 - publish the `opencode-setup` bin alias so `npx @gonkagate/opencode-setup`
   resolves on modern npm while keeping `gonkagate-opencode` as a compatible
   direct command

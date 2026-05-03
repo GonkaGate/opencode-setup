@@ -88,6 +88,15 @@ The current public validated entries are:
 Interactive mode still keeps that public picker visible, so more validated
 models can be added later without changing the CLI contract.
 
+## How can I switch GonkaGate models inside OpenCode?
+
+Run `/models` in OpenCode after setup.
+
+The installer writes every validated curated GonkaGate model into
+`provider.gonkagate.models`, while `model` and `small_model` only set the
+initial default selected during setup. If a new validated model ships later,
+rerun `npx @gonkagate/opencode-setup` to refresh the managed provider catalog.
+
 ## Why is `/v1/responses` mentioned if it is not supported today?
 
 Because the product needs a planned migration path.

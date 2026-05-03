@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  buildManagedProviderCatalogConfig,
   buildManagedProviderConfig,
   type ManagedProviderSourceModel,
 } from "../../src/install/managed-provider-config.js";
@@ -52,6 +53,20 @@ test("buildManagedProviderConfig maps compatibility fragments and limits into th
   assert.equal(modelConfig?.headers?.["x-gonkagate-mode"], "validated");
   assert.equal(modelConfig?.provider?.api, "chat_completions");
   assert.equal(modelConfig?.provider?.npm, "@ai-sdk/openai-compatible");
+});
+
+test("buildManagedProviderCatalogConfig exposes every validated model for OpenCode model selection", () => {
+  const providerConfig = buildManagedProviderCatalogConfig();
+
+  assert.ok(
+    providerConfig.models["qwen3-235b-a22b-instruct-2507-fp8"] !== undefined,
+  );
+  assert.equal(
+    providerConfig.models["qwen3-235b-a22b-instruct-2507-fp8"]?.id,
+    "qwen/qwen3-235b-a22b-instruct-2507-fp8",
+  );
+  assert.ok(providerConfig.models["kimi-k2.6"] !== undefined);
+  assert.equal(providerConfig.models["kimi-k2.6"]?.id, "moonshotai/Kimi-K2.6");
 });
 
 test("buildManagedProviderConfig rejects compatibility metadata that conflicts with canonical provider keys", () => {

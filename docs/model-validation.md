@@ -45,6 +45,8 @@ picker.
 
 - v1 explicitly writes both `model` and `small_model` to the same selected
   validated GonkaGate model
+- v1 writes every validated curated model into `provider.gonkagate.models` so
+  OpenCode's `/models` command can switch between managed GonkaGate models
 - interactive setup keeps the public curated picker visible as broader public
   model choice lands without changing the UX contract
 - future `/v1/responses` support requires a separate migration and revalidation

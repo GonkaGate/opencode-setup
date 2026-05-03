@@ -193,6 +193,11 @@ The runtime is curated-model-first:
 - the canonical base URL is `https://api.gonkagate.com/v1`
 - the current transport target is `chat/completions`
 - future migration should add `responses` support without renaming the product
+- the installer writes every validated curated GonkaGate model into
+  `provider.gonkagate.models` so OpenCode's `/models` command can switch
+  between managed GonkaGate models
+- the selected setup model remains the activation default through `model` and
+  `small_model`
 - the curated registry can carry compatibility metadata, provider options,
   model options, and headers when a validated OpenCode flow needs them
 
@@ -204,7 +209,7 @@ Success is based on effective OpenCode config.
 For durable verification, `opencode debug config --pure` stays the final truth
 source. The installer uses that resolved result to verify `model`,
 `small_model`, `provider.gonkagate`, the validated transport and base URL
-shape, the curated model-entry shape, and provider allow/deny gating.
+shape, the curated model-catalog shape, and provider allow/deny gating.
 
 OpenCode precedence matters here:
 

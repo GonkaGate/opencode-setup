@@ -24,6 +24,9 @@ Current honest state:
   describe the shipped runtime
 - the public curated model picker is shipped and currently exposes two
   validated models
+- the installer writes every validated curated model into
+  `provider.gonkagate.models` so OpenCode's `/models` command can switch
+  between managed GonkaGate models after setup
 - native Windows support is part of the current contract and is backed by
   native Windows CI and integration proof, not only simulated `win32` tests
 - the minimum verified OpenCode version remains `1.4.0`, and the latest
@@ -78,6 +81,8 @@ refactor; it is a product change.
   model without showing the picker
 - project config target is `opencode.json`
 - the managed user-level provider key is `provider.gonkagate`
+- the managed user-level provider catalog under `provider.gonkagate.models`
+  includes every public validated curated model
 - `project` scope writes only activation settings
 - repo-local `opencode.json` rewrites must keep rollback backups under
   `~/.gonkagate/opencode/backups/project-config` instead of beside the
@@ -99,7 +104,7 @@ refactor; it is a product change.
   upstream merge engine
 - resolved effective-config verification must stay responsible for `model`,
   `small_model`, `provider.gonkagate`, validated transport and base URL shape,
-  curated model-entry shape, and provider allow/deny gating
+  curated model-catalog shape, and provider allow/deny gating
 - secret-binding provenance verification must separately enforce
   `provider.gonkagate.options.apiKey` ownership instead of inferring it from
   redacted resolved-config output
@@ -143,6 +148,8 @@ refactor; it is a product change.
 - arbitrary custom model ids are out of scope for v1
 - the installer must not depend on `gonkagate doctor`
 - `small_model` is explicitly set by the runtime
+- `model` and `small_model` select the setup default; they are not the full
+  GonkaGate model catalog
 - the curated model registry contract must be able to carry compatibility
   metadata required for validated OpenCode flows, not only model ids
 
@@ -186,11 +193,12 @@ These are implementation facts today, not future plans:
 - `src/install/` now contains the shipped runtime foundations and orchestration
   for dependency injection, OpenCode detection, path resolution, platform
   classification, safe secret intake, managed secret/install-state
-  persistence, managed config parse/merge/write, rerun-safe rollback,
-  locally inspectable higher-precedence layer attribution, inferred fallback
-  blocker reporting, installer-owned scope normalization, separate resolved-
-  config versus secret-binding provenance verification, redacted effective-
-  config diagnostics, and the end-to-end installer flow
+  persistence, managed provider catalog generation, managed config
+  parse/merge/write, rerun-safe rollback, locally inspectable
+  higher-precedence layer attribution, inferred fallback blocker reporting,
+  installer-owned scope normalization, separate resolved-config versus
+  secret-binding provenance verification, redacted effective-config
+  diagnostics, and the end-to-end installer flow
 - the curated model registry under `src/constants/models.ts` now includes
   pinned public validated entries for
   `qwen/qwen3-235b-a22b-instruct-2507-fp8` and
@@ -213,8 +221,9 @@ This repo currently does:
 - define security, scope, and transport constraints
 - provide npm packaging, CI, release-please, and publish scaffolding
 - provide a working public CLI entrypoint with a curated public model picker
-- provide end-to-end managed config writes, scope-aware ownership, rerun-safe
-  rollback, and redacted effective-config verification under `src/install/`
+- provide end-to-end managed config writes, a validated GonkaGate model catalog
+  for OpenCode `/models` switching, scope-aware ownership, rerun-safe rollback,
+  and redacted effective-config verification under `src/install/`
 - provide docs and tests that protect the current contract
 
 This repo currently does not do:

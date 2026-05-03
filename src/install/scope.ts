@@ -12,7 +12,7 @@ import {
 import type { InstallDependencies } from "./deps.js";
 import { createInstallError } from "./errors.js";
 import {
-  buildManagedProviderConfig,
+  buildManagedProviderCatalogConfig,
   resolveValidatedModel,
 } from "./managed-provider-config.js";
 import { writeManagedConfigTarget } from "./write-target-config.js";
@@ -43,7 +43,7 @@ function createManagedConfigWriteContext(
     activationModelRef: formatOpencodeModelRef(model),
     managedPaths: request.managedPaths,
     ownedActivationModelRefs: createOwnedActivationModelRefs(request),
-    providerConfig: buildManagedProviderConfig(model),
+    providerConfig: buildManagedProviderCatalogConfig(),
   };
 }
 
