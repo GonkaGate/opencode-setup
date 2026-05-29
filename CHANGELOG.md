@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/GonkaGate/opencode-setup/compare/v0.4.0...v0.5.0) (2026-05-29)
+
+
+### Features
+
+* add MiniMax M2.7 curated model ([6dfb6bb](https://github.com/GonkaGate/opencode-setup/commit/6dfb6bbf5939eb57023c515322397d4d91f9e5e1))
+
 ## [0.4.0](https://github.com/GonkaGate/opencode-setup/compare/v0.3.0...v0.4.0) (2026-05-03)
 
 
