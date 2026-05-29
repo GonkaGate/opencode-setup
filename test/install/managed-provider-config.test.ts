@@ -67,6 +67,11 @@ test("buildManagedProviderCatalogConfig exposes every validated model for OpenCo
   );
   assert.ok(providerConfig.models["kimi-k2.6"] !== undefined);
   assert.equal(providerConfig.models["kimi-k2.6"]?.id, "moonshotai/Kimi-K2.6");
+  assert.ok(providerConfig.models["minimax-m2.7"] !== undefined);
+  assert.equal(
+    providerConfig.models["minimax-m2.7"]?.id,
+    "minimaxai/minimax-m2.7",
+  );
 });
 
 test("buildManagedProviderConfig rejects compatibility metadata that conflicts with canonical provider keys", () => {

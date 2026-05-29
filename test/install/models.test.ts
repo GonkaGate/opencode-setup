@@ -13,12 +13,15 @@ import {
 test("the default curated registry exposes validated entries through the validated-model helpers", () => {
   const validatedModels = getValidatedModels();
 
-  assert.equal(validatedModels.length, 2);
+  assert.equal(validatedModels.length, 3);
   assert.equal(validatedModels[0]?.key, "qwen3-235b-a22b-instruct-2507-fp8");
   assert.equal(validatedModels[0]?.validationStatus, "validated");
   assert.equal(validatedModels[1]?.key, "kimi-k2.6");
   assert.equal(validatedModels[1]?.modelId, "moonshotai/Kimi-K2.6");
   assert.equal(validatedModels[1]?.validationStatus, "validated");
+  assert.equal(validatedModels[2]?.key, "minimax-m2.7");
+  assert.equal(validatedModels[2]?.modelId, "minimaxai/minimax-m2.7");
+  assert.equal(validatedModels[2]?.validationStatus, "validated");
 });
 
 test("createCuratedModelIndex derives keyed records and picks the recommended validated model by metadata", () => {
@@ -96,6 +99,10 @@ test("the formatted OpenCode model reference uses the stable provider/model key 
     "gonkagate/qwen3-235b-a22b-instruct-2507-fp8",
   );
   assert.equal(formatOpencodeModelRef("kimi-k2.6"), "gonkagate/kimi-k2.6");
+  assert.equal(
+    formatOpencodeModelRef("minimax-m2.7"),
+    "gonkagate/minimax-m2.7",
+  );
 });
 
 test("the curated model contract can carry compatibility and migration metadata", () => {
@@ -135,7 +142,8 @@ test("the curated model contract can carry compatibility and migration metadata"
 test("the shipped registry stays wired through the default derived index", () => {
   const index = createCuratedModelIndex(CURATED_MODEL_REGISTRY);
 
-  assert.equal(index.models.length, 2);
+  assert.equal(index.models.length, 3);
   assert.equal(index.models[0]?.key, "qwen3-235b-a22b-instruct-2507-fp8");
   assert.equal(index.models[1]?.key, "kimi-k2.6");
+  assert.equal(index.models[2]?.key, "minimax-m2.7");
 });

@@ -22,7 +22,7 @@ Current honest state:
   OpenCode config, and ends with plain `opencode`
 - the product docs, CI, package contract, and PRD are implemented and now
   describe the shipped runtime
-- the public curated model picker is shipped and currently exposes two
+- the public curated model picker is shipped and currently exposes three
   validated models
 - the installer writes every validated curated model into
   `provider.gonkagate.models` so OpenCode's `/models` command can switch
@@ -201,8 +201,9 @@ These are implementation facts today, not future plans:
   diagnostics, and the end-to-end installer flow
 - the curated model registry under `src/constants/models.ts` now includes
   pinned public validated entries for
-  `qwen/qwen3-235b-a22b-instruct-2507-fp8` and
-  `moonshotai/Kimi-K2.6`, with Kimi K2.6 marked as the recommended default
+  `qwen/qwen3-235b-a22b-instruct-2507-fp8`,
+  `moonshotai/Kimi-K2.6`, and `minimaxai/minimax-m2.7`, with Kimi K2.6 marked
+  as the recommended default
 - a mirrored skill pack is present under `.agents/skills/` and
   `.claude/skills/`, imported from `codex-setup` as an initial shared
   engineering baseline

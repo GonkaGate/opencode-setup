@@ -22,6 +22,7 @@ import { createInstallIntegrationHarness } from "./install/harness.js";
 
 const MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8" as const;
 const KIMI_MODEL_KEY = "kimi-k2.6" as const;
+const MINIMAX_MODEL_KEY = "minimax-m2.7" as const;
 const RECOMMENDED_MODEL_KEY = KIMI_MODEL_KEY;
 
 type TestSelectOption = <TValue extends string>(
@@ -239,6 +240,7 @@ test("interactive runs show the public model picker with the validated models", 
     assert.deepEqual(promptChoiceSnapshots[0], [
       "Qwen3 235B A22B Instruct 2507 FP8",
       "Kimi K2.6 (Recommended)",
+      "MiniMax M2.7",
     ]);
     assert.match(
       promptMessages[1] ?? "",
@@ -340,6 +342,34 @@ test("CLI accepts Kimi K2.6 as an explicit curated model selection", async () =>
     assert.match(
       fixture.stdout.contents,
       new RegExp(escapeRegExp('"modelRef": "gonkagate/kimi-k2.6"')),
+    );
+  } finally {
+    await fixture.harness.cleanup();
+  }
+});
+
+test("CLI accepts MiniMax M2.7 as an explicit curated model selection", async () => {
+  const fixture = await createCliFixture({
+    debugConfigPureOutput: createResolvedConfigFixture({
+      modelKey: MINIMAX_MODEL_KEY,
+    }),
+  });
+
+  try {
+    const result = await run(
+      ["--json", "--yes", "--model", MINIMAX_MODEL_KEY],
+      {
+        dependencies: fixture.dependencies,
+        stderr: fixture.stderr,
+        stdout: fixture.stdout,
+      },
+    );
+
+    assert.equal(result.exitCode, 0);
+    assert.match(fixture.stdout.contents, /"status": "success"/);
+    assert.match(
+      fixture.stdout.contents,
+      new RegExp(escapeRegExp('"modelRef": "gonkagate/minimax-m2.7"')),
     );
   } finally {
     await fixture.harness.cleanup();

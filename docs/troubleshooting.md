@@ -84,6 +84,7 @@ The current public validated entries are:
 
 - `qwen/qwen3-235b-a22b-instruct-2507-fp8`
 - `moonshotai/Kimi-K2.6`
+- `minimaxai/minimax-m2.7`
 
 Interactive mode still keeps that public picker visible, so more validated
 models can be added later without changing the CLI contract.

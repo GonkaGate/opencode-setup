@@ -1098,7 +1098,7 @@ test("verifyEffectiveConfig requires the full GonkaGate model catalog", async ()
       const provider = (config.provider as Record<string, unknown>)
         .gonkagate as Record<string, unknown>;
       const models = provider.models as Record<string, unknown>;
-      delete models["kimi-k2.6"];
+      delete models["minimax-m2.7"];
     }),
   });
 
@@ -1117,7 +1117,7 @@ test("verifyEffectiveConfig requires the full GonkaGate model catalog", async ()
         assert.equal(
           error.details.mismatches.some(
             (mismatch) =>
-              mismatch.key === "provider.gonkagate.models.kimi-k2.6",
+              mismatch.key === "provider.gonkagate.models.minimax-m2.7",
           ),
           true,
         );

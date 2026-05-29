@@ -41,6 +41,15 @@ picker.
 - adapter package: `@ai-sdk/openai-compatible`
 - recommended: `true`
 
+### MiniMax M2.7
+
+- display name: `MiniMax M2.7`
+- key: `minimax-m2.7`
+- model id: `minimaxai/minimax-m2.7`
+- transport: `chat_completions`
+- adapter package: `@ai-sdk/openai-compatible`
+- recommended: `false`
+
 ## Notes
 
 - v1 explicitly writes both `model` and `small_model` to the same selected

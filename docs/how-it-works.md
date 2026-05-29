@@ -16,7 +16,7 @@ The runtime is implemented and shipped.
 Today the repository ships:
 
 - the public CLI
-- the public curated model picker UI, which currently exposes two validated
+- the public curated model picker UI, which currently exposes three validated
   models
 - a managed GonkaGate provider catalog that writes every validated curated
   model into `provider.gonkagate.models` so OpenCode's `/models` command can
@@ -33,13 +33,14 @@ Current validated picker entries:
 
 - `qwen/qwen3-235b-a22b-instruct-2507-fp8`
 - `moonshotai/Kimi-K2.6`
+- `minimaxai/minimax-m2.7`
 
 ## Install Flow
 
 1. Check that `opencode` is available and that the installed version is at
    least `1.4.0`.
 2. Show the public curated model picker in interactive mode. The current picker
-   contains two validated models and one recommended default.
+   contains three validated models and one recommended default.
 3. Recommend `project` scope inside a git repository and `user` scope
    otherwise.
 4. Accept a GonkaGate API key through:
