@@ -82,6 +82,8 @@
 
 ### Changed
 
+- added `minimaxai/minimax-m2.7` to the public curated validated GonkaGate
+  model picker
 - added `moonshotai/Kimi-K2.6` to the public curated validated GonkaGate model
   picker as the recommended default
 - write the full validated GonkaGate model catalog into

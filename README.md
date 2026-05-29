@@ -176,11 +176,12 @@ rely on inherited per-user ACLs instead of portable `chmod`-style enforcement.
 
 ## Current Product Truth
 
-The current public curated model picker is shipped and currently exposes two
+The current public curated model picker is shipped and currently exposes three
 validated models:
 
 - `qwen/qwen3-235b-a22b-instruct-2507-fp8`
 - `moonshotai/Kimi-K2.6`
+- `minimaxai/minimax-m2.7`
 
 Interactive mode keeps the public curated model picker visible. `--yes` and
 safe non-interactive flows may auto-select the recommended validated model

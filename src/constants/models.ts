@@ -111,6 +111,14 @@ export const CURATED_MODEL_REGISTRY = Object.freeze({
     transport: "chat_completions",
     validationStatus: "validated",
   },
+  "minimax-m2.7": {
+    adapterPackage: "@ai-sdk/openai-compatible",
+    displayName: "MiniMax M2.7",
+    modelId: "minimaxai/minimax-m2.7",
+    recommended: false,
+    transport: "chat_completions",
+    validationStatus: "validated",
+  },
 } as const satisfies CuratedModelRegistry);
 
 function toCuratedModelRecord<
