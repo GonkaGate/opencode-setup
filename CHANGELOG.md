@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/GonkaGate/opencode-setup/compare/v0.5.0...v0.5.1) (2026-06-23)
+
+
+### Bug Fixes
+
+* clarify Desktop key rotation flow ([a33aada](https://github.com/GonkaGate/opencode-setup/commit/a33aada8f57259f5d90ba1aba135df850862a20d))
+
 ## [0.5.0](https://github.com/GonkaGate/opencode-setup/compare/v0.4.0...v0.5.0) (2026-05-29)
 
 
