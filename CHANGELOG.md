@@ -145,6 +145,9 @@
 - renamed the managed install-state durability timestamp to
   `lastDurableSetupAt` while keeping legacy `lastSuccessfulSetupAt` readable as
   a backward-compatible migration path
+- clarified the safe API key rotation flow in CLI success output and docs,
+  including the OpenCode Desktop restart needed after refreshing the managed
+  secret file
 
 ### Bug Fixes
 

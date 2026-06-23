@@ -52,6 +52,7 @@ test("README captures the shipped runtime truth and current opencode contract", 
     /WSL/i,
     /--api-key-stdin/,
     /GONKAGATE_API_KEY/,
+    /OpenCode Desktop[\s\S]*restart[\s\S]*managed secret file/i,
     /~\/\.gonkagate\/opencode\/backups\/project-config/,
   ]);
 
@@ -139,6 +140,7 @@ test("implementation docs capture the shipped setup architecture and boundaries"
     /WSL/i,
     /inherited user-profile ACLs|does not attempt to rewrite Windows ACLs/i,
     /project scope writes only activation settings/i,
+    /OpenCode Desktop[\s\S]*restart[\s\S]*~\/\.gonkagate\/opencode\/api-key/i,
     /~\/\.gonkagate\/opencode\/backups\/project-config/,
   ]);
 
@@ -164,6 +166,7 @@ test("implementation docs capture the shipped setup architecture and boundaries"
     /provider options|model options|headers|compatibility metadata/i,
     /provider\.gonkagate\.models[\s\S]*\/models|\/models[\s\S]*provider\.gonkagate\.models/i,
     /provider\.gonkagate\.options\.apiKey/i,
+    /OpenCode Desktop[\s\S]*Invalid credentials[\s\S]*--api-key-stdin/i,
     /raw `opencode debug config` output/i,
   ]);
 

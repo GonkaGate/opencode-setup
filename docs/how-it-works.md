@@ -92,7 +92,10 @@ Current validated picker entries:
     `provider.gonkagate.options.apiKey` overrides are always blocked in v1
     because current upstream docs do not clearly prove equivalent inline
     `{file:...}` substitution parity for this secret-binding contract.
-15. Tell the user to run plain `opencode`.
+15. Tell the user to run plain `opencode`, and show the safe rerun command for
+    replacing the managed API key later. OpenCode Desktop users should restart
+    the desktop app after rerunning setup so its sidecar reloads
+    `~/.gonkagate/opencode/api-key`.
 
 ## Why User-Level Provider Ownership
 

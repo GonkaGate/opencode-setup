@@ -477,7 +477,7 @@ test("CLI emits structured JSON failed payloads for resolved-config mismatches",
   }
 });
 
-test("human-readable success output ends with the minimal next step", async () => {
+test("human-readable success output includes next step and key rotation guidance", async () => {
   const fixture = await createCliFixture();
 
   try {
@@ -492,7 +492,15 @@ test("human-readable success output ends with the minimal next step", async () =
       fixture.stdout.contents,
       /GonkaGate is configured for OpenCode\./,
     );
-    assert.match(fixture.stdout.contents, /Next: opencode\n$/);
+    assert.match(fixture.stdout.contents, /Next: opencode/);
+    assert.match(
+      fixture.stdout.contents,
+      /Rotate key later: printf '%s' "\$GONKAGATE_API_KEY" \| npx @gonkagate\/opencode-setup --api-key-stdin --scope project --yes/,
+    );
+    assert.match(
+      fixture.stdout.contents,
+      /OpenCode Desktop: restart after rerunning setup so it reloads the managed key file\.\n$/,
+    );
   } finally {
     await fixture.harness.cleanup();
   }
