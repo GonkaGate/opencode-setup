@@ -1,4 +1,5 @@
 import { CommanderError } from "commander";
+import { CONTRACT_METADATA } from "../constants/contract.js";
 import type { InstallFlowResult } from "../install/contracts/install-flow.js";
 import { redactSecretBearingText } from "../install/redact.js";
 import type {
@@ -96,6 +97,8 @@ function renderHumanResult(result: InstallFlowResult): string {
       `Model: ${result.modelDisplayName} (${result.modelRef})`,
       `Scope: ${formatScopeLabel(result.scope)}`,
       "Next: opencode",
+      `Rotate key later: printf '%s' "$GONKAGATE_API_KEY" | ${CONTRACT_METADATA.publicEntrypoint} --api-key-stdin --scope ${result.scope} --yes`,
+      "OpenCode Desktop: restart after rerunning setup so it reloads the managed key file.",
       "",
     ].join("\n");
   }

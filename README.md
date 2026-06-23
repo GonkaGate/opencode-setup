@@ -253,6 +253,16 @@ That rerun flow refreshes GonkaGate-managed config, secret storage, and
 install-state metadata. It also normalizes only installer-owned GonkaGate
 activation in the old target instead of deleting unrelated OpenCode settings.
 
+To replace the GonkaGate API key later, rerun setup with a safe secret input:
+
+```bash
+printf '%s' "$GONKAGATE_API_KEY" | npx @gonkagate/opencode-setup --api-key-stdin --scope project --yes
+```
+
+If you use OpenCode Desktop, restart the desktop app after rerunning setup so
+its sidecar reloads the managed secret file. The Desktop custom-provider form
+does not replace the installer-managed `~/.gonkagate/opencode/api-key` file.
+
 For `project` scope:
 
 - user-level config still owns the provider definition and secret binding

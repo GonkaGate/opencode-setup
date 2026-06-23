@@ -65,6 +65,23 @@ The safe options are:
 - `GONKAGATE_API_KEY`
 - `--api-key-stdin`
 
+## Why does OpenCode Desktop still say "Invalid credentials" after I pasted a new key?
+
+If setup was installed by `@gonkagate/opencode-setup`, GonkaGate auth is owned
+by the managed secret file at `~/.gonkagate/opencode/api-key`. The OpenCode
+config points at that file with
+`provider.gonkagate.options.apiKey = {file:~/.gonkagate/opencode/api-key}`.
+
+The OpenCode Desktop custom-provider form can show a new key while the running
+sidecar still resolves the installer-managed file. To replace the key, rerun
+setup instead of relying on the Desktop form:
+
+```bash
+printf '%s' "$GONKAGATE_API_KEY" | npx @gonkagate/opencode-setup --api-key-stdin --scope project --yes
+```
+
+Then restart OpenCode Desktop so it reloads the managed secret file.
+
 ## Why does non-interactive setup require `--scope` or `--yes`?
 
 Because the installer needs an explicit safe way to choose between `user` and
