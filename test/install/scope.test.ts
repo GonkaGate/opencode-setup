@@ -7,6 +7,11 @@ import {
 } from "../../src/install/paths.js";
 import { writeScopeManagedConfigs } from "../../src/install/scope.js";
 import {
+  LIVE_MODELS,
+  LIVE_MODEL_ID,
+  SECOND_LIVE_MODEL_ID,
+} from "./model-fixtures.js";
+import {
   createTestInstallDependencies,
   type StubInstallFs,
 } from "./test-deps.js";
@@ -18,15 +23,14 @@ import {
 
 const TEST_HOME_DIR = "/home/test-user";
 const TEST_WORKSPACE_DIR = "/workspace/repo";
-const VALIDATED_MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8";
-const KIMI_MODEL_KEY = "kimi-k2.6";
+const VALIDATED_MODEL_KEY = LIVE_MODEL_ID;
+const SECOND_MODEL_KEY = SECOND_LIVE_MODEL_ID;
 const VALIDATED_MODEL_REF = formatOpencodeModelRef(VALIDATED_MODEL_KEY);
 const EXISTING_USER_CONFIG =
   '{\n  // keep this comment\n  "provider": {\n    "anthropic": {\n      "name": "Anthropic"\n    }\n  },\n  "command": {\n    "review": {\n      "template": "Review this"\n    }\n  }\n}\n';
 const EXISTING_PROJECT_PROVIDER_CONFIG =
   '{\n  "provider": {\n    "gonkagate": {\n      "name": "Old GonkaGate"\n    },\n    "openai": {\n      "name": "OpenAI"\n    }\n  }\n}\n';
-const SECRET_BEARING_PROJECT_CONFIG =
-  '{\n  "provider": {\n    "gonkagate": {\n      "options": {\n        "apiKey": "{file:~/.gonkagate/opencode/api-key}"\n      }\n    },\n    "openai": {\n      "name": "OpenAI"\n    }\n  },\n  "model": "gonkagate/qwen3-235b-a22b-instruct-2507-fp8"\n}\n';
+const SECRET_BEARING_PROJECT_CONFIG = `{\n  "provider": {\n    "gonkagate": {\n      "options": {\n        "apiKey": "{file:~/.gonkagate/opencode/api-key}"\n      }\n    },\n    "openai": {\n      "name": "OpenAI"\n    }\n  },\n  "model": "${VALIDATED_MODEL_REF}"\n}\n`;
 
 interface ConfigSnapshot {
   config: Record<string, unknown>;
@@ -155,6 +159,7 @@ async function runScopeWrite(
     {
       managedPaths: context.managedPaths,
       model: VALIDATED_MODEL_KEY,
+      models: LIVE_MODELS,
       scope,
     },
     context.dependencies,
@@ -188,15 +193,14 @@ test("user scope writes provider and activation settings to the user config whil
   assert.equal(anthropicProvider.name, "Anthropic");
   assert.equal(gonkagateOptions.apiKey, "{file:~/.gonkagate/opencode/api-key}");
   assert.ok(gonkagateModels[VALIDATED_MODEL_KEY] !== undefined);
-  assert.ok(gonkagateModels[KIMI_MODEL_KEY] !== undefined);
+  assert.ok(gonkagateModels[SECOND_MODEL_KEY] !== undefined);
   assert.equal(reviewCommand.template, "Review this");
   assert.match(userConfigText, /keep this comment/u);
 });
 
 test("user scope removes GonkaGate activation and provider keys from an existing project config", async () => {
   const { readProjectConfig } = await runScopeWrite("user", {
-    projectConfigContents:
-      '{\n  "provider": {\n    "gonkagate": {\n      "name": "Old GonkaGate"\n    },\n    "openai": {\n      "name": "OpenAI"\n    }\n  },\n  "model": "gonkagate/qwen3-235b-a22b-instruct-2507-fp8",\n  "small_model": "gonkagate/qwen3-235b-a22b-instruct-2507-fp8"\n}\n',
+    projectConfigContents: `{\n  "provider": {\n    "gonkagate": {\n      "name": "Old GonkaGate"\n    },\n    "openai": {\n      "name": "OpenAI"\n    }\n  },\n  "model": "${VALIDATED_MODEL_REF}",\n  "small_model": "${VALIDATED_MODEL_REF}"\n}\n`,
   });
   const { config: projectConfig } = readProjectConfig();
   const providerConfig = expectObject(
@@ -251,7 +255,7 @@ test("project scope writes provider only to the user config and activation only 
   );
   assert.ok(
     expectManagedGonkagateProvider(userConfig, "user config").models[
-      KIMI_MODEL_KEY
+      SECOND_MODEL_KEY
     ] !== undefined,
   );
   assert.equal(projectConfig.model, VALIDATED_MODEL_REF);

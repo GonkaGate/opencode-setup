@@ -13,6 +13,7 @@ import { fileURLToPath } from "node:url";
 import type {
   InstallClock,
   InstallDependencies,
+  InstallHttp,
   InstallInput,
   InstallPrompts,
   InstallRuntimeOverrides,
@@ -37,6 +38,7 @@ interface FakeOpenCodeOptions {
 
 type HarnessRuntimeOverrides = {
   clock?: Partial<InstallClock>;
+  http?: Partial<InstallHttp>;
   input?: Partial<InstallInput>;
   prompts?: Partial<InstallPrompts>;
   runtime?: InstallRuntimeOverrides;
@@ -126,6 +128,7 @@ export async function createInstallIntegrationHarness(): Promise<InstallIntegrat
     createDependencies(overrides = {}) {
       return createNodeBackedTestInstallDependencies({
         clock: overrides.clock,
+        http: overrides.http,
         input: overrides.input,
         prompts: overrides.prompts,
         runtime: {

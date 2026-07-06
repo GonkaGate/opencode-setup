@@ -16,15 +16,12 @@ npx @gonkagate/opencode-setup
 Current honest state:
 
 - the real end-to-end public installer flow is implemented
-- the public CLI validates local `opencode`, resolves a curated model and
-  scope, collects a GonkaGate API key through the supported safe inputs before
-  managed writes, verifies both the durable and current-session effective
+- the public CLI validates local `opencode`, collects a GonkaGate API key through the supported safe inputs, fetches live models, resolves model and scope before managed writes, verifies both the durable and current-session effective
   OpenCode config, and ends with plain `opencode`
 - the product docs, CI, package contract, and PRD are implemented and now
   describe the shipped runtime
-- the public curated model picker is shipped and currently exposes three
-  validated models
-- the installer writes every validated curated model into
+- the live GonkaGate model picker is shipped and uses the `/v1/models` response
+- the installer writes every fetched GonkaGate model id into
   `provider.gonkagate.models` so OpenCode's `/models` command can switch
   between managed GonkaGate models after setup
 - native Windows support is part of the current contract and is backed by
@@ -43,16 +40,16 @@ The intended happy path is:
 
 1. user runs `npx @gonkagate/opencode-setup`
 2. installer validates local `opencode`
-3. installer offers the public curated model picker in interactive mode and
-   accepts recommended defaults through `--yes` or safe non-interactive
-   selection rules
-4. installer asks for `user` or `project` scope
-5. installer collects a GonkaGate `gp-...` key through a hidden prompt,
+3. installer collects a GonkaGate `gp-...` key through a hidden prompt,
    `GONKAGATE_API_KEY`, or `--api-key-stdin`
-6. installer writes the minimum safe OpenCode config layers
-7. installer verifies the durable OpenCode config and the current session's
+4. installer fetches `GET https://api.gonkagate.com/v1/models` with Bearer auth
+5. installer offers the live GonkaGate model picker in interactive mode and
+   accepts defaults through `--yes` or safe non-interactive selection rules
+6. installer asks for `user` or `project` scope
+7. installer writes the minimum safe OpenCode config layers
+8. installer verifies the durable OpenCode config and the current session's
    effective OpenCode config
-8. user returns to plain `opencode`
+9. user returns to plain `opencode`
 
 For `project` scope, the user-level config owns the provider definition and
 secret binding, while the repository-local `opencode.json` contains only
@@ -75,14 +72,14 @@ refactor; it is a product change.
   replacement for the global config target
 - `OPENCODE_CONFIG_CONTENT` is a runtime-only higher-precedence override layer,
   not a durable install target
-- interactive mode keeps the public curated model picker visible even when only
-  one validated model is currently available
-- `--yes` and safe non-interactive flows may accept the recommended validated
-  model without showing the picker
+- interactive mode keeps the live GonkaGate model picker visible even when only
+  one GonkaGate model is currently available
+- `--yes` and safe non-interactive flows may accept the first fetched model
+  without showing the picker
 - project config target is `opencode.json`
 - the managed user-level provider key is `provider.gonkagate`
 - the managed user-level provider catalog under `provider.gonkagate.models`
-  includes every public validated curated model
+  includes every model id returned by `/v1/models`
 - `project` scope writes only activation settings
 - repo-local `opencode.json` rewrites must keep rollback backups under
   `~/.gonkagate/opencode/backups/project-config` instead of beside the
@@ -103,8 +100,8 @@ refactor; it is a product change.
 --pure` as the final truth source instead of reimplementing the full
   upstream merge engine
 - resolved effective-config verification must stay responsible for `model`,
-  `small_model`, `provider.gonkagate`, validated transport and base URL shape,
-  curated model-catalog shape, and provider allow/deny gating
+  `small_model`, `provider.gonkagate`, transport and base URL shape,
+  live model-catalog shape, and provider allow/deny gating
 - secret-binding provenance verification must separately enforce
   `provider.gonkagate.options.apiKey` ownership instead of inferring it from
   redacted resolved-config output
@@ -145,13 +142,12 @@ refactor; it is a product change.
 - shell profile mutation is out of scope
 - `.env` file generation is out of scope
 - arbitrary custom base URLs are out of scope for v1
-- arbitrary custom model ids are out of scope for v1
+- arbitrary model ids not returned by `/v1/models` are out of scope for v1
 - the installer must not depend on `gonkagate doctor`
 - `small_model` is explicitly set by the runtime
 - `model` and `small_model` select the setup default; they are not the full
   GonkaGate model catalog
-- the curated model registry contract must be able to carry compatibility
-  metadata required for validated OpenCode flows, not only model ids
+- the live `/v1/models` response is the runtime source of truth for model availability
 
 ## Security Invariants
 
@@ -199,11 +195,7 @@ These are implementation facts today, not future plans:
   installer-owned scope normalization, separate resolved-config versus
   secret-binding provenance verification, redacted effective-config
   diagnostics, and the end-to-end installer flow
-- the curated model registry under `src/constants/models.ts` now includes
-  pinned public validated entries for
-  `qwen/qwen3-235b-a22b-instruct-2507-fp8`,
-  `moonshotai/Kimi-K2.6`, and `minimaxai/minimax-m2.7`, with Kimi K2.6 marked
-  as the recommended default
+- the installer fetches `GET https://api.gonkagate.com/v1/models` after API-key intake and uses the live response for model selection, `--model` validation, provider catalog writes, and verification
 - a mirrored skill pack is present under `.agents/skills/` and
   `.claude/skills/`, imported from `codex-setup` as an initial shared
   engineering baseline
@@ -221,8 +213,8 @@ This repo currently does:
 - define the product contract for the OpenCode setup tool
 - define security, scope, and transport constraints
 - provide npm packaging, CI, release-please, and publish scaffolding
-- provide a working public CLI entrypoint with a curated public model picker
-- provide end-to-end managed config writes, a validated GonkaGate model catalog
+- provide a working public CLI entrypoint with a live GonkaGate model picker
+- provide end-to-end managed config writes, a fetched GonkaGate model catalog
   for OpenCode `/models` switching, scope-aware ownership, rerun-safe rollback,
   and redacted effective-config verification under `src/install/`
 - provide docs and tests that protect the current contract
@@ -327,7 +319,7 @@ When behavior changes:
 The installer is now real:
 
 - remove or revise any wording that drifts back toward scaffold-only language
-- update the curated model registry truth when the public picker changes
+- no repository update is needed when GonkaGate adds or removes a model from `/v1/models`
 - add runtime behavior tests before claiming any new end-user capability
 
 ## Validation

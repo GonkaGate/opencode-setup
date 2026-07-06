@@ -45,7 +45,7 @@ function createProgram(output?: ProgramOutput): Command {
     .addOption(
       new Option(
         "--model <model-key>",
-        "Choose a curated validated GonkaGate model without using the picker.",
+        "Choose a GonkaGate model id returned by /v1/models without using the picker.",
       ),
     )
     .addOption(
@@ -69,7 +69,7 @@ function createProgram(output?: ProgramOutput): Command {
     .addOption(
       new Option(
         "--yes",
-        "Accept the recommended model and scope defaults without prompting.",
+        "Accept the model and scope defaults without prompting.",
       ).default(false),
     )
     .addOption(
@@ -95,7 +95,7 @@ Runtime contract:
   - Provider id: ${GONKAGATE_PROVIDER_ID}
   - Base URL: ${GONKAGATE_BASE_URL}
   - Current transport target: ${CURRENT_TRANSPORT}
-  - Curated model picker: public and validated-model-only
+  - Model source: ${GONKAGATE_BASE_URL}/models
   - Verified OpenCode baseline: ${CONTRACT_METADATA.verifiedOpencode.minVersion}+
 
 Safe secret inputs:

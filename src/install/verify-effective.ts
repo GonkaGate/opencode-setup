@@ -1,4 +1,7 @@
-import type { CuratedModelKey } from "../constants/models.js";
+import type {
+  CuratedModelKey,
+  ValidatedCuratedModel,
+} from "../constants/models.js";
 import { isJsonObjectRecord } from "../json.js";
 import type {
   EffectiveConfigVerificationBlocker,
@@ -37,6 +40,7 @@ import {
 export interface EffectiveConfigVerificationRequest {
   context: Pick<ResolvedInstallContext, "opencode" | "workspace">;
   model: CuratedModelKey;
+  models: readonly ValidatedCuratedModel[];
   scope: ManagedConfigScope;
 }
 
@@ -55,6 +59,7 @@ export async function verifyEffectiveConfig(
 ): Promise<EffectiveConfigVerificationSuccess> {
   const verificationPolicy = createResolvedConfigVerificationPolicy(
     request.model,
+    request.models,
   );
   const { target } = verificationPolicy;
   const durableSecretBindingBlockers =
@@ -115,11 +120,15 @@ export async function verifyCurrentSessionEffectiveConfig(
   const inlineLayer = readInlineVerificationLayer(dependencies.runtime.env);
 
   if (inlineLayer === undefined) {
-    return createEffectiveConfigVerificationSuccess(request.model);
+    return createEffectiveConfigVerificationSuccess(
+      request.model,
+      request.models,
+    );
   }
 
   const verificationPolicy = createResolvedConfigVerificationPolicy(
     request.model,
+    request.models,
   );
   const { target } = verificationPolicy;
   const inlineSecretBindingBlockers = collectSecretBindingProvenanceBlockers(
@@ -238,12 +247,13 @@ function createDurableVerificationEnv(
 
 function createEffectiveConfigVerificationSuccess(
   model: CuratedModelKey,
+  models: readonly ValidatedCuratedModel[],
 ): EffectiveConfigVerificationSuccess {
   return {
     blockers: [],
     ok: true,
     resolvedMatch: true,
-    target: createResolvedConfigVerificationPolicy(model).target,
+    target: createResolvedConfigVerificationPolicy(model, models).target,
   };
 }
 

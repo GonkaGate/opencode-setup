@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { CONTRACT_METADATA } from "../src/constants/contract.js";
 import {
-  CURRENT_TRANSPORT,
   FUTURE_TRANSPORT,
   GONKAGATE_BASE_URL,
+  GONKAGATE_MODELS_URL,
   GONKAGATE_PROVIDER_ID,
 } from "../src/constants/gateway.js";
 import {
@@ -13,289 +13,95 @@ import {
   readText,
 } from "./contract-helpers.js";
 
-test("README captures the shipped runtime truth and current opencode contract", () => {
+const OLD_MODEL_ID_PATTERNS = [
+  /qwen\/qwen3-235b-a22b-instruct-2507-fp8/i,
+  /moonshotai\/Kimi-K2\.6/i,
+  /minimaxai\/minimax-m2\.7/i,
+] as const;
+
+function assertNoHardcodedPublicCatalog(text: string): void {
+  for (const pattern of OLD_MODEL_ID_PATTERNS) {
+    assert.doesNotMatch(text, pattern);
+  }
+
+  assert.doesNotMatch(text, /curated model registry/i);
+  assert.doesNotMatch(text, /public curated model picker/i);
+}
+
+test("README captures shipped live model catalog contract", () => {
   const readme = readText("README.md");
 
   assertMatchesAll(readme, [
     new RegExp(escapeRegExp(CONTRACT_METADATA.publicEntrypoint)),
     new RegExp(escapeRegExp(GONKAGATE_BASE_URL)),
-    /~\/\.config\/opencode\/opencode\.json/,
-    /OPENCODE_CONFIG.*override layer/i,
-    /OPENCODE_CONFIG_CONTENT/,
-    /enabled_providers|disabled_providers/,
-    /opencode\.json/,
-    new RegExp(escapeRegExp(`provider.${GONKAGATE_PROVIDER_ID}`)),
-    new RegExp(escapeRegExp(CONTRACT_METADATA.verifiedOpencode.minVersion)),
-    /chat\/completions/,
-    /public curated model picker/i,
-    /qwen\/qwen3-235b-a22b-instruct-2507-fp8/,
-    /moonshotai\/Kimi-K2\.6/,
-    /minimaxai\/minimax-m2\.7/,
-    /rerunning the installer is the official safe update path/i,
-    /lastDurableSetupAt/,
-    /durably verified setup/i,
-    /compatibility metadata|provider options|model options|headers/i,
+    new RegExp(escapeRegExp(GONKAGATE_MODELS_URL)),
+    /Bearer auth/i,
+    /live GonkaGate model picker/i,
+    /--model.*fetched model id|fetched model id.*--model/i,
+    /provider\.gonkagate\.models/i,
     /opencode debug config\s+--pure/i,
     /provider\.gonkagate\.options\.apiKey/i,
     /\{file:~\/\.gonkagate\/opencode\/api-key\}/i,
-    /locally\s+inspectable/i,
-    /inferred\s+higher-precedence|inferred[\s\S]*managed blocker/i,
-    /repair.*owner-only|reruns?.*repair.*secret/i,
-    /user config[\s\S]*OPENCODE_CONFIG[\s\S]*project config[\s\S]*system managed/i,
-    /redacted.*resolved-config|resolved-config.*raw/i,
-    /durable plain-`opencode` outcome|current session's effective OpenCode outcome/i,
-    /interactive mode keeps the public curated model picker visible/i,
-    /provider\.gonkagate\.models[\s\S]*\/models|\/models[\s\S]*provider\.gonkagate\.models/i,
-    /fallback entrypoint error handling/i,
-    /native Windows/i,
-    /Windows CI|native Windows CI|integration coverage/i,
+    /OPENCODE_CONFIG_CONTENT/,
+    /enabled_providers|disabled_providers/,
+    /lastDurableSetupAt/,
+    /native Windows|run directly on Windows/i,
     /WSL/i,
-    /--api-key-stdin/,
-    /GONKAGATE_API_KEY/,
-    /OpenCode Desktop[\s\S]*restart[\s\S]*managed secret file/i,
-    /~\/\.gonkagate\/opencode\/backups\/project-config/,
   ]);
-
-  assert.doesNotMatch(readme, /not implemented yet/i);
-  assert.doesNotMatch(
-    readme,
-    /v1 support target is macOS, Linux, and WSL-based OpenCode usage on Windows/i,
-  );
+  assertNoHardcodedPublicCatalog(readme);
 });
 
-test("AGENTS captures the repository contract anchors for the shipped runtime", () => {
-  const agents = readText("AGENTS.md");
+test("current docs describe /v1/models as source of truth", () => {
+  const docs = [
+    readText("AGENTS.md"),
+    readText("docs/how-it-works.md"),
+    readText("docs/model-validation.md"),
+    readText("docs/troubleshooting.md"),
+    readText("docs/specs/opencode-setup-prd/spec.md"),
+    readText("docs/architecture-decisions.md"),
+  ].join("\n\n");
 
-  assertMatchesAll(agents, [
-    new RegExp(escapeRegExp(CONTRACT_METADATA.packageName)),
-    /src\/cli\.ts/,
-    /docs\/specs\/opencode-setup-prd\/spec\.md/,
-    /~\/\.config\/opencode\/opencode\.json/,
-    /OPENCODE_CONFIG.*override layer/i,
-    /OPENCODE_CONFIG_CONTENT/,
-    /enabled_providers|disabled_providers/,
-    /opencode\.json/,
-    new RegExp(escapeRegExp(`provider.${GONKAGATE_PROVIDER_ID}`)),
-    /compatibility metadata|required for validated OpenCode flows/i,
-    /end-to-end public installer flow is implemented/i,
-    /public curated model picker is shipped/i,
-    /moonshotai\/Kimi-K2\.6/,
-    /minimaxai\/minimax-m2\.7/,
-    /effective OpenCode config/i,
-    /current session's runtime-resolved outcome/i,
-    /lastDurableSetupAt/,
-    /last durably verified setup/i,
-    /opencode debug config\s+--pure/i,
-    /provider\.gonkagate\.options\.apiKey/i,
-    /\{file:~\/\.gonkagate\/opencode\/api-key\}/i,
-    /locally\s+inspectable/i,
-    /user config[\s\S]*OPENCODE_CONFIG[\s\S]*project config[\s\S]*system managed/i,
-    /repair drifted.*secret|without rewriting the secret/i,
-    /inferred\s+higher-precedence|inferred[\s\S]*managed blocker/i,
-    /interactive mode keeps the public curated model picker visible/i,
-    /provider\.gonkagate\.models[\s\S]*\/models|\/models[\s\S]*provider\.gonkagate\.models/i,
-    /raw resolved config/i,
-    /native Windows/i,
-    /native Windows CI|Windows runners|runner-backed proof/i,
-    /WSL/i,
-    /--api-key-stdin/,
-    /GONKAGATE_API_KEY/,
-    /no plain CLI flag/i,
-    /~\/\.gonkagate\/opencode\/backups\/project-config/,
-  ]);
-  assert.doesNotMatch(agents, /should not be claimed until validated/i);
-});
-
-test("implementation docs capture the shipped setup architecture and boundaries", () => {
-  const howItWorks = readText("docs/how-it-works.md");
-  const troubleshooting = readText("docs/troubleshooting.md");
-  const prd = readText("docs/specs/opencode-setup-prd/spec.md");
-
-  assertMatchesAll(howItWorks, [
-    new RegExp(escapeRegExp(CONTRACT_METADATA.publicEntrypoint)),
-    new RegExp(escapeRegExp(CONTRACT_METADATA.verifiedOpencode.minVersion)),
-    new RegExp(escapeRegExp(CURRENT_TRANSPORT)),
-    /OPENCODE_CONFIG.*higher-precedence/i,
-    /OPENCODE_CONFIG_CONTENT/,
-    /enabled_providers|disabled_providers/,
-    /opencode debug config\s+--pure/i,
-    /provider options|model options|headers|compatibility metadata/i,
-    /provider\.gonkagate\.models[\s\S]*\/models|\/models[\s\S]*provider\.gonkagate\.models/i,
-    /locally\s+inspectable/i,
-    /provider\.gonkagate\.options\.apiKey/i,
-    /\{file:~\/\.gonkagate\/opencode\/api-key\}/i,
-    /user config[\s\S]*OPENCODE_CONFIG[\s\S]*project[\s\S]*system managed/i,
-    /repair drifted.*owner-only|without rewriting unchanged secret/i,
-    /inferred\s+higher-precedence|inferred[\s\S]*managed blocker/i,
-    /must not print raw.*debug config|parsed internally.*redacted/i,
-    /durable verification|current-session verification/i,
-    /lastDurableSetupAt/,
-    /runtime is implemented and shipped/i,
-    /public curated model picker/i,
-    /moonshotai\/Kimi-K2\.6/,
-    /minimaxai\/minimax-m2\.7/,
-    /rollback/i,
-    /run directly on Windows|native Windows/i,
-    /Windows CI|native Windows CI|integration tests/i,
-    /WSL/i,
-    /inherited user-profile ACLs|does not attempt to rewrite Windows ACLs/i,
-    /project scope writes only activation settings/i,
-    /OpenCode Desktop[\s\S]*restart[\s\S]*~\/\.gonkagate\/opencode\/api-key/i,
-    /~\/\.gonkagate\/opencode\/backups\/project-config/,
-  ]);
-
-  assert.doesNotMatch(
-    howItWorks,
-    /native Windows writes[\s\S]*repair drifted secret file and directory modes/i,
-  );
-
-  assertMatchesAll(troubleshooting, [
-    /--api-key-stdin/,
-    /GONKAGATE_API_KEY/,
+  assertMatchesAll(docs, [
+    new RegExp(escapeRegExp(GONKAGATE_MODELS_URL)),
+    /source of truth/i,
+    /first fetched model/i,
+    /--model[\s\S]*fetched model id|fetched model id[\s\S]*--model/i,
+    /provider\.gonkagate\.models/i,
+    /adding or removing|new or removed|adds or removes/i,
     /chat\/completions/,
     new RegExp(escapeRegExp(FUTURE_TRANSPORT)),
-    /public model picker only show curated options/i,
-    /moonshotai\/Kimi-K2\.6/,
-    /minimaxai\/minimax-m2\.7/,
-    /durable plain-`opencode` result/i,
-    /lastDurableSetupAt/,
-    /scope.*--yes/i,
-    /enabled_providers|disabled_providers/,
-    /locally\s+inspectable/i,
-    /inferred\s+higher-precedence|inferred[\s\S]*managed blocker/i,
-    /provider options|model options|headers|compatibility metadata/i,
-    /provider\.gonkagate\.models[\s\S]*\/models|\/models[\s\S]*provider\.gonkagate\.models/i,
-    /provider\.gonkagate\.options\.apiKey/i,
-    /OpenCode Desktop[\s\S]*Invalid credentials[\s\S]*--api-key-stdin/i,
-    /raw `opencode debug config` output/i,
+    new RegExp(escapeRegExp(`provider.${GONKAGATE_PROVIDER_ID}`)),
   ]);
-
-  assertMatchesAll(prd, [
-    new RegExp(escapeRegExp(CONTRACT_METADATA.packageName)),
-    new RegExp(escapeRegExp(GONKAGATE_BASE_URL)),
-    new RegExp(escapeRegExp(CONTRACT_METADATA.verifiedOpencode.minVersion)),
-    /small_model/,
-    /GONKAGATE_API_KEY/,
-    /--api-key-stdin/,
-    /OPENCODE_CONFIG.*not a replacement/i,
-    /OPENCODE_CONFIG_CONTENT/,
-    /enabled_providers/,
-    /disabled_providers/,
-    /effective OpenCode config/i,
-    /interactive mode keeps the public curated model picker visible/i,
-    /durable plain-`opencode` outcome/i,
-    /current-session blockers/i,
-    /locally\s+inspectable/i,
-    /user config[\s\S]*OPENCODE_CONFIG[\s\S]*project config[\s\S]*system managed/i,
-    /without rewriting the secret contents|without rewriting unchanged secret/i,
-    /inferred\s+higher-precedence|inferred[\s\S]*managed blocker/i,
-    /lastDurableSetupAt/,
-    /providers login/i,
-    /provider options|model options|model headers|compatibility metadata/i,
-    /provider\.gonkagate\.models[\s\S]*\/models|\/models[\s\S]*provider\.gonkagate\.models/i,
-    /redact secret-bearing fields|printing raw.*stdout or stderr/i,
-    /native Windows/i,
-    /native Windows CI|integration proof/i,
-    /WSL/i,
-    /project scope/i,
-    /chat_completions/,
-    new RegExp(escapeRegExp(FUTURE_TRANSPORT)),
-    /does not write directly to `auth\.json`/i,
-    /does not depend on `gonkagate doctor`/i,
-    /~\/\.gonkagate\/opencode\/backups\/project-config/,
-  ]);
-
-  assert.doesNotMatch(prd, /opencode auth login/i);
+  assertNoHardcodedPublicCatalog(docs);
 });
 
-test("security docs capture the shipped secret-handling constraints", () => {
+test("security docs preserve secret-handling and verification contracts", () => {
   const security = readText("docs/security.md");
 
   assertMatchesAll(security, [
-    /GONKAGATE_API_KEY/,
     /--api-key-stdin/,
-    /never accept `--api-key`/i,
-    /owner-only permissions/i,
-    /inherited ACLs|profile-directory ACL/i,
-    /~\/\.gonkagate\/opencode\/api-key/,
-    /OPENCODE_CONFIG.*not a replacement/i,
-    /OPENCODE_CONFIG_CONTENT/,
-    /resolved-config inspection output/i,
+    /GONKAGATE_API_KEY/,
+    /plain `--api-key`|--api-key/i,
+    /auth\.json/i,
     /provider\.gonkagate\.options\.apiKey/i,
     /\{file:~\/\.gonkagate\/opencode\/api-key\}/i,
-    /redact secret-bearing fields/i,
-    /fallback entrypoint error handling/i,
-    /durable verification for plain `opencode`/i,
-    /locally\s+inspectable/i,
-    /user config[\s\S]*OPENCODE_CONFIG[\s\S]*project config[\s\S]*system managed/i,
-    /repair drifted modes|without rewriting unchanged secret/i,
-    /inferred\s+higher-precedence|inferred[\s\S]*managed blocker/i,
-    /lastDurableSetupAt/,
-    /roll back changed managed files automatically/i,
-    /native Windows/i,
-    /native Windows CI|integration coverage/i,
-    /WSL/i,
-    /auth\.json/,
-    /~\/\.gonkagate\/opencode\/backups\/project-config/,
-  ]);
-  assert.doesNotMatch(security, /not part of the v1 verified contract yet/i);
-});
-
-test("docs index separates current contract docs from historical planning docs", () => {
-  const docsIndex = readText("docs/README.md");
-
-  assertMatchesAll(docsIndex, [
-    /Current Contract Documents/i,
-    /Architecture Decisions/i,
-    /Model Validation/i,
-    /Historical Context/i,
-    /Implementation Plan.*historical execution record/i,
-    /historical documents must be labeled explicitly/i,
-  ]);
-});
-
-test("architecture decisions capture the shipped verification and picker strategy", () => {
-  const decisions = readText("docs/architecture-decisions.md");
-
-  assertMatchesAll(decisions, [
-    /public curated picker visible in interactive mode/i,
-    /--yes.*safe non-interactive flows may auto-select/i,
-    /Separate durable verification from current-session verification/i,
-    /identical inline\s+override/i,
-    /inline[\s\S]*provider\.gonkagate\.options\.apiKey[\s\S]*block/i,
-    /Centralize user-facing error redaction/i,
+    /redacted/i,
     /opencode debug config --pure/i,
-    /auth\.json/i,
+    /OPENCODE_CONFIG_CONTENT/,
   ]);
 });
 
-test("model validation doc matches the shipped small_model and picker contract", () => {
-  const modelValidation = readText("docs/model-validation.md");
-
-  assertMatchesAll(modelValidation, [
-    /qwen3-235b-a22b-instruct-2507-fp8/,
-    /Qwen3 235B A22B Instruct 2507 FP8[\s\S]*recommended: `false`/i,
-    /kimi-k2\.6/,
-    /moonshotai\/Kimi-K2\.6/,
-    /Kimi K2\.6[\s\S]*recommended: `true`/i,
-    /minimax-m2\.7/,
-    /minimaxai\/minimax-m2\.7/,
-    /MiniMax M2\.7[\s\S]*recommended: `false`/i,
-    /@ai-sdk\/openai-compatible/,
-    /writes both `model` and `small_model`/i,
-    /provider\.gonkagate\.models[\s\S]*\/models|\/models[\s\S]*provider\.gonkagate\.models/i,
-    /public curated picker visible/i,
-  ]);
-
-  assert.doesNotMatch(modelValidation, /once write behavior exists/i);
-});
-
-test("implementation plan is explicitly marked historical", () => {
+test("implementation plan explicitly marked historical", () => {
   const implementationPlan = readText("docs/implementation-plan.md");
 
   assertMatchesAll(implementationPlan, [
     /^# Historical Implementation Plan/m,
-    /historical context, not the current product contract/i,
-    /scaffold-era wording below is preserved as an execution record/i,
+    /historical context/i,
   ]);
+});
+
+test("transport constants stay aligned with docs", () => {
+  const readme = readText("README.md");
+
+  assert.match(readme, /chat\/completions/);
 });

@@ -1,9 +1,5 @@
 import {
   formatOpencodeModelRef,
-  getCuratedModelByKey,
-  getRecommendedValidatedModel,
-  getValidatedModels,
-  type CuratedModelKey,
   type ValidatedCuratedModel,
 } from "../constants/models.js";
 import type { InstallDependencies, InstallSelectChoice } from "./deps.js";
@@ -12,6 +8,7 @@ import type { ManagedConfigScope } from "./contracts/managed-config.js";
 
 export interface ModelSelectionRequest {
   modelKey?: string;
+  models: readonly ValidatedCuratedModel[];
   yes: boolean;
 }
 
@@ -37,33 +34,23 @@ export async function resolveInstallModel(
   request: ModelSelectionRequest,
   dependencies: InstallDependencies,
 ): Promise<ValidatedCuratedModel> {
-  const validatedModels = getValidatedModels();
+  const validatedModels = request.models;
   if (validatedModels.length === 0) {
     throw createInstallError("validated_models_unavailable", {});
   }
 
   if (request.modelKey !== undefined) {
-    return requireValidatedModel(request.modelKey);
+    return requireFetchedModel(request.modelKey, validatedModels);
   }
 
   const isInteractive = canUseInteractiveInstallPrompts(dependencies);
-  const recommendedModel = getRecommendedValidatedModel();
   const singleValidatedModel =
     validatedModels.length === 1 ? validatedModels[0] : undefined;
   const defaultPromptModel =
-    recommendedModel ??
-    singleValidatedModel ??
-    validatedModels[0] ??
-    raiseValidatedModelsUnavailable();
+    validatedModels[0] ?? raiseValidatedModelsUnavailable();
 
   if (request.yes) {
-    if (singleValidatedModel !== undefined) {
-      return singleValidatedModel;
-    }
-
-    if (recommendedModel !== undefined) {
-      return recommendedModel;
-    }
+    return defaultPromptModel;
   }
 
   if (!isInteractive) {
@@ -85,7 +72,7 @@ export async function resolveInstallModel(
     pageSize: Math.min(8, validatedModels.length),
   });
 
-  return requireValidatedModel(selectedModelKey);
+  return requireFetchedModel(selectedModelKey, validatedModels);
 }
 
 export async function resolveInstallScope(
@@ -121,12 +108,12 @@ export async function resolveInstallScope(
 function createModelChoice(
   model: ValidatedCuratedModel,
   defaultModel: ValidatedCuratedModel,
-): InstallSelectChoice<CuratedModelKey> {
+): InstallSelectChoice<string> {
   return {
-    description: `${formatOpencodeModelRef(model)} · validated`,
+    description: formatOpencodeModelRef(model),
     label:
       model.key === defaultModel.key
-        ? `${model.displayName} (Recommended)`
+        ? `${model.displayName} (Default)`
         : model.displayName,
     value: model.key,
   };
@@ -159,10 +146,13 @@ function createScopeChoices(
   ];
 }
 
-function requireValidatedModel(modelKey: string): ValidatedCuratedModel {
-  const model = getCuratedModelByKey(modelKey);
+function requireFetchedModel(
+  modelKey: string,
+  models: readonly ValidatedCuratedModel[],
+): ValidatedCuratedModel {
+  const model = models.find((candidate) => candidate.key === modelKey);
 
-  if (model === undefined || model.validationStatus !== "validated") {
+  if (model === undefined) {
     throw createInstallError("unsupported_model_key", {
       modelKey,
     });

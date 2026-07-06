@@ -5,7 +5,7 @@
 This repository currently contains:
 
 - the shipped installer runtime for `@gonkagate/opencode-setup`
-- the public CLI, curated model picker UI, and rerun-safe rollback behavior
+- the public CLI, live GonkaGate model picker UI, and rerun-safe rollback behavior
 - Phase 1 through Phase 5 runtime implementation under `src/install/`
 - CI and release tooling
 - the final product contract

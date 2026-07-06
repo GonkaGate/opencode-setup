@@ -11,12 +11,13 @@ import {
   resolveProjectConfigBackupDirectory,
 } from "../../src/install/paths.js";
 import {
-  buildManagedProviderCatalogConfig,
-  resolveValidatedModel,
-} from "../../src/install/managed-provider-config.js";
+  createModelsHttp,
+  createResolvedConfigFixture,
+  LIVE_MODEL_ID,
+} from "./model-fixtures.js";
 import { createInstallIntegrationHarness } from "./harness.js";
 
-const MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8" as const;
+const MODEL_KEY = LIVE_MODEL_ID;
 const MODEL_REF = formatOpencodeModelRef(MODEL_KEY);
 const SECOND_RUN_BACKUP_TIMESTAMP = "20260409T110000Z";
 const SKIP_POSIX_HOST_INTEGRATION = process.platform === "win32";
@@ -30,25 +31,6 @@ interface ManagedStateSnapshot {
   projectConfig?: string;
   secret?: string;
   userConfig?: string;
-}
-
-function createResolvedConfigFixture(
-  mutate?: (config: Record<string, unknown>) => void,
-): string {
-  const model = resolveValidatedModel(MODEL_KEY);
-  const providerConfig = buildManagedProviderCatalogConfig();
-  const resolvedConfig = {
-    model: MODEL_REF,
-    provider: {
-      gonkagate: providerConfig,
-    },
-    small_model: MODEL_REF,
-  } satisfies Record<string, unknown>;
-  const nextConfig = structuredClone(resolvedConfig);
-
-  mutate?.(nextConfig);
-
-  return `${JSON.stringify(nextConfig, null, 2)}\n`;
 }
 
 async function createInstallerFixture(
@@ -89,6 +71,7 @@ function createRunDependencies(
     clock: {
       now: () => new Date(options.clockIso),
     },
+    http: createModelsHttp(),
     runtime: {
       cwd: fixture.repositoryRoot,
       env: {
@@ -604,8 +587,7 @@ test("install-state write failures after successful verification roll earlier wr
 
 test("late failures after rewriting repo-local config restore the old file without leaving a repo-local backup", async () => {
   const fixture = await createInstallerFixture();
-  const secretBearingProjectConfig =
-    '{\n  "provider": {\n    "gonkagate": {\n      "options": {\n        "apiKey": "{file:~/.gonkagate/opencode/api-key}"\n      }\n    }\n  },\n  "model": "gonkagate/qwen3-235b-a22b-instruct-2507-fp8"\n}\n';
+  const secretBearingProjectConfig = `{\n  "provider": {\n    "gonkagate": {\n      "options": {\n        "apiKey": "{file:~/.gonkagate/opencode/api-key}"\n      }\n    }\n  },\n  "model": "${MODEL_REF}"\n}\n`;
 
   try {
     await writeFile(

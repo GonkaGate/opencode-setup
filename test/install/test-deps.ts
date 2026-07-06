@@ -6,6 +6,8 @@ import {
   type InstallCommandRunner,
   type InstallDependencies,
   type InstallFs,
+  type InstallHttp,
+  type InstallHttpResponse,
   type InstallInput,
   type InstallPrompts,
   type InstallRuntimeEnvironment,
@@ -41,6 +43,13 @@ type TestInstallCommandConfig = TestDependencyConfig<
     result?: InstallCommandResult;
   }
 >;
+type TestInstallHttpConfig = TestDependencyConfig<
+  InstallHttp,
+  {
+    error?: unknown;
+    response?: InstallHttpResponse;
+  }
+>;
 type TestInstallInputConfig = TestDependencyConfig<
   InstallInput,
   { stdinText?: string }
@@ -61,6 +70,7 @@ export interface TestInstallDependencyOverrides {
   seedDirectories?: readonly TestInstallFsDirectorySeed[];
   seedFiles?: readonly TestInstallFsFileSeed[];
   fs?: Partial<InstallFs>;
+  http?: TestInstallHttpConfig;
   input?: TestInstallInputConfig;
   prompts?: TestInstallPromptsConfig;
   runtime?: InstallRuntimeOverrides;
@@ -364,6 +374,32 @@ export function createStubInstallCommandRunner(
   };
 }
 
+export function createStubInstallHttp(
+  options: {
+    error?: unknown;
+    response?: InstallHttpResponse;
+  } = {},
+): InstallHttp {
+  return {
+    async fetch() {
+      if (options.error !== undefined) {
+        throw options.error;
+      }
+
+      return (
+        options.response ?? {
+          ok: true,
+          status: 200,
+          statusText: "OK",
+          async text() {
+            return '{"data":[{"id":"test/live-model","name":"Test Live Model"}]}';
+          },
+        }
+      );
+    },
+  };
+}
+
 export function createTestInstallRuntime(
   overrides: InstallRuntimeOverrides = {},
 ): InstallRuntimeEnvironment {
@@ -488,6 +524,21 @@ function createStubbedTestInput(
   );
 }
 
+function createStubbedTestHttp(
+  overrides: TestInstallDependencyOverrides,
+): Partial<InstallHttp> {
+  return resolveTestDependency(overrides.http, (stubConfig) =>
+    createStubInstallHttp(
+      stubConfig === undefined
+        ? undefined
+        : {
+            error: stubConfig.error,
+            response: stubConfig.response,
+          },
+    ),
+  );
+}
+
 function createStubbedTestPrompts(
   overrides: TestInstallDependencyOverrides,
 ): Partial<InstallPrompts> {
@@ -511,6 +562,7 @@ export function createStubbedTestInstallDependencies(
     clock: createStubbedTestClock(overrides),
     commands: createStubbedTestCommands(overrides),
     fs: createStubbedTestFs(overrides),
+    http: createStubbedTestHttp(overrides),
     input: createStubbedTestInput(overrides),
     prompts: createStubbedTestPrompts(overrides),
     runtime: createTestInstallRuntime(overrides.runtime),
@@ -530,6 +582,7 @@ export function createNodeBackedTestInstallDependencies(
     clock: overrides.clock,
     commands: overrides.commands,
     fs: overrides.fs,
+    http: overrides.http,
     input: overrides.input,
     prompts: overrides.prompts,
     runtime: runtimeOverrides,

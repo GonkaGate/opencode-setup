@@ -26,16 +26,17 @@ npx @gonkagate/opencode-setup
 The tool:
 
 1. validates local `opencode`
-2. offers only curated GonkaGate model choices
-3. lets the user choose `user` or `project` scope
-4. accepts a GonkaGate API key through a hidden prompt, `GONKAGATE_API_KEY`,
+2. accepts GonkaGate API key through hidden prompt, `GONKAGATE_API_KEY`,
    or `--api-key-stdin`
-5. writes the minimum safe configuration automatically
-6. verifies both the durable plain-`opencode` outcome and the current
+3. fetches `GET https://api.gonkagate.com/v1/models` with Bearer auth
+4. offers only models returned by that live response
+5. lets user choose `user` or `project` scope
+6. writes minimum safe configuration automatically
+7. verifies both durable plain-`opencode` outcome and the current
    session's effective OpenCode outcome
-7. never requires manual edits to `opencode.json`
-8. never requires `.env` files or shell exports
-9. sends the user back to normal `opencode`
+8. never requires manual edits to `opencode.json`
+9. never requires `.env` files or shell exports
+10. sends user back to normal `opencode`
 
 ## Users
 
@@ -55,7 +56,7 @@ Secondary user:
 - one public repository
 - configuration of already installed local `opencode`
 - hidden or automation-safe secret input
-- curated model picker
+- live GonkaGate model picker backed by `/v1/models`
 - `user` and `project` scope
 - managed user secret storage
 - managed config writes with backups
@@ -67,9 +68,8 @@ Secondary user:
 - shell profile mutation
 - `.env` file generation
 - plain `--api-key`
-- runtime `/v1/models` discovery as the main onboarding UX
 - arbitrary custom base URLs
-- arbitrary custom model ids
+- arbitrary model ids not returned by `/v1/models`
 - integration with `gonkagate doctor`
 - claiming `/v1/responses` support today
 
@@ -244,15 +244,15 @@ rewrite.
 
 ### Default UX
 
-- interactive mode keeps the public curated model picker visible even when
-  exactly one validated GonkaGate model is currently available
+- interactive mode keeps the live GonkaGate model picker visible even when
+  exactly one model is returned
 - if exactly one validated GonkaGate model is available, safe non-interactive
   setup may select it automatically
-- if multiple validated models are available, preselect one recommended default
-  and allow the user to change it
+- if multiple GonkaGate models are returned, preselect the first fetched
+  model and allow the user to change it
 - recommend `project` scope when the installer is running inside a git
   repository and recommend `user` scope otherwise
-- `--yes` accepts the recommended defaults
+- `--yes` accepts the model and scope defaults
 - prompts should explain scope in plain user language, not only in OpenCode
   config terms
 
@@ -310,31 +310,19 @@ root.
 
 ### Model Strategy
 
-The onboarding flow must not depend on runtime `/v1/models` discovery.
+The onboarding flow depends on live GonkaGate model discovery after API-key
+intake. The installer calls `GET https://api.gonkagate.com/v1/models` with
+Bearer auth and accepts OpenAI-compatible `{ data: [{ id: string, name?:
+string }] }`.
 
-Instead it ships a curated model registry that records, per model:
+The fetched response is the only runtime source of truth for picker choices,
+`--model` validation, default model selection, `provider.gonkagate.models`
+writes, and effective-config verification. The installer dedupes ids, rejects
+empty or invalid responses, and uses the first fetched model as the default when
+the API does not return a dynamic default.
 
-- stable GonkaGate setup key
-- upstream model id
-- display name
-- transport kind
-- default adapter package
-- validation status
-- optional context and output limits
-- optional compatibility metadata and managed config fragments required for the
-  validated OpenCode flow, such as provider options, model options, or model
-  headers
-- optional migration metadata for future per-model adapter changes
-
-Registry keys must map cleanly to OpenCode's `provider_id/model_id` format so
-validated entries can be written under `provider.gonkagate.models` and the
-selected setup default can be written as `gonkagate/<model-key>`.
-
-Registry data must be sufficient for the installer to reproduce the exact
-provider and model config shape used during validation, not only the visible
-picker label or adapter package.
-
-Only validated models should be shown to end users.
+Fetched ids are written directly under `provider.gonkagate.models`; the selected
+setup default is written as `gonkagate/<fetched-id>`.
 
 ### Model Validation Gate
 
@@ -342,7 +330,7 @@ A model may be marked `validated` only after end-to-end verification against
 the current verified OpenCode baseline for the workflows the product claims to
 support.
 
-Minimum validation proof for a curated GonkaGate model includes:
+Minimum validation proof for a GonkaGate model exposed by `/v1/models` includes:
 
 - an interactive `opencode` session
 - `opencode run`
@@ -358,7 +346,7 @@ If GonkaGate later claims task, delegate, or subagent compatibility, the model
 must be re-validated for those flows before the product advertises that support.
 
 A model must not be marked `validated` if its working setup depends on
-undocumented manual tweaks that are not representable in the curated registry
+undocumented manual tweaks that are not representable in the live model response
 contract.
 
 ### `small_model` Policy
@@ -371,7 +359,7 @@ The installer must explicitly set both:
 In v1 they should be set to the same selected GonkaGate model.
 
 The selected model is only the default activation target. The installer must
-also write every validated curated model into `provider.gonkagate.models` so
+also write every fetched GonkaGate model into `provider.gonkagate.models` so
 OpenCode's `/models` command can switch between managed GonkaGate models after
 setup.
 
@@ -402,7 +390,7 @@ Migration contract:
 - package identity remains `@gonkagate/opencode-setup`
 - secret location remains stable
 - rerunning the installer is the official migration path
-- curated registry and install-state metadata decide whether migration happens
+- live model response and install-state metadata decide whether migration happens
   through:
   - a whole-provider adapter change
   - or a per-model provider override from `@ai-sdk/openai-compatible` to
@@ -415,14 +403,14 @@ The installer owns only the GonkaGate-managed subset of config.
 User-level managed keys:
 
 - `provider.gonkagate` in the durable global config
-- the full validated GonkaGate catalog under `provider.gonkagate.models`
+- the full fetched GonkaGate catalog under `provider.gonkagate.models`
 - validated GonkaGate compatibility settings under `provider.gonkagate` and its
-  model entries when the curated registry requires them
+  model entries when the live model response requires them
 - GonkaGate-managed activation settings when scope is `user`
 - GonkaGate-managed `small_model` when scope is `user`
 - stale activation cleanup in the old target only when the installer can prove
-  ownership through the currently selected curated GonkaGate ref or the
-  previously recorded managed curated ref from `install-state.json`
+  ownership through the currently selected fetched GonkaGate ref or the
+  previously recorded managed fetched-model ref from `install-state.json`
 
 Additional precedence-aware ownership:
 
@@ -490,7 +478,7 @@ Before claiming success, the installer must:
 - use `opencode debug config --pure` as the final durable success gate on the
   verified baseline instead of reimplementing the full upstream merge engine
 - use resolved-config verification for `model`, `small_model`,
-  `provider.gonkagate`, validated transport and base URL shape, curated
+  `provider.gonkagate`, transport and base URL shape, live
   model-catalog shape, and provider allow/deny gating
 - verify `provider.gonkagate.options.apiKey` provenance separately instead of
   inferring secret ownership from redacted resolved output
@@ -545,7 +533,7 @@ It must not depend on `gonkagate doctor`.
 4. the installer must store the secret only outside the repository
 5. the installer must configure GonkaGate using the current
    `chat_completions` contract
-6. the installer must use curated validated models
+6. the installer must use fetched GonkaGate models
 7. the installer must preserve unrelated OpenCode config
 8. the installer must set `small_model` explicitly
 9. the installer must support rerun as the official update path
@@ -559,9 +547,9 @@ It must not depend on `gonkagate doctor`.
     current session's effective config before reporting success
 15. the installer must not print raw resolved-config output that may contain
     substituted secrets
-16. the curated model registry must be able to encode any validated
-    compatibility settings required beyond model id and adapter choice
-17. the installer must write every validated curated model into
+16. installer must fetch `/v1/models` after API-key intake and use only
+    that response as the runtime model source
+17. the installer must write every fetched GonkaGate model into
     `provider.gonkagate.models` so OpenCode's `/models` command can switch
     between managed GonkaGate models
 18. the installer must treat `enabled_providers` and `disabled_providers` that
@@ -601,8 +589,8 @@ It must not depend on `gonkagate doctor`.
 8. future `responses` migration must not require a new package identity
 9. setup should minimize prompts by accepting recommended defaults when it is
    safe to do so
-10. interactive setup should keep the public curated picker visible even when
-    the curated validated list is small so the public UX stays stable
+10. interactive setup should keep the live GonkaGate model picker visible even when
+    the fetched GonkaGate list is small so the public UX stays stable
 11. on macOS, Linux, and WSL, reruns must repair drifted managed-secret file
     and directory modes without rewriting unchanged secret contents or creating
     backups
@@ -611,7 +599,7 @@ It must not depend on `gonkagate doctor`.
 
 - uninstall or repair commands
 - richer post-setup verification
-- broader curated model registry
+- richer live model metadata when the API exposes it
 - validated cheaper small-model strategy
 - future migration to `responses`
 
@@ -619,7 +607,6 @@ It must not depend on `gonkagate doctor`.
 
 - if secrets enter project config, users will leak keys into git
 - if the tool overclaims `responses`, product truth will drift
-- if runtime discovery becomes the onboarding truth, stability will degrade
 - if unrelated config is overwritten, users will stop trusting the tool
 - if `small_model` is left implicit, OpenCode may take an unvalidated cheaper
   model path or a fallback path we did not configure explicitly
@@ -644,9 +631,6 @@ It must not depend on `gonkagate doctor`.
 - if native Windows profile-directory ACL inheritance is mistaken for
   installer-enforced ACL repair, the product will overclaim its real security
   guarantee
-- if validated compatibility settings are not captured in the curated registry,
-  a model may look installable on paper but still fail in real OpenCode agent
-  loops
 - if raw resolved-config output is echoed during verification, secret material
   from `{file:...}` or `{env:...}` substitution may leak into terminals, logs,
   CI output, or support tickets
@@ -657,8 +641,8 @@ The correct v1 product shape is:
 
 - a small onboarding CLI
 - one stable provider id: `gonkagate`
-- one curated model picker and a validated GonkaGate model catalog for
-  OpenCode `/models` switching
+- one live GonkaGate model picker and fetched model catalog for OpenCode
+  `/models` switching
 - one safe secret flow
 - zero manual config editing
 - zero `.env`
@@ -666,7 +650,7 @@ The correct v1 product shape is:
 - minimal prompting with recommended defaults
 - one durable global config target plus precedence-aware conflict handling,
   including provider allow and deny blockers
-- a curated registry that can carry the compatibility settings required for
+- a live model response that can carry the compatibility settings required for
   validated OpenCode behavior
 - honest support for `chat_completions` today
 - a deliberate migration path for future `responses`

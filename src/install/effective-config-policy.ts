@@ -1,7 +1,7 @@
 import {
   formatOpencodeModelRef,
-  getValidatedModelKeys,
   type CuratedModelKey,
+  type ValidatedCuratedModel,
 } from "../constants/models.js";
 import { GONKAGATE_PROVIDER_ID } from "../constants/gateway.js";
 import type { EffectiveConfigVerificationTarget } from "./contracts/effective-config.js";
@@ -9,8 +9,8 @@ import type { EffectiveConfigValueCheck } from "./verification-mismatches.js";
 import {
   buildManagedProviderCatalogConfig,
   GONKAGATE_SECRET_FILE_REFERENCE,
-  resolveValidatedModel,
 } from "./managed-provider-config.js";
+import { createInstallError } from "./errors.js";
 
 interface VerificationSummaryCheck {
   expected: Record<string, unknown>;
@@ -54,7 +54,7 @@ export interface SecretBindingVerificationPolicy {
 }
 
 const PROVIDER_MISMATCH_REASON =
-  "Resolved GonkaGate provider settings do not match the curated validated contract.";
+  "Resolved GonkaGate provider settings do not match the fetched model catalog.";
 
 const PROVIDER_REASON_RULES = Object.freeze([
   {
@@ -76,53 +76,56 @@ const PROVIDER_REASON_RULES = Object.freeze([
 
 function createEffectiveConfigVerificationTarget(
   modelKey: CuratedModelKey,
+  models: readonly ValidatedCuratedModel[],
 ): EffectiveConfigVerificationTarget {
-  const model = resolveValidatedModel(modelKey);
+  const model = models.find((candidate) => candidate.key === modelKey);
+
+  if (model === undefined) {
+    throw createInstallError("unsupported_model_key", {
+      modelKey,
+    });
+  }
 
   return {
     modelKey,
     modelRef: formatOpencodeModelRef(modelKey),
     providerId: GONKAGATE_PROVIDER_ID,
-    runtimeCompatibility: model.runtimeCompatibility,
     transport: model.transport,
   };
 }
 
 export function createResolvedConfigVerificationPolicy(
   modelKey: CuratedModelKey,
+  models: readonly ValidatedCuratedModel[],
 ): ResolvedConfigVerificationPolicy {
-  const target = createEffectiveConfigVerificationTarget(modelKey);
-  const expectedProviderConfig = buildManagedProviderCatalogConfig();
+  const target = createEffectiveConfigVerificationTarget(modelKey, models);
+  const expectedProviderConfig = buildManagedProviderCatalogConfig(models);
   const providerPath = ["provider", target.providerId] as const;
-  const requiredModelEntries = getValidatedModelKeys().map(
-    (catalogModelKey) => {
-      const modelEntryPath = [
-        ...providerPath,
-        "models",
-        catalogModelKey,
-      ] as const;
-      const expectedModelEntry = expectedProviderConfig.models[catalogModelKey];
+  const requiredModelEntries = models.map((catalogModel) => {
+    const catalogModelKey = catalogModel.key;
+    const modelEntryPath = [
+      ...providerPath,
+      "models",
+      catalogModelKey,
+    ] as const;
+    const expectedModelEntry = expectedProviderConfig.models[catalogModelKey];
 
-      if (expectedModelEntry === undefined) {
-        throw new Error(
-          `Managed GonkaGate provider catalog is missing ${catalogModelKey}.`,
-        );
-      }
+    if (expectedModelEntry === undefined) {
+      throw new Error(
+        `Managed GonkaGate provider catalog is missing ${catalogModelKey}.`,
+      );
+    }
 
-      return {
-        object: {
-          expected: expectedModelEntry,
-          path: modelEntryPath,
-          reason:
-            "Resolved config is missing a curated GonkaGate model catalog entry.",
-        },
-        valueChecks: createObjectValueChecks(
-          modelEntryPath,
-          expectedModelEntry,
-        ),
-      };
-    },
-  );
+    return {
+      object: {
+        expected: expectedModelEntry,
+        path: modelEntryPath,
+        reason:
+          "Resolved config is missing a fetched GonkaGate model catalog entry.",
+      },
+      valueChecks: createObjectValueChecks(modelEntryPath, expectedModelEntry),
+    };
+  });
   const modelEntryPaths = requiredModelEntries.map(
     (entry) => entry.object.path,
   );
@@ -264,7 +267,7 @@ function resolveProviderMismatchReason(path: readonly string[]): string {
   const formattedPath = path.join(".");
 
   if (formattedPath.startsWith(`provider.${GONKAGATE_PROVIDER_ID}.models.`)) {
-    return "Resolved GonkaGate model catalog settings do not match the curated validated contract.";
+    return "Resolved GonkaGate model catalog settings do not match the fetched model catalog.";
   }
 
   for (const rule of PROVIDER_REASON_RULES) {

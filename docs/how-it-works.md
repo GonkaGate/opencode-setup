@@ -16,9 +16,8 @@ The runtime is implemented and shipped.
 Today the repository ships:
 
 - the public CLI
-- the public curated model picker UI, which currently exposes three validated
-  models
-- a managed GonkaGate provider catalog that writes every validated curated
+- the live GonkaGate model picker UI backed by `GET https://api.gonkagate.com/v1/models`
+- a managed GonkaGate provider catalog that writes every fetched GonkaGate
   model into `provider.gonkagate.models` so OpenCode's `/models` command can
   switch between GonkaGate models after setup
 - end-to-end secret intake, managed secret persistence, managed OpenCode config
@@ -29,73 +28,18 @@ Today the repository ships:
 - CI and release tooling, including native Windows runner coverage
 - docs and contract tests
 
-Current validated picker entries:
-
-- `qwen/qwen3-235b-a22b-instruct-2507-fp8`
-- `moonshotai/Kimi-K2.6`
-- `minimaxai/minimax-m2.7`
-
 ## Install Flow
 
-1. Check that `opencode` is available and that the installed version is at
-   least `1.4.0`.
-2. Show the public curated model picker in interactive mode. The current picker
-   contains three validated models and one recommended default.
-3. Recommend `project` scope inside a git repository and `user` scope
-   otherwise.
-4. Accept a GonkaGate API key through:
-   - a hidden interactive prompt
-   - `GONKAGATE_API_KEY`
-   - `--api-key-stdin`
-5. Save the secret only under `~/.gonkagate/opencode/...`. On macOS, Linux, and
-   WSL, reruns also repair drifted owner-only modes on the managed secret file
-   and directory without rewriting unchanged secret contents or creating a
-   backup.
-6. Write or update the durable global user-level provider definition and the
-   full validated GonkaGate model catalog.
-7. When `project` scope is chosen, write only activation settings to
-   `opencode.json`.
-8. On rerun, normalize both managed targets to the selected final scope by
-   removing only installer-owned GonkaGate activation from the old location.
-   Unrelated `model` and `small_model` values are preserved and later surfaced
-   by verification if they still override the selected scope.
-9. Create backups before replacing managed user files. If an existing
-   repo-local `opencode.json` must be rewritten, store its rollback backup
-   under `~/.gonkagate/opencode/backups/project-config` instead of beside the
-   repository file, then roll back changed managed files automatically if a
-   later verification step fails.
-10. Verify the durable plain-`opencode` outcome with
-    `opencode debug config --pure` on the verified baseline without treating
-    `OPENCODE_CONFIG_CONTENT` as a durable install target. This resolved check
-    covers `model`, `small_model`, `provider.gonkagate`, validated transport
-    and base URL shape, curated model-catalog shape, and provider allow/deny
-    gating.
-11. Verify secret-binding provenance separately instead of inferring it from
-    redacted resolved-config output: `user_config` must own
-    `provider.gonkagate.options.apiKey` with the canonical
-    `{file:~/.gonkagate/opencode/api-key}` binding, and project config,
-    `OPENCODE_CONFIG`, and inspectable file-based system managed config must
-    not define that key.
-12. If the durable resolved config does not match the intended GonkaGate
-    outcome, inspect locally inspectable layers such as `OPENCODE_CONFIG`, user
-    config, project config, and file-based system managed config to attribute
-    the block without reimplementing the full upstream merge engine.
-    When more than one inspectable layer conflicts on the same managed key, use
-    the real OpenCode precedence order instead of file traversal order.
-13. If the resolved config proves `enabled_providers` or
-    `disabled_providers` blocks `gonkagate` but no locally inspectable layer
-    explains it, surface an inferred higher-precedence or managed blocker.
-14. If `OPENCODE_CONFIG_CONTENT` is active, verify the current session again
-    with that runtime-only layer still present. Resolved current-session
-    mismatches are blocked when the inline layer changes the effective result
-    away from the intended GonkaGate outcome, and inline
-    `provider.gonkagate.options.apiKey` overrides are always blocked in v1
-    because current upstream docs do not clearly prove equivalent inline
-    `{file:...}` substitution parity for this secret-binding contract.
-15. Tell the user to run plain `opencode`, and show the safe rerun command for
-    replacing the managed API key later. OpenCode Desktop users should restart
-    the desktop app after rerunning setup so its sidecar reloads
-    `~/.gonkagate/opencode/api-key`.
+1. Check `opencode` is available and at least `1.4.0`.
+2. Accept the GonkaGate API key through a hidden prompt, `GONKAGATE_API_KEY`, or `--api-key-stdin`.
+3. Fetch `GET https://api.gonkagate.com/v1/models` with Bearer auth.
+4. Show the live GonkaGate model picker in interactive mode, defaulting to the first fetched model.
+5. Recommend `project` scope inside a git repository and `user` scope otherwise.
+6. Save the secret only under `~/.gonkagate/opencode/...`.
+7. Write or update the user-level provider definition with every fetched model id in `provider.gonkagate.models`.
+8. When `project` scope is chosen, write only activation settings to repo-local `opencode.json`.
+9. Verify durable and current-session effective OpenCode config without printing raw resolved config.
+10. Tell the user to run plain `opencode` and show the safe key-rotation rerun command.
 
 ## Why User-Level Provider Ownership
 
@@ -236,14 +180,7 @@ user. Resolved-config output can already contain expanded `{file:...}` or
 `{env:...}` secrets, so it is parsed internally and surfaced only through
 redacted diagnostics.
 
-The curated model registry also carries enough metadata to reproduce the exact
-validated config shape. The installer writes all validated registry entries to
-`provider.gonkagate.models`; the selected setup model only controls the root
-`model` and `small_model` defaults. That lets users switch between managed
-GonkaGate models through OpenCode's `/models` command without exposing arbitrary
-custom model ids. If a GonkaGate model requires extra provider options, model
-options, or headers for stable OpenCode behavior, those requirements live in
-the registry and are written by the installer.
+The live `GET https://api.gonkagate.com/v1/models` response is the source of truth for model availability. The installer writes every fetched id to `provider.gonkagate.models`; the selected setup model only controls the root `model` and `small_model` defaults. That lets users switch between managed GonkaGate models through OpenCode.s `/models` command without requiring repository updates for model additions or removals.
 
 ## Windows Support
 
@@ -285,6 +222,6 @@ If non-interactive setup does not pass `--scope`, the CLI requires either an
 explicit `--scope` or `--yes` so it can accept the recommended scope safely.
 
 If non-interactive setup does not pass `--model`, the CLI may accept the single
-recommended validated model automatically. Interactive mode still keeps the
-public curated picker visible so the public UX remains stable as the registry
+default fetched model automatically. Interactive mode still keeps the
+live GonkaGate model picker visible so the public UX remains stable as the registry
 grows.

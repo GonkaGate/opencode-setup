@@ -57,13 +57,13 @@ npx @gonkagate/opencode-setup
 
 The happy path is:
 
-1. The CLI checks that `opencode` is installed and supported.
-2. It shows the public curated model picker.
-3. It asks whether GonkaGate should be activated for `user` or `project`
-   scope.
-4. It asks for your GonkaGate API key in a hidden prompt.
-5. It writes the managed config, verifies the result, and tells you to go back
-   to plain `opencode`.
+1. CLI checks `opencode` is installed and supported.
+2. It asks for your GonkaGate API key through a hidden prompt.
+3. It fetches `GET https://api.gonkagate.com/v1/models` with Bearer auth.
+4. It shows the live GonkaGate model picker.
+5. It asks whether GonkaGate should be activated in `user` or `project` scope.
+6. It writes managed config, verifies the result, and tells you to go back to
+   plain `opencode`.
 
 ### Non-interactive setup
 
@@ -115,19 +115,19 @@ npx @gonkagate/opencode-setup
 Under the hood, the shipped runtime:
 
 - validates local `opencode`
-- keeps the public curated model picker visible in interactive mode, even
-  as the curated validated model list grows
-- resolves the curated validated model and activation scope
 - accepts the secret only through a hidden prompt, `GONKAGATE_API_KEY`, or
   `--api-key-stdin`
+- fetches `GET https://api.gonkagate.com/v1/models` with Bearer auth after
+  API-key intake
+- uses the live response for the model picker, `--model` fetched model id
+  validation, defaults, config writes, and verification
 - writes only the minimum safe OpenCode config layers
-- verifies both the durable plain-`opencode` outcome and the current session's
+- verifies the durable plain-`opencode` outcome and the current session
   effective OpenCode outcome
 - finishes by returning the user to plain `opencode`
 
-For `project` scope, the installer keeps the provider definition and secret
-binding in user scope and writes only activation settings to repo-local
-`opencode.json`.
+For `project` scope, installer keeps the provider definition and secret binding
+in user scope and writes only activation settings to repo-local `opencode.json`.
 
 ## Where Files Go
 
@@ -176,31 +176,29 @@ rely on inherited per-user ACLs instead of portable `chmod`-style enforcement.
 
 ## Current Product Truth
 
-The current public curated model picker is shipped and currently exposes three
-validated models:
+The live GonkaGate model picker is backed by:
 
-- `qwen/qwen3-235b-a22b-instruct-2507-fp8`
-- `moonshotai/Kimi-K2.6`
-- `minimaxai/minimax-m2.7`
+```http
+GET https://api.gonkagate.com/v1/models
+Authorization: Bearer <GonkaGate API key>
+```
 
-Interactive mode keeps the public curated model picker visible. `--yes` and
-safe non-interactive flows may auto-select the recommended validated model
-without showing the picker.
+That response is the source of truth for picker choices, `--model` fetched
+model id validation, defaults, config writes, and verification. Interactive mode
+keeps the live picker visible. `--yes` safe non-interactive flows may
+auto-select the first fetched model without showing the picker.
 
-The runtime is curated-model-first:
+The runtime live-model-first contract:
 
-- the stable provider id is `gonkagate`
-- the managed user-level provider key is `provider.gonkagate`
-- the canonical base URL is `https://api.gonkagate.com/v1`
-- the current transport target is `chat/completions`
+- stable provider id is `gonkagate`
+- managed user-level provider key is `provider.gonkagate`
+- canonical base URL is `https://api.gonkagate.com/v1`
+- current transport target is `chat/completions`
 - future migration should add `responses` support without renaming the product
-- the installer writes every validated curated GonkaGate model into
-  `provider.gonkagate.models` so OpenCode's `/models` command can switch
-  between managed GonkaGate models
-- the selected setup model remains the activation default through `model` and
+- installer writes every fetched model id into `provider.gonkagate.models` so
+  OpenCode's `/models` command can switch between managed GonkaGate models
+- selected setup model remains the activation default through `model` and
   `small_model`
-- the curated registry can carry compatibility metadata, provider options,
-  model options, and headers when a validated OpenCode flow needs them
 
 ## Verification And Config Precedence
 
@@ -209,8 +207,8 @@ Success is based on effective OpenCode config.
 
 For durable verification, `opencode debug config --pure` stays the final truth
 source. The installer uses that resolved result to verify `model`,
-`small_model`, `provider.gonkagate`, the validated transport and base URL
-shape, the curated model-catalog shape, and provider allow/deny gating.
+`small_model`, `provider.gonkagate`, the transport and base URL
+shape, the live model-catalog shape, and provider allow/deny gating.
 
 OpenCode precedence matters here:
 
