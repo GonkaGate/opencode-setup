@@ -6,6 +6,13 @@
 
 * fetch the GonkaGate model catalog from `/v1/models` during setup
 
+## [0.6.0](https://github.com/GonkaGate/opencode-setup/compare/v0.5.1...v0.6.0) (2026-07-06)
+
+
+### Features
+
+* fetch GonkaGate models dynamically ([43271cd](https://github.com/GonkaGate/opencode-setup/commit/43271cddc9e7c3faa6b1a7d9d020d5b1e572fd44))
+
 ## [0.5.1](https://github.com/GonkaGate/opencode-setup/compare/v0.5.0...v0.5.1) (2026-06-23)
 
 
