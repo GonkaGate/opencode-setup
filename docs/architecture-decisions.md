@@ -49,54 +49,26 @@ Verified upstream facts used here:
 - `opencode debug config` outputs resolved config values, including substituted
   secret material, so raw output is secret-bearing.
 
-## Decision 1: Expose only validated curated GonkaGate models
+## Decision 1: Use the live GonkaGate model catalog
 
 **Decision**
 
-The runtime must expose only curated model entries marked `validated`, with one
-explicit recommended default for automation-safe flows.
+After API-key intake, the runtime fetches `GET https://api.gonkagate.com/v1/models` with Bearer auth and uses only that response for model availability.
 
-- the installer keeps the public curated picker visible in interactive mode
-- `--yes` and safe non-interactive flows may auto-select the recommended
-  validated model
-- `model` and `small_model` are both set to the selected validated model
-- every validated curated model is written to `provider.gonkagate.models` so
-  OpenCode's `/models` command can switch between managed GonkaGate models
-- additional public model choices may land after they pass the same validation
-  gate
+- installer keeps the live GonkaGate model picker visible in interactive mode
+- `--yes` safe non-interactive flows may auto-select the first fetched model
+- `--model` must match a fetched model id
+- `model` and `small_model` are both set to the selected fetched model id
+- every fetched model id is written to `provider.gonkagate.models` so OpenCode.s `/models` command can switch managed GonkaGate models
+- adding or removing a GonkaGate model does not require a repository update
 
 **Rationale**
 
-The safest public shape is to keep the picker visible in interactive mode while
-still allowing automatic recommended-default behavior when prompts are
-intentionally bypassed:
-
-- bounded compatibility surface
-- smallest rollback surface
-- no ambiguity about the recommended default in automation-safe paths
-- stable public UX even as more validated models are added later
-- no hidden dependency on unproven model variants
-
-What matters architecturally is not guessing a model name early. What matters
-is forcing the runtime to ship only behind end-to-end proof.
+GonkaGate owns model availability. Keeping the catalog in the API avoids stale CLI releases and removes repository-owned allowlists from user-facing setup behavior.
 
 **Implementation consequence**
 
-- The runtime must refuse to expose or auto-fallback to any model that is not
-  marked `validated`.
-- The curated registry should add explicit default-selection metadata such as
-  `recommended: true` rather than relying on array order once multiple
-  validated models exist.
-- The managed provider catalog should be derived from validated registry
-  entries, while `model` and `small_model` remain only the setup defaults.
-- Each public GonkaGate model ID must be pinned in a model validation record
-  before it is exposed through the picker or provider catalog.
-
-**What this means for v1**
-
-- Every public picker entry must pass the validation matrix from the PRD.
-- Interactive users still see the public picker, while `--yes` and safe
-  non-interactive flows may accept the recommended default.
+The runtime rejects empty or invalid model responses and rejects `--model` values not returned by `/v1/models`.
 
 ## Decision 2: Do not reconcile or mutate `OPENCODE_CONFIG` in v1
 
@@ -220,8 +192,7 @@ At minimum, the verification gate should confirm:
 - `small_model` resolves to the same v1 model
 - `provider.gonkagate` is present with the expected transport package and base
   URL
-- required compatibility fragments and model catalog entries from the curated
-  registry are present
+- every fetched model catalog entry is present
 - no higher-precedence layer excludes `gonkagate`
 
 ## Decision 4: Prefer the plugin-safe verification path when available
@@ -343,7 +314,7 @@ These decisions fix the v1 production shape as follows:
 
 - only validated GonkaGate models are exposed, with later choices gated by the
   same validation bar
-- interactive public picker remains visible while the curated model list is
+- interactive public picker remains visible while the live model list is
   small
 - durable writes only to the documented user config target, project activation
   file, and GonkaGate-managed user storage

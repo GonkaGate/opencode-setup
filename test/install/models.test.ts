@@ -1,149 +1,96 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { GONKAGATE_MODELS_URL } from "../../src/constants/gateway.js";
+import { formatOpencodeModelRef } from "../../src/constants/models.js";
 import {
-  CURATED_MODEL_REGISTRY,
-  createCuratedModelIndex,
-  formatOpencodeModelRef,
-  getRecommendedValidatedModel,
-  getValidatedModels,
-  type CuratedModelRecord,
-  type CuratedModelRegistry,
-} from "../../src/constants/models.js";
+  fetchGonkagateModels,
+  parseGonkagateModelsResponse,
+} from "../../src/install/model-catalog.js";
+import { isInstallErrorCode } from "../../src/install/errors.js";
 
-test("the default curated registry exposes validated entries through the validated-model helpers", () => {
-  const validatedModels = getValidatedModels();
+test("parseGonkagateModelsResponse accepts OpenAI-compatible models and dedupes ids", () => {
+  const models = parseGonkagateModelsResponse(
+    JSON.stringify({
+      data: [
+        {
+          id: "vendor/dynamic-alpha",
+          name: "Dynamic Alpha",
+        },
+        {
+          id: "vendor/dynamic-alpha",
+          name: "Duplicate ignored",
+        },
+        {
+          id: "vendor/dynamic-beta",
+        },
+      ],
+    }),
+  );
 
-  assert.equal(validatedModels.length, 3);
-  assert.equal(validatedModels[0]?.key, "qwen3-235b-a22b-instruct-2507-fp8");
-  assert.equal(validatedModels[0]?.validationStatus, "validated");
-  assert.equal(validatedModels[1]?.key, "kimi-k2.6");
-  assert.equal(validatedModels[1]?.modelId, "moonshotai/Kimi-K2.6");
-  assert.equal(validatedModels[1]?.validationStatus, "validated");
-  assert.equal(validatedModels[2]?.key, "minimax-m2.7");
-  assert.equal(validatedModels[2]?.modelId, "minimaxai/minimax-m2.7");
-  assert.equal(validatedModels[2]?.validationStatus, "validated");
+  assert.equal(models.length, 2);
+  assert.equal(models[0]?.key, "vendor/dynamic-alpha");
+  assert.equal(models[0]?.displayName, "Dynamic Alpha");
+  assert.equal(models[1]?.key, "vendor/dynamic-beta");
+  assert.equal(models[1]?.displayName, "vendor/dynamic-beta");
 });
 
-test("createCuratedModelIndex derives keyed records and picks the recommended validated model by metadata", () => {
-  const testRegistry = {
-    alpha: {
-      adapterPackage: "@ai-sdk/openai-compatible",
-      displayName: "Alpha",
-      modelId: "gonkagate/alpha",
-      recommended: false,
-      transport: "chat_completions",
-      validationStatus: "validated",
-    },
-    beta: {
-      adapterPackage: "@ai-sdk/openai-compatible",
-      displayName: "Beta",
-      modelId: "gonkagate/beta",
-      recommended: true,
-      transport: "chat_completions",
-      validationStatus: "validated",
-    },
-    gamma: {
-      adapterPackage: "@ai-sdk/openai-compatible",
-      displayName: "Gamma",
-      modelId: "gonkagate/gamma",
-      recommended: true,
-      transport: "responses",
-      validationStatus: "planned",
-    },
-  } as const satisfies CuratedModelRegistry;
-
-  const index = createCuratedModelIndex(testRegistry);
-
-  assert.deepEqual(index.modelKeys, ["alpha", "beta", "gamma"]);
-  assert.equal(index.models[0]?.key, "alpha");
-  assert.equal(index.recommendedValidatedModel?.key, "beta");
-  assert.deepEqual(index.validatedModelKeys, ["alpha", "beta"]);
-});
-
-test("createCuratedModelIndex rejects more than one recommended validated model", () => {
-  const invalidRegistry = {
-    alpha: {
-      adapterPackage: "@ai-sdk/openai-compatible",
-      displayName: "Alpha",
-      modelId: "gonkagate/alpha",
-      recommended: true,
-      transport: "chat_completions",
-      validationStatus: "validated",
-    },
-    beta: {
-      adapterPackage: "@ai-sdk/openai-compatible",
-      displayName: "Beta",
-      modelId: "gonkagate/beta",
-      recommended: true,
-      transport: "responses",
-      validationStatus: "validated",
-    },
-  } as const satisfies CuratedModelRegistry;
+test("parseGonkagateModelsResponse rejects empty and invalid model responses", () => {
+  assert.throws(
+    () => parseGonkagateModelsResponse('{"data":[]}'),
+    (error) => isInstallErrorCode(error, "model_catalog_invalid"),
+  );
 
   assert.throws(
-    () => createCuratedModelIndex(invalidRegistry),
-    /must not expose more than one recommended validated model/i,
+    () => parseGonkagateModelsResponse('{"data":[{"name":"No id"}]}'),
+    (error) => isInstallErrorCode(error, "model_catalog_invalid"),
   );
 });
 
-test("the recommended validated model is selected by explicit metadata, not array order", () => {
-  const recommendedModel = getRecommendedValidatedModel();
+test("fetchGonkagateModels calls /v1/models with Bearer auth", async () => {
+  const seenRequests: Array<{
+    options:
+      | {
+          headers?: Record<string, string>;
+          method?: string;
+        }
+      | undefined;
+    url: string;
+  }> = [];
+  const models = await fetchGonkagateModels("gp-test-secret", {
+    http: {
+      async fetch(url, options) {
+        seenRequests.push({ options, url });
 
-  assert.equal(recommendedModel?.key, "kimi-k2.6");
-  assert.equal(recommendedModel?.recommended, true);
-});
-
-test("the formatted OpenCode model reference uses the stable provider/model key shape", () => {
-  assert.equal(
-    formatOpencodeModelRef("qwen3-235b-a22b-instruct-2507-fp8"),
-    "gonkagate/qwen3-235b-a22b-instruct-2507-fp8",
-  );
-  assert.equal(formatOpencodeModelRef("kimi-k2.6"), "gonkagate/kimi-k2.6");
-  assert.equal(
-    formatOpencodeModelRef("minimax-m2.7"),
-    "gonkagate/minimax-m2.7",
-  );
-});
-
-test("the curated model contract can carry compatibility and migration metadata", () => {
-  const metadataRichRecord: CuratedModelRecord = {
-    adapterPackage: "@ai-sdk/openai-compatible",
-    runtimeCompatibility: {
-      modelHeaders: {
-        "x-gonkagate-mode": "validated",
-      },
-      modelOptions: {
-        reasoningEffort: "high",
-      },
-      notes: ["Validated against the OpenCode 1.4.0 baseline."],
-      providerOptions: {
-        baseURL: "https://api.gonkagate.com/v1",
+        return {
+          ok: true,
+          status: 200,
+          statusText: "OK",
+          async text() {
+            return '{"data":[{"id":"vendor/live-from-http","name":"HTTP Live"}]}';
+          },
+        };
       },
     },
-    displayName: "Metadata Rich Test Record",
-    key: "metadata-rich-test-record",
-    migrationMetadata: {
-      adapterPackage: "@ai-sdk/openai",
-      transport: "responses",
-    },
-    modelId: "gonkagate/metadata-rich-test-record",
-    recommended: false,
-    transport: "chat_completions",
-    validationStatus: "planned",
-  };
+  });
 
-  assert.equal(
-    metadataRichRecord.runtimeCompatibility?.providerOptions?.baseURL,
-    "https://api.gonkagate.com/v1",
-  );
-  assert.equal(metadataRichRecord.migrationMetadata?.transport, "responses");
+  assert.deepEqual(seenRequests, [
+    {
+      options: {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer gp-test-secret",
+        },
+        method: "GET",
+      },
+      url: GONKAGATE_MODELS_URL,
+    },
+  ]);
+  assert.equal(models[0]?.key, "vendor/live-from-http");
 });
 
-test("the shipped registry stays wired through the default derived index", () => {
-  const index = createCuratedModelIndex(CURATED_MODEL_REGISTRY);
-
-  assert.equal(index.models.length, 3);
-  assert.equal(index.models[0]?.key, "qwen3-235b-a22b-instruct-2507-fp8");
-  assert.equal(index.models[1]?.key, "kimi-k2.6");
-  assert.equal(index.models[2]?.key, "minimax-m2.7");
+test("the formatted OpenCode model reference uses the stable provider/model shape", () => {
+  assert.equal(
+    formatOpencodeModelRef("vendor/dynamic-alpha"),
+    "gonkagate/vendor/dynamic-alpha",
+  );
 });

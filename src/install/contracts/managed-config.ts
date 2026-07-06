@@ -1,4 +1,7 @@
-import type { CuratedModelKey } from "../../constants/models.js";
+import type {
+  CuratedModelKey,
+  ValidatedCuratedModel,
+} from "../../constants/models.js";
 import type { JsonObject, JsonValue } from "../../json.js";
 import type { ManagedPaths } from "../paths.js";
 import type { ManagedArtifactWriteResult } from "./managed-artifact.js";
@@ -86,6 +89,7 @@ export type ManagedConfigPlan =
 export interface ScopeWriteRequest {
   managedPaths: ManagedPaths;
   model: CuratedModelKey;
+  models: readonly ValidatedCuratedModel[];
   previousManagedModelKey?: CuratedModelKey;
   scope: ManagedConfigScope;
 }

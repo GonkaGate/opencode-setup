@@ -6,10 +6,11 @@ import type { ManagedConfigScope } from "./contracts/managed-config.js";
 import type { InstallFlowResult } from "./contracts/install-flow.js";
 import type { InstallDependencies } from "./deps.js";
 import { isInstallError, isInstallErrorCode } from "./errors.js";
+import { fetchGonkagateModels } from "./model-catalog.js";
 import { redactSecretBearingText } from "./redact.js";
 import { rollbackManagedWrites } from "./rollback.js";
 import { resolveInstallModel, resolveInstallScope } from "./selection.js";
-import { resolveSecretInput } from "./secrets.js";
+import { resolveSecretInput, type ResolvedSecretInput } from "./secrets.js";
 import {
   createInstallProgressStateForModel,
   createSuccessfulInstallResult,
@@ -37,21 +38,34 @@ export interface InstallFlowRequest {
   yes: boolean;
 }
 
+interface PreparedInstallFlow {
+  installFlow: PreparedInstallSession;
+  secretInput: ResolvedSecretInput;
+}
+
 export async function runInstallFlow(
   request: InstallFlowRequest,
   dependencies: InstallDependencies,
 ): Promise<InstallFlowResult> {
   let progressState: InstallProgressState = {};
   const managedWrites = createManagedWriteTransaction();
-  let installFlow: PreparedInstallSession;
+  let preparedInstall: PreparedInstallFlow;
 
   try {
     const context = await resolveInstallContext(dependencies, {
       cwd: request.cwd,
     });
+    const secretInput = await resolveSecretInput(
+      {
+        apiKeyStdin: request.apiKeyStdin,
+      },
+      dependencies,
+    );
+    const models = await fetchGonkagateModels(secretInput.secret, dependencies);
     const model = await resolveInstallModel(
       {
         modelKey: request.modelKey,
+        models,
         yes: request.yes,
       },
       dependencies,
@@ -67,7 +81,11 @@ export async function runInstallFlow(
       },
       dependencies,
     );
-    installFlow = prepareInstallSession(context, model, scope);
+    const installFlow = prepareInstallSession(context, model, models, scope);
+    preparedInstall = {
+      installFlow,
+      secretInput,
+    };
 
     progressState = installFlow.summary;
   } catch (error) {
@@ -75,9 +93,18 @@ export async function runInstallFlow(
   }
 
   try {
-    await applyManagedWrites(request, installFlow, managedWrites, dependencies);
-    await verifyPreparedInstall(installFlow, dependencies);
-    await persistInstallState(installFlow, managedWrites, dependencies);
+    await applyManagedWrites(
+      preparedInstall.secretInput,
+      preparedInstall.installFlow,
+      managedWrites,
+      dependencies,
+    );
+    await verifyPreparedInstall(preparedInstall.installFlow, dependencies);
+    await persistInstallState(
+      preparedInstall.installFlow,
+      managedWrites,
+      dependencies,
+    );
   } catch (error) {
     return await buildInstallFailureResult(
       error,
@@ -88,16 +115,19 @@ export async function runInstallFlow(
   }
 
   const currentSessionResult = await verifyCurrentSessionInstall(
-    installFlow,
+    preparedInstall.installFlow,
     progressState,
     dependencies,
   );
 
-  return currentSessionResult ?? createSuccessfulInstallResult(installFlow);
+  return (
+    currentSessionResult ??
+    createSuccessfulInstallResult(preparedInstall.installFlow)
+  );
 }
 
 async function applyManagedWrites(
-  request: InstallFlowRequest,
+  secretInput: ResolvedSecretInput,
   installFlow: PreparedInstallSession,
   managedWrites: ManagedWriteTransaction,
   dependencies: InstallDependencies,
@@ -108,7 +138,7 @@ async function applyManagedWrites(
   );
 
   await writeManagedSecretForInstall(
-    request,
+    secretInput,
     installFlow,
     managedWrites,
     dependencies,
@@ -122,17 +152,11 @@ async function applyManagedWrites(
 }
 
 async function writeManagedSecretForInstall(
-  request: InstallFlowRequest,
+  secretInput: ResolvedSecretInput,
   installFlow: PreparedInstallSession,
   managedWrites: ManagedWriteTransaction,
   dependencies: InstallDependencies,
 ): Promise<void> {
-  const secretInput = await resolveSecretInput(
-    {
-      apiKeyStdin: request.apiKeyStdin,
-    },
-    dependencies,
-  );
   await managedWrites.run(
     writeManagedSecret(
       secretInput,
@@ -153,6 +177,7 @@ async function writeManagedConfigsForInstall(
       {
         managedPaths: installFlow.context.workspace.managedPaths,
         model: installFlow.model.key,
+        models: installFlow.models,
         previousManagedModelKey,
         scope: installFlow.summary.scope,
       },
@@ -171,6 +196,7 @@ async function verifyPreparedInstall(
     {
       context: installFlow.context,
       model: installFlow.model.key,
+      models: installFlow.models,
       scope: installFlow.summary.scope,
     },
     dependencies,
@@ -191,6 +217,7 @@ async function verifyCurrentSessionInstall(
       {
         context: installFlow.context,
         model: installFlow.model.key,
+        models: installFlow.models,
         scope: installFlow.summary.scope,
       },
       dependencies,

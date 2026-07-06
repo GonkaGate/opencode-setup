@@ -5,25 +5,25 @@ import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { pathToFileURL } from "node:url";
 import test from "node:test";
-import {
-  formatOpencodeModelRef,
-  type CuratedModelKey,
-} from "../src/constants/models.js";
 import { CONTRACT_METADATA } from "../src/constants/contract.js";
 import { GONKAGATE_BASE_URL } from "../src/constants/gateway.js";
 import { parseCliOptions, renderCliEntrypointError, run } from "../src/cli.js";
 import type { InstallSelectOptions } from "../src/install/deps.js";
-import {
-  buildManagedProviderCatalogConfig,
-  resolveValidatedModel,
-} from "../src/install/managed-provider-config.js";
+import type { ValidatedCuratedModel } from "../src/constants/models.js";
 import { escapeRegExp, repoRoot } from "./contract-helpers.js";
 import { createInstallIntegrationHarness } from "./install/harness.js";
+import {
+  createModelsHttp,
+  createResolvedConfigFixture,
+  EXTRA_LIVE_MODEL,
+  EXTRA_LIVE_MODEL_ID,
+  LIVE_MODELS,
+  LIVE_MODEL_ID,
+  SECOND_LIVE_MODEL_ID,
+} from "./install/model-fixtures.js";
 
-const MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8" as const;
-const KIMI_MODEL_KEY = "kimi-k2.6" as const;
-const MINIMAX_MODEL_KEY = "minimax-m2.7" as const;
-const RECOMMENDED_MODEL_KEY = KIMI_MODEL_KEY;
+const MODEL_KEY = LIVE_MODEL_ID;
+const SECOND_MODEL_KEY = SECOND_LIVE_MODEL_ID;
 
 type TestSelectOption = <TValue extends string>(
   options: InstallSelectOptions<TValue>,
@@ -43,39 +43,13 @@ function createBufferWriter(): BufferWriter {
   };
 }
 
-function createResolvedConfigFixture(
-  options:
-    | {
-        modelKey?: CuratedModelKey;
-        mutate?: (config: Record<string, unknown>) => void;
-      }
-    | ((config: Record<string, unknown>) => void) = {},
-): string {
-  const modelKey =
-    typeof options === "function" ? RECOMMENDED_MODEL_KEY : options.modelKey;
-  const mutate = typeof options === "function" ? options : options.mutate;
-  const model = resolveValidatedModel(modelKey ?? RECOMMENDED_MODEL_KEY);
-  const providerConfig = buildManagedProviderCatalogConfig();
-  const resolvedConfig = {
-    model: formatOpencodeModelRef(model),
-    provider: {
-      gonkagate: providerConfig,
-    },
-    small_model: formatOpencodeModelRef(model),
-  } satisfies Record<string, unknown>;
-  const nextConfig = structuredClone(resolvedConfig);
-
-  mutate?.(nextConfig);
-
-  return `${JSON.stringify(nextConfig, null, 2)}\n`;
-}
-
 async function createCliFixture(
   options: {
     debugConfigPureOutput?: string;
     debugConfigPureOutputWhenInlineConfigPresent?: string;
     env?: NodeJS.ProcessEnv;
     interactive?: boolean;
+    models?: readonly ValidatedCuratedModel[];
     selectOption?: TestSelectOption;
   } = {},
 ) {
@@ -86,7 +60,8 @@ async function createCliFixture(
 
     await harness.installFakeOpenCodeOnPath({
       debugConfigPureOutput:
-        options.debugConfigPureOutput ?? createResolvedConfigFixture(),
+        options.debugConfigPureOutput ??
+        createResolvedConfigFixture({ models: options.models }),
       debugConfigPureOutputWhenInlineConfigPresent:
         options.debugConfigPureOutputWhenInlineConfigPresent,
       output: "opencode-ai 1.4.0",
@@ -97,6 +72,7 @@ async function createCliFixture(
 
     return {
       dependencies: harness.createDependencies({
+        http: createModelsHttp(options.models),
         prompts:
           options.selectOption === undefined
             ? undefined
@@ -166,7 +142,7 @@ test("CLI wrapper exposes the shipped help surface", () => {
   assert.equal(helpResult.status, 0);
   assert.match(helpResult.stdout, /Usage: opencode-setup/i);
   assert.match(helpResult.stdout, /Configure OpenCode to use GonkaGate/i);
-  assert.match(helpResult.stdout, /validated-model-only/i);
+  assert.match(helpResult.stdout, /Model source/i);
   assert.match(helpResult.stdout, /--scope <scope>/);
   assert.match(helpResult.stdout, /--api-key-stdin/);
   assert.match(helpResult.stdout, /GONKAGATE_API_KEY/);
@@ -211,7 +187,7 @@ test("CLI wrapper still runs when invoked through a symlinked bin path", (t) => 
   assert.match(helpResult.stdout, /Configure OpenCode to use GonkaGate/i);
 });
 
-test("interactive runs show the public model picker with the validated models", async () => {
+test("interactive runs show the public model picker with the fetched models", async () => {
   const promptMessages: string[] = [];
   const promptChoiceSnapshots: string[][] = [];
   const fixture = await createCliFixture({
@@ -238,9 +214,8 @@ test("interactive runs show the public model picker with the validated models", 
       /Choose the GonkaGate model to configure for OpenCode/i,
     );
     assert.deepEqual(promptChoiceSnapshots[0], [
-      "Qwen3 235B A22B Instruct 2507 FP8",
-      "Kimi K2.6 (Recommended)",
-      "MiniMax M2.7",
+      "Dynamic Alpha (Default)",
+      "Dynamic Beta",
     ]);
     assert.match(
       promptMessages[1] ?? "",
@@ -251,7 +226,49 @@ test("interactive runs show the public model picker with the validated models", 
   }
 });
 
-test("--yes auto-selects the recommended model and scope without prompting", async () => {
+test("installer writes every fetched model id into provider.gonkagate.models", async () => {
+  const models = [...LIVE_MODELS, EXTRA_LIVE_MODEL];
+  const fixture = await createCliFixture({
+    debugConfigPureOutput: createResolvedConfigFixture({ models }),
+    models,
+  });
+
+  try {
+    const result = await run(["--json", "--yes"], {
+      dependencies: fixture.dependencies,
+      stderr: fixture.stderr,
+      stdout: fixture.stdout,
+    });
+
+    const userConfig = JSON.parse(
+      await fixture.dependencies.fs.readFile(
+        resolve(
+          fixture.harness.homeDir,
+          ".config",
+          "opencode",
+          "opencode.json",
+        ),
+        "utf8",
+      ),
+    ) as {
+      provider?: {
+        gonkagate?: {
+          models?: Record<string, unknown>;
+        };
+      };
+    };
+
+    assert.equal(result.exitCode, 0);
+    assert.ok(
+      userConfig.provider?.gonkagate?.models?.[EXTRA_LIVE_MODEL_ID] !==
+        undefined,
+    );
+  } finally {
+    await fixture.harness.cleanup();
+  }
+});
+
+test("--yes auto-selects the default model and scope without prompting", async () => {
   let selectCallCount = 0;
   const fixture = await createCliFixture({
     interactive: true,
@@ -274,14 +291,14 @@ test("--yes auto-selects the recommended model and scope without prompting", asy
     assert.match(fixture.stdout.contents, /"scope": "project"/);
     assert.match(
       fixture.stdout.contents,
-      new RegExp(escapeRegExp('"modelRef": "gonkagate/kimi-k2.6"')),
+      new RegExp(escapeRegExp(`"modelRef": "gonkagate/${MODEL_KEY}"`)),
     );
   } finally {
     await fixture.harness.cleanup();
   }
 });
 
-test("non-interactive runs require model selection when multiple validated models are available", async () => {
+test("non-interactive runs require model selection when multiple models are available", async () => {
   const fixture = await createCliFixture();
 
   try {
@@ -323,15 +340,15 @@ test("non-interactive runs still require scope after an explicit model selection
   }
 });
 
-test("CLI accepts Kimi K2.6 as an explicit curated model selection", async () => {
+test("CLI accepts an explicit fetched model id", async () => {
   const fixture = await createCliFixture({
     debugConfigPureOutput: createResolvedConfigFixture({
-      modelKey: KIMI_MODEL_KEY,
+      modelKey: SECOND_MODEL_KEY,
     }),
   });
 
   try {
-    const result = await run(["--json", "--yes", "--model", KIMI_MODEL_KEY], {
+    const result = await run(["--json", "--yes", "--model", SECOND_MODEL_KEY], {
       dependencies: fixture.dependencies,
       stderr: fixture.stderr,
       stdout: fixture.stdout,
@@ -341,35 +358,7 @@ test("CLI accepts Kimi K2.6 as an explicit curated model selection", async () =>
     assert.match(fixture.stdout.contents, /"status": "success"/);
     assert.match(
       fixture.stdout.contents,
-      new RegExp(escapeRegExp('"modelRef": "gonkagate/kimi-k2.6"')),
-    );
-  } finally {
-    await fixture.harness.cleanup();
-  }
-});
-
-test("CLI accepts MiniMax M2.7 as an explicit curated model selection", async () => {
-  const fixture = await createCliFixture({
-    debugConfigPureOutput: createResolvedConfigFixture({
-      modelKey: MINIMAX_MODEL_KEY,
-    }),
-  });
-
-  try {
-    const result = await run(
-      ["--json", "--yes", "--model", MINIMAX_MODEL_KEY],
-      {
-        dependencies: fixture.dependencies,
-        stderr: fixture.stderr,
-        stdout: fixture.stdout,
-      },
-    );
-
-    assert.equal(result.exitCode, 0);
-    assert.match(fixture.stdout.contents, /"status": "success"/);
-    assert.match(
-      fixture.stdout.contents,
-      new RegExp(escapeRegExp('"modelRef": "gonkagate/minimax-m2.7"')),
+      new RegExp(escapeRegExp(`"modelRef": "gonkagate/${SECOND_MODEL_KEY}"`)),
     );
   } finally {
     await fixture.harness.cleanup();

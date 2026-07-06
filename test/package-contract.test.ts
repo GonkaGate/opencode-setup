@@ -13,7 +13,7 @@ interface PackageJson {
   version?: string;
 }
 
-test("package metadata matches the scaffold contract", () => {
+test("package metadata matches scaffold contract", () => {
   const packageJson = JSON.parse(readText("package.json")) as PackageJson;
 
   assert.equal(packageJson.name, CONTRACT_METADATA.packageName);
@@ -38,16 +38,13 @@ test("package metadata matches the scaffold contract", () => {
   assert.match(packageJson.scripts?.ci ?? "", /npm run package:check/);
 });
 
-test("curated model contract can encode compatibility and migration metadata", () => {
+test("model contract uses the live GonkaGate model catalog", () => {
   const modelsContract = readText("src/constants/models.ts");
+  const modelCatalog = readText("src/install/model-catalog.ts");
 
-  assert.match(modelsContract, /CuratedModelCompatibility/);
-  assert.match(modelsContract, /CuratedModelRecord/);
-  assert.match(modelsContract, /providerOptions/);
-  assert.match(modelsContract, /modelOptions/);
-  assert.match(modelsContract, /modelHeaders/);
-  assert.match(modelsContract, /migrationMetadata/);
-  assert.match(modelsContract, /recommended/);
-  assert.match(modelsContract, /CURATED_MODEL_REGISTRY/);
-  assert.match(modelsContract, /getRecommendedValidatedModel/);
+  assert.doesNotMatch(modelsContract, /CURATED_MODEL_REGISTRY/);
+  assert.doesNotMatch(modelsContract, /SUPPORTED_MODELS/);
+  assert.match(modelCatalog, /GONKAGATE_MODELS_URL/);
+  assert.match(modelCatalog, /Authorization: `Bearer/);
+  assert.match(modelCatalog, /parseGonkagateModelsResponse/);
 });

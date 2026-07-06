@@ -18,6 +18,7 @@ export type InstallProgressState = InstallFlowProgress;
 export interface PreparedInstallSession {
   context: ResolvedInstallContext;
   model: ValidatedCuratedModel;
+  models: readonly ValidatedCuratedModel[];
   summary: InstallFlowSelectionSummary;
 }
 
@@ -34,11 +35,13 @@ export function createInstallProgressStateForModel(
 export function prepareInstallSession(
   context: ResolvedInstallContext,
   model: ValidatedCuratedModel,
+  models: readonly ValidatedCuratedModel[],
   scope: ManagedConfigScope,
 ): PreparedInstallSession {
   return {
     context,
     model,
+    models,
     summary: {
       ...createInstallProgressStateForModel(model),
       scope,

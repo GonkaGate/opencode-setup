@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Features
+
+* fetch the GonkaGate model catalog from `/v1/models` during setup
+
 ## [0.5.1](https://github.com/GonkaGate/opencode-setup/compare/v0.5.0...v0.5.1) (2026-06-23)
 
 

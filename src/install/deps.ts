@@ -64,6 +64,23 @@ export interface InstallInput {
   readStdin(): Promise<string>;
 }
 
+export interface InstallHttpResponse {
+  ok: boolean;
+  status: number;
+  statusText: string;
+  text(): Promise<string>;
+}
+
+export interface InstallHttp {
+  fetch(
+    url: string,
+    options?: {
+      headers?: Record<string, string>;
+      method?: string;
+    },
+  ): Promise<InstallHttpResponse>;
+}
+
 export interface InstallPrompts {
   readSecret(message: string): Promise<string>;
   selectOption<TValue extends string>(
@@ -95,6 +112,7 @@ export interface InstallDependencies {
   clock: InstallClock;
   commands: InstallCommandRunner;
   fs: InstallFs;
+  http: InstallHttp;
   input: InstallInput;
   prompts: InstallPrompts;
   runtime: InstallRuntimeEnvironment;
@@ -117,6 +135,7 @@ export interface CreateNodeInstallDependenciesOverrides {
   clock?: Partial<InstallClock>;
   commands?: Partial<InstallCommandRunner>;
   fs?: Partial<InstallFs>;
+  http?: Partial<InstallHttp>;
   input?: Partial<InstallInput>;
   prompts?: Partial<InstallPrompts>;
   runtime?: InstallRuntimeOverrides;
@@ -484,6 +503,16 @@ async function readStdin(): Promise<string> {
   return contents;
 }
 
+async function fetchHttp(
+  url: string,
+  options?: {
+    headers?: Record<string, string>;
+    method?: string;
+  },
+): Promise<InstallHttpResponse> {
+  return await fetch(url, options);
+}
+
 async function readSecret(message: string): Promise<string> {
   return await password({ mask: "*", message });
 }
@@ -524,6 +553,10 @@ export function createNodeInstallDependencies(
     readStdin,
   };
 
+  const defaultHttp: InstallHttp = {
+    fetch: fetchHttp,
+  };
+
   const defaultPrompts: InstallPrompts = {
     readSecret,
     selectOption,
@@ -547,6 +580,7 @@ export function createNodeInstallDependencies(
     clock: { ...defaultClock, ...overrides.clock },
     commands: { ...defaultCommands, ...overrides.commands },
     fs: { ...defaultFs, ...overrides.fs },
+    http: { ...defaultHttp, ...overrides.http },
     input: { ...defaultInput, ...overrides.input },
     prompts: { ...defaultPrompts, ...overrides.prompts },
     runtime: { ...defaultRuntime, ...overrides.runtime },

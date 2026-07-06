@@ -11,10 +11,7 @@ import {
 } from "./contracts/managed-config.js";
 import type { InstallDependencies } from "./deps.js";
 import { createInstallError } from "./errors.js";
-import {
-  buildManagedProviderCatalogConfig,
-  resolveValidatedModel,
-} from "./managed-provider-config.js";
+import { buildManagedProviderCatalogConfig } from "./managed-provider-config.js";
 import { writeManagedConfigTarget } from "./write-target-config.js";
 
 export async function writeScopeManagedConfigs(
@@ -37,13 +34,21 @@ export async function writeScopeManagedConfigs(
 function createManagedConfigWriteContext(
   request: ScopeWriteRequest,
 ): ManagedConfigWriteContext {
-  const model = resolveValidatedModel(request.model);
+  const model = request.models.find(
+    (candidate) => candidate.key === request.model,
+  );
+
+  if (model === undefined) {
+    throw createInstallError("unsupported_model_key", {
+      modelKey: request.model,
+    });
+  }
 
   return {
     activationModelRef: formatOpencodeModelRef(model),
     managedPaths: request.managedPaths,
     ownedActivationModelRefs: createOwnedActivationModelRefs(request),
-    providerConfig: buildManagedProviderCatalogConfig(),
+    providerConfig: buildManagedProviderCatalogConfig(request.models),
   };
 }
 

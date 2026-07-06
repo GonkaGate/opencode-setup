@@ -1,5 +1,4 @@
 import type {
-  CuratedModelCompatibility,
   CuratedModelKey,
   CuratedModelTransport,
   OpencodeModelRef,
@@ -53,7 +52,6 @@ export interface EffectiveConfigVerificationTarget {
   modelKey: CuratedModelKey;
   modelRef: OpencodeModelRef;
   providerId: string;
-  runtimeCompatibility?: CuratedModelCompatibility;
   transport: CuratedModelTransport;
 }
 

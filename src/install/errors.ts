@@ -46,6 +46,20 @@ export interface InstallErrorDetailsByCode {
     path: string;
     target: ManagedConfigTarget;
   };
+  model_catalog_fetch_failed:
+    | {
+        cause: unknown;
+        url: string;
+      }
+    | {
+        status: number;
+        statusText: string;
+        url: string;
+      };
+  model_catalog_invalid: {
+    reason: string;
+    url: string;
+  };
   managed_secret_backup_failed: {
     cause: unknown;
     source: AllowedSecretInput;
@@ -148,6 +162,12 @@ const INSTALL_ERROR_MESSAGE_FACTORIES: {
     `Managed config plan for ${details.scope} scope is missing the required ${formatManagedConfigTarget(details.missingTarget)} step.`,
   managed_config_write_failed: (details) =>
     `Failed to write the ${formatManagedConfigTarget(details.target)} at ${details.path}.`,
+  model_catalog_fetch_failed: (details) =>
+    "status" in details
+      ? `Could not fetch the GonkaGate model catalog from ${details.url} (HTTP ${details.status}).`
+      : `Could not fetch the GonkaGate model catalog from ${details.url}.`,
+  model_catalog_invalid: (details) =>
+    `GonkaGate returned an invalid model catalog from ${details.url} (${details.reason}).`,
   managed_secret_backup_failed: (details) =>
     formatManagedArtifactFailureMessage({
       operation: "backup",
@@ -204,12 +224,12 @@ const INSTALL_ERROR_MESSAGE_FACTORIES: {
       : "Non-interactive setup requires --scope or --yes so the installer can confirm the activation scope safely.",
   model_selection_required: (details) =>
     details.validatedModelCount <= 1
-      ? "A validated GonkaGate model could not be selected automatically. Pass --model or rerun interactively."
-      : "Multiple validated GonkaGate models are available. Pass --model, use --yes for the recommended default, or rerun interactively.",
+      ? "A GonkaGate model could not be selected automatically. Pass --model or rerun interactively."
+      : "Multiple GonkaGate models are available. Pass --model, use --yes for the default, or rerun interactively.",
   unsupported_model_key: (details) =>
-    `The requested GonkaGate model key "${details.modelKey}" is not in the current validated public picker.`,
+    `The requested GonkaGate model "${details.modelKey}" was not returned by /v1/models.`,
   validated_models_unavailable: () =>
-    "No validated GonkaGate models are currently available for setup.",
+    "No GonkaGate models are currently available for setup.",
   secret_prompt_unavailable: () =>
     "A hidden GonkaGate API key prompt requires an interactive terminal. Use GONKAGATE_API_KEY or --api-key-stdin for non-interactive setup.",
   secret_source_unavailable: (details) =>

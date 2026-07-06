@@ -21,7 +21,7 @@ Start here:
 - `storage.ts` and `state.ts` handle managed secret and install-state
   persistence with backups, POSIX owner-only permissions where supported, and
   explicit native Windows profile-scoped storage semantics
-- `managed-provider-config.ts` translates validated curated models into the
+- `managed-provider-config.ts` translates fetched GonkaGate models into the
   canonical GonkaGate-owned provider shape
 - `config.ts` parses JSON and JSONC OpenCode config safely and applies
   GonkaGate-owned mutations without replacing unrelated config

@@ -9,11 +9,7 @@ import {
   type InstallError,
   type InstallErrorCode,
 } from "../../src/install/errors.js";
-import {
-  buildManagedProviderCatalogConfig,
-  GONKAGATE_SECRET_FILE_REFERENCE,
-  resolveValidatedModel,
-} from "../../src/install/managed-provider-config.js";
+import { GONKAGATE_SECRET_FILE_REFERENCE } from "../../src/install/managed-provider-config.js";
 import { formatRedactedDiagnosticValue } from "../../src/install/redact.js";
 import { resolveManagedPaths } from "../../src/install/paths.js";
 import {
@@ -21,9 +17,15 @@ import {
   verifyEffectiveConfig,
 } from "../../src/install/verify-effective.js";
 import { createInstallIntegrationHarness } from "./harness.js";
+import {
+  createResolvedConfigFixture,
+  LIVE_MODELS,
+  LIVE_MODEL_ID,
+  SECOND_LIVE_MODEL_ID,
+} from "./model-fixtures.js";
 import { createTestInstallDependencies } from "./test-deps.js";
 
-const MODEL_KEY = "qwen3-235b-a22b-instruct-2507-fp8" as const;
+const MODEL_KEY = LIVE_MODEL_ID;
 const TEST_HOME_DIR = "/home/test";
 const TEST_PROJECT_ROOT = "/workspace/repo";
 
@@ -79,25 +81,6 @@ function expectInstallErrorCode<TCode extends InstallErrorCode>(
     assertError(error);
     return true;
   };
-}
-
-function createResolvedConfigFixture(
-  mutate?: (config: Record<string, unknown>) => void,
-): string {
-  const model = resolveValidatedModel(MODEL_KEY);
-  const providerConfig = buildManagedProviderCatalogConfig();
-  const resolvedConfig = {
-    model: formatOpencodeModelRef(model),
-    provider: {
-      gonkagate: providerConfig,
-    },
-    small_model: formatOpencodeModelRef(model),
-  } satisfies Record<string, unknown>;
-  const nextConfig = structuredClone(resolvedConfig);
-
-  mutate?.(nextConfig);
-
-  return `${JSON.stringify(nextConfig, null, 2)}\n`;
 }
 
 async function createVerificationFixture(
@@ -232,6 +215,7 @@ test("verifyEffectiveConfig succeeds against the resolved config and uses the --
       {
         context: fixture.context,
         model: MODEL_KEY,
+        models: LIVE_MODELS,
         scope: "user",
       },
       fixture.dependencies,
@@ -283,6 +267,7 @@ test("verifyEffectiveConfig ignores OPENCODE_CONFIG_CONTENT during durable verif
       {
         context: fixture.context,
         model: MODEL_KEY,
+        models: LIVE_MODELS,
         scope: "user",
       },
       fixture.dependencies,
@@ -323,6 +308,7 @@ test("verifyEffectiveConfig keeps opencode debug config --pure as the durable su
     {
       context: fixture.context,
       model: MODEL_KEY,
+      models: LIVE_MODELS,
       scope: "user",
     },
     fixture.dependencies,
@@ -352,6 +338,7 @@ test("verifyEffectiveConfig attributes enabled_providers durable blockers to use
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -390,6 +377,7 @@ test("verifyEffectiveConfig attributes overlapping managed keys to project_confi
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -421,6 +409,7 @@ test("verifyEffectiveConfig blocks when OPENCODE_CONFIG overrides only provider.
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -460,6 +449,7 @@ test("verifyEffectiveConfig attributes disabled_providers durable blockers to fi
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -494,6 +484,7 @@ test("verifyEffectiveConfig blocks when a file-based system managed config overr
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -539,6 +530,7 @@ test("verifyEffectiveConfig attributes overlapping managed keys to file-based sy
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -563,6 +555,7 @@ test("verifyEffectiveConfig returns an inferred higher-precedence blocker when r
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -592,6 +585,7 @@ test("verifyEffectiveConfig blocks when user_config does not own the canonical s
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -624,6 +618,7 @@ test("verifyEffectiveConfig blocks when project scope finds a repo-local GonkaGa
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "project",
         },
         fixture.dependencies,
@@ -650,6 +645,7 @@ test("verifyCurrentSessionEffectiveConfig allows an identical inline override", 
       {
         context: fixture.context,
         model: MODEL_KEY,
+        models: LIVE_MODELS,
         scope: "user",
       },
       fixture.dependencies,
@@ -676,6 +672,7 @@ test("verifyCurrentSessionEffectiveConfig blocks when OPENCODE_CONFIG_CONTENT de
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -715,6 +712,7 @@ test("verifyCurrentSessionEffectiveConfig blocks when an inline model override c
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -752,6 +750,7 @@ test("verifyCurrentSessionEffectiveConfig preserves enabled_providers blockers f
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -784,6 +783,7 @@ test("verifyCurrentSessionEffectiveConfig preserves disabled_providers blockers 
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -811,6 +811,7 @@ test("verifyCurrentSessionEffectiveConfig fails when the inline layer is invalid
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -838,6 +839,7 @@ test("verifyEffectiveConfig detects a resolved model mismatch", async () => {
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -868,6 +870,7 @@ test("verifyEffectiveConfig detects a resolved small_model mismatch", async () =
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -900,6 +903,7 @@ test("verifyEffectiveConfig detects a missing provider.gonkagate block", async (
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -929,6 +933,7 @@ test(
         {
           context: fixture.context,
           model: MODEL_KEY,
+          models: LIVE_MODELS,
           scope: "user",
         },
         fixture.dependencies,
@@ -970,6 +975,7 @@ test("verifyEffectiveConfig detects a wrong resolved adapter package", async () 
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -1004,6 +1010,7 @@ test("verifyEffectiveConfig detects a wrong resolved transport", async () => {
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -1039,6 +1046,7 @@ test("verifyEffectiveConfig detects a wrong resolved base URL", async () => {
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -1073,6 +1081,7 @@ test("verifyEffectiveConfig detects a missing curated model entry under provider
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -1098,7 +1107,7 @@ test("verifyEffectiveConfig requires the full GonkaGate model catalog", async ()
       const provider = (config.provider as Record<string, unknown>)
         .gonkagate as Record<string, unknown>;
       const models = provider.models as Record<string, unknown>;
-      delete models["minimax-m2.7"];
+      delete models[SECOND_LIVE_MODEL_ID];
     }),
   });
 
@@ -1109,6 +1118,7 @@ test("verifyEffectiveConfig requires the full GonkaGate model catalog", async ()
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -1117,7 +1127,8 @@ test("verifyEffectiveConfig requires the full GonkaGate model catalog", async ()
         assert.equal(
           error.details.mismatches.some(
             (mismatch) =>
-              mismatch.key === "provider.gonkagate.models.minimax-m2.7",
+              mismatch.key ===
+              `provider.gonkagate.models.${SECOND_LIVE_MODEL_ID}`,
           ),
           true,
         );
@@ -1140,6 +1151,7 @@ test("verifyEffectiveConfig rejects invalid resolved-config payloads without ech
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
@@ -1170,6 +1182,7 @@ test("verifyEffectiveConfig redacts expanded secrets in mismatch diagnostics", a
           {
             context: fixture.context,
             model: MODEL_KEY,
+            models: LIVE_MODELS,
             scope: "user",
           },
           fixture.dependencies,
